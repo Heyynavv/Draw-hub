@@ -76,39 +76,112 @@ if(jackGrid) {
 }
 
 // --- Scratch Cards Generation (16 Cards) ---
+
+// const scratchGrid = document.getElementById('scratch-grid');
+// const cardData = [
+//     {name:'Cash Splash', price:50, img:'https://images.unsplash.com/photo-1518458028434-541f068ff9b9?w=400'},
+//     {name:'House of Gold', price:20, img:'https://images.unsplash.com/photo-1610375461246-83df859d849d?w=400'},
+//     {name:'Wicket Win', price:10, img:'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=400'},
+//     {name:'Jungle Gem', price:5, img:'https://images.unsplash.com/photo-1544306094-e2daf9459aa4?w=400'},
+//     {name:'Mega Million', price:100, img:'https://images.unsplash.com/photo-1550565118-3d143c00368d?w=400'},
+//     {name:'Diamond 777', price:30, img:'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400'},
+//     {name:'Lucky Red', price:20, img:'https://images.unsplash.com/photo-1614028674026-a65e31bfd27c?w=400'},
+//     {name:'Silver Box', price:15, img:'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400'},
+//     {name:'Royal Flush', price:50, img:'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400'},
+//     {name:'Neon Win', price:25, img:'https://images.unsplash.com/photo-1605792657660-596af9039e23?w=400'},
+//     {name:'Game On', price:40, img:'https://images.unsplash.com/photo-1553481187-be93c21490a9?w=400'},
+//     {name:'Pixel Cash', price:10, img:'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400'},
+//     {name:'Vortex', price:50, img:'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400'},
+//     {name:'Office Win', price:20, img:'https://images.unsplash.com/photo-1454165833767-027ffea9e778?w=400'},
+//     {name:'Gold Rush', price:100, img:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400'},
+//     {name:'Pocket Money', price:5, img:'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400'}
+// ];
+
+// if(scratchGrid) {
+//     cardData.forEach(c => {
+//         scratchGrid.innerHTML += `
+//             <div class="card-wrapper rounded-[25px] overflow-hidden shadow-lg bg-white group cursor-pointer transition hover:-translate-y-2">
+//                 <div class="scratch-img-box">
+//                     <img src="${c.img}">
+//                     <div class="card-info text-white"><span class="text-orange-500 font-black text-xs">AED ${c.price}</span><h4 class="text-xl font-black italic uppercase">${c.name}</h4></div>
+//                 </div>
+//                 <div class="bg-gray-900 text-white py-4 text-center text-[10px] font-black uppercase group-hover:bg-green-700 transition">Scratch Now</div>
+//             </div>
+//         `;
+//     });
+// }
+
 const scratchGrid = document.getElementById('scratch-grid');
+
 const cardData = [
-    {name:'Cash Splash', price:50, img:'https://images.unsplash.com/photo-1518458028434-541f068ff9b9?w=400'},
-    {name:'House of Gold', price:20, img:'https://images.unsplash.com/photo-1610375461246-83df859d849d?w=400'},
-    {name:'Wicket Win', price:10, img:'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=400'},
-    {name:'Jungle Gem', price:5, img:'https://images.unsplash.com/photo-1544306094-e2daf9459aa4?w=400'},
-    {name:'Mega Million', price:100, img:'https://images.unsplash.com/photo-1550565118-3d143c00368d?w=400'},
-    {name:'Diamond 777', price:30, img:'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400'},
-    {name:'Lucky Red', price:20, img:'https://images.unsplash.com/photo-1614028674026-a65e31bfd27c?w=400'},
-    {name:'Silver Box', price:15, img:'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400'},
-    {name:'Royal Flush', price:50, img:'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400'},
-    {name:'Neon Win', price:25, img:'https://images.unsplash.com/photo-1605792657660-596af9039e23?w=400'},
-    {name:'Game On', price:40, img:'https://images.unsplash.com/photo-1553481187-be93c21490a9?w=400'},
-    {name:'Pixel Cash', price:10, img:'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400'},
-    {name:'Vortex', price:50, img:'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400'},
-    {name:'Office Win', price:20, img:'https://images.unsplash.com/photo-1454165833767-027ffea9e778?w=400'},
-    {name:'Gold Rush', price:100, img:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400'},
-    {name:'Pocket Money', price:5, img:'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400'}
+    {name:'Cash Splash', price:50, win:'1,000,000', color:'bg-[#1b8c38]', img:'1550565118-3d143c00368d'},
+    {name:'House of Gold', price:20, win:'300,000', color:'bg-[#c41e3a]', img:'1610375461246-83df859d849d'},
+    {name:'Jungle Jewels', price:10, win:'100,000', color:'bg-[#0b4d2a]', img:'1502082553245-f0bc7a671450'},
+    {name:'Wicket Win', price:5, win:'50,000', color:'bg-[#2b4c91]', img:'1531415074968-036ba1b575da'},
+    {name:'Mega Million', price:100, win:'5,000,000', color:'bg-[#4c1a59]', img:'1518458028434-541f068ff9b9'},
+    {name:'Diamond 777', price:30, win:'750,000', color:'bg-[#0e7490]', img:'1563013544-824ae1b704d3'},
+    {name:'Lucky Red', price:20, win:'250,000', color:'bg-[#9f1239]', img:'1614028674026-a65e31bfd27c'},
+    {name:'Silver Box', price:15, win:'150,000', color:'bg-[#475569]', img:'1579621970563-ebec7560ff3e'},
+    {name:'Royal Flush', price:50, win:'1,200,000', color:'bg-[#312e81]', img:'1526304640581-d334cdbbf45e'},
+    {name:'Neon Win', price:25, win:'200,000', color:'bg-[#be185d]', img:'1605792657660-596af9039e23'},
+    {name:'Game On', price:40, win:'800,000', color:'bg-[#c2410c]', img:'1553481187-be93c21490a9'},
+    {name:'Pixel Cash', price:10, win:'100,000', color:'bg-[#0e7490]', img:'1511512578047-dfb367046420'},
+    {name:'Vortex', price:50, win:'1,500,000', color:'bg-[#4c1d95]', img:'1618005182384-a83a8bd57fbe'},
+    {name:'Office Win', price:20, win:'300,000', color:'bg-[#065f46]', img:'1454165833767-027ffea9e778'},
+    {name:'Gold Rush', price:100, win:'10,000,000', color:'bg-[#b45309]', img:'1460925895917-afdab827c52f'},
+    {name:'Pocket Money', price:5, win:'25,000', color:'bg-[#0d9488]', img:'1590283603385-17ffb3a7f29f'}
 ];
 
 if(scratchGrid) {
+    scratchGrid.innerHTML = '';
     cardData.forEach(c => {
         scratchGrid.innerHTML += `
-            <div class="card-wrapper rounded-[25px] overflow-hidden shadow-lg bg-white group cursor-pointer transition hover:-translate-y-2">
-                <div class="scratch-img-box">
-                    <img src="${c.img}">
-                    <div class="card-info text-white"><span class="text-orange-500 font-black text-xs">AED ${c.price}</span><h4 class="text-xl font-black italic uppercase">${c.name}</h4></div>
+            <div class="group relative bg-white rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.2)] transition-all duration-500 hover:-translate-y-4 cursor-pointer border border-white">
+                
+                <div class="absolute top-5 left-5 z-20 backdrop-blur-md bg-green-500/80 text-white text-[10px] font-black px-3 py-1 rounded-lg italic tracking-widest shadow-lg">
+                    NEW
                 </div>
-                <div class="bg-gray-900 text-white py-4 text-center text-[10px] font-black uppercase group-hover:bg-green-700 transition">Scratch Now</div>
+
+                <div class="absolute top-5 right-5 z-20 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-2xl shadow-sm border border-white/50 flex flex-col items-center">
+                    <span class="text-[8px] font-black text-slate-400 leading-none">AED</span>
+                    <span class="text-lg font-black text-slate-900 leading-none">${c.price}</span>
+                </div>
+
+                <div class="relative h-64 md:h-80 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-${c.img}?auto=format&fit=crop&q=80&w=400&h=600" 
+                         class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-50 group-hover:scale-100">
+                        <div class="w-16 h-16 bg-white/20 backdrop-blur-xl border border-white/30 rounded-full flex items-center justify-center shadow-2xl">
+                            <div class="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-white border-b-[10px] border-b-transparent ml-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-8 left-0 right-0 px-6 text-center">
+                        <h4 class="text-white text-2xl font-black uppercase italic tracking-tighter drop-shadow-2xl mb-2">
+                            ${c.name}
+                        </h4>
+                        <div class="w-10 h-1.5 bg-yellow-400 mx-auto rounded-full transition-all duration-500 group-hover:w-28 shadow-[0_0_15px_rgba(250,204,21,0.6)]"></div>
+                    </div>
+                </div>
+
+                <div class="${c.color} py-5 px-2 text-center relative overflow-hidden">
+                    <div class="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-all duration-1000 group-hover:left-full"></div>
+                    
+                    <p class="text-[10px] font-bold text-white/60 uppercase tracking-widest mb-1">Top Prize</p>
+                    <p class="text-xl md:text-2xl font-black text-white italic tracking-tighter drop-shadow-md">
+                        WIN AED ${c.win}
+                    </p>
+                </div>
             </div>
         `;
     });
 }
+
+
+
 
 // --- Casino Slot Logic ---
 const winNums = [10, 22, 5, 31, 48, 7, 2];
