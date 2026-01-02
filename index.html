@@ -137,89 +137,156 @@
 <!-- ------------------------------JACkPOT ------------------------ -->
 
 
-<section class="w-full px-4 md:px-8 my-8">
-    
-    <h2 class="text-xl font-black uppercase italic mb-6 tracking-tight text-gray-900 border-l-4 border-green-700 pl-3">
-        Jackpot
-    </h2>
-    
-    <div class="flex flex-col md:flex-row gap-5 items-stretch">
+<section class="w-full px-4 md:px-8 my-10 font-sans">
+    <div class="bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row">
         
-        <div class="w-full md:w-1/2 bg-white rounded-xl p-6 shadow-md border border-gray-100 flex flex-col justify-between">
-            <div class="flex items-center gap-4">
-                <img src="https://theuaelottery.ae/assets/images/luckyday-logo.svg" class="w-16 flex-shrink-0">
-                <div>
-                    <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Estimated Prize</p>
-                    <h3 class="text-2xl md:text-3xl font-black italic uppercase leading-none">
-                        AED <span class="text-red-600">30,000,000</span>
-                    </h3>
+        <div class="w-full lg:w-[45%] p-8 md:p-12 flex flex-col items-center text-center justify-between border-b lg:border-b-0 lg:border-r border-gray-100">
+            <div class="w-full">
+                <div class="flex justify-between items-start mb-10">
+                    <!-- <img src="https://theuaelottery.ae/assets/images/luckyday-logo.svg" class="w-20"> -->
+                    <div class="text-right">
+                        <p class="text-[10px] font-bold text-gray-400 uppercase">Draw Date: Saturday 22:00</p>
+                        <p class="text-sm font-black text-gray-800" id="jackpot-main-timer">01 D : 03 H : 11 M : 25 S</p>
+                    </div>
                 </div>
+
+                <h2 class="text-2xl font-black uppercase tracking-tighter text-gray-900 mb-2">Jackpot</h2>
+                <div class="text-4xl md:text-6xl font-black text-gray-900 tracking-tighter mb-6">
+                    AED <span class="text-[#e11d48]">30,000,000</span>
+                </div>
+
+                <div class="bg-[#fffbeb] border border-[#fef3c7] rounded-full py-2 px-6 inline-block mb-4">
+                    <p class="text-[#b45309] font-bold text-sm uppercase italic">Guaranteed Lucky Chance Draw</p>
+                </div>
+                <p class="text-xl font-black text-[#b45309]">AED 100,000 * 3 Winners</p>
             </div>
-            
-            <div class="mt-6 flex justify-between items-center border-t border-gray-50 pt-4">
-                <p class="text-[10px] font-bold text-gray-400 uppercase">Draw Status: <span class="text-green-600 animate-pulse">Open</span></p>
-                <button class="bg-green-700 text-white px-8 py-2.5 rounded-lg font-black uppercase text-[10px] shadow-md hover:bg-green-800 transition-all">
-                    Play Now
+
+            <div class="w-full mt-10">
+                <p class="text-[10px] text-gray-400 font-bold mb-4 italic">1 Entry for AED 50</p>
+                <button class="w-full bg-[#fbc02d] hover:bg-[#f9a825] py-4 rounded-full font-black text-xl uppercase italic shadow-lg transition-transform active:scale-95">
+                    Play
                 </button>
             </div>
         </div>
 
-        <div class="w-full md:w-1/2 bg-gray-900 rounded-xl p-6 shadow-md flex flex-col justify-center">
-            <p class="text-[9px] font-black text-gray-500 uppercase mb-4 tracking-widest text-center md:text-left">
-                Latest Winning Combination
-            </p>
-            
-            <div class="grid grid-cols-7 gap-2" id="jackpot-grid">
+        <div class="w-full lg:w-[55%] bg-[#fafafa] p-8 md:p-10">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-lg font-black text-gray-800">Buy A Ticket Quickly</h3>
+                <div class="flex gap-2">
+                    <button class="p-2 text-gray-400 hover:text-red-500"><i class="fa fa-trash-alt"></i></button>
+                    <button class="border border-gray-200 bg-white px-4 py-1.5 rounded-full text-[11px] font-black uppercase italic flex items-center gap-2 hover:bg-gray-50">
+                        <i class="fa fa-magic text-yellow-500"></i> Easy Pick
+                    </button>
                 </div>
-            
-            <p class="text-[9px] font-bold text-white/30 mt-4 text-center md:text-left italic uppercase">Next Draw: <span class="main-timer-el text-yellow-500">00:00:00</span></p>
+            </div>
+
+            <p class="text-[10px] font-bold text-gray-400 uppercase mb-3">Days <span class="text-[9px] font-normal lowercase ml-2 italic text-gray-300">Pick 6 numbers</span></p>
+            <div class="grid grid-cols-8 sm:grid-cols-10 gap-2 mb-8" id="ticket-days-grid">
+                </div>
+
+            <p class="text-[10px] font-bold text-gray-400 uppercase mb-3">Months <span class="text-[9px] font-normal lowercase ml-2 italic text-gray-300">Pick 1 number</span></p>
+            <div class="grid grid-cols-8 sm:grid-cols-10 gap-2 mb-8" id="ticket-months-grid">
+                </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 items-center justify-between border-t border-gray-200 pt-6">
+                <div class="flex items-center bg-white border border-gray-200 rounded-full px-4 py-1 gap-6">
+                    <button class="text-gray-300 text-xl font-bold hover:text-gray-600">-</button>
+                    <span class="font-black text-lg">1</span>
+                    <button class="text-gray-300 text-xl font-bold hover:text-gray-600">+</button>
+                </div>
+                <button class="w-full sm:w-auto bg-[#fbc02d] px-12 py-3 rounded-full font-black text-sm uppercase shadow-md hover:bg-[#f9a825]">
+                    Quick Buy
+                </button>
+            </div>
         </div>
-        
     </div>
 </section>
 
+
 <!-- ------------------------------DAILY LOTTO ------------------------ -->
-<section class="w-full px-4 md:px-8 my-8">
+
+<section class="w-full px-4 md:px-8 my-10 font-sans">
     
     <h2 class="text-xl font-black uppercase italic mb-6 tracking-tight text-gray-900 border-l-4 border-green-700 pl-3">
         Daily Lotto
     </h2>
-    
-    <div class="bg-gradient-to-r from-green-700 to-green-900 rounded-xl p-5 text-white mb-6 flex flex-col md:flex-row justify-between items-center shadow-lg">
-        <div class="flex items-center gap-4">
-            <div class="bg-white text-green-700 w-10 h-10 rounded-full flex items-center justify-center font-black text-lg italic shadow-md">3</div>
-            <div>
-                <h3 class="text-lg font-black italic uppercase leading-none">Win Up To <span class="text-yellow-400">AED 2,500</span></h3>
-                <div class="font-mono text-sm opacity-80 mt-1 main-timer-el uppercase tracking-tighter text-[11px]">Next Draw: 00:00:00</div>
+
+    <div class="flex flex-col gap-4">
+        
+        <div class="relative overflow-hidden bg-[#1fb141] rounded-2xl p-6 md:py-10 md:px-8 text-white flex flex-col md:flex-row justify-between items-center shadow-md">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+
+            <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl font-black italic">PICK</span>
+                    <div class="w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-lg">
+                        <span class="text-green-600 text-xl font-black">3</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl md:text-3xl font-black uppercase italic leading-none">
+                        Win Up To <span class="text-yellow-300">AED 2,500</span>
+                    </h3>
+                    <div class="flex items-center gap-2 mt-3">
+                        <span class="text-[10px] font-bold uppercase opacity-80">Daily Draw:</span>
+                        <div class="flex gap-1 text-black" id="pick3-timer">
+                            <div class="bg-white px-2 py-1 rounded text-[12px] font-bold border-b-2 border-gray-200 hours">00</div>
+                            <div class="bg-white px-2 py-1 rounded text-[12px] font-bold border-b-2 border-gray-200 minutes">00</div>
+                            <div class="bg-white px-2 py-1 rounded text-[12px] font-bold border-b-2 border-gray-200 seconds">00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative z-10 flex items-center gap-6 mt-6 md:mt-0">
+                <button class="bg-white text-green-700 px-12 py-3 rounded-full font-black uppercase text-[11px] shadow-xl hover:bg-yellow-400 transition-all active:scale-95">
+                    Play Now
+                </button>
+                <div class="w-12 h-12 bg-white/20 backdrop-blur-md border border-white/30 rounded-full flex flex-col items-center justify-center">
+                    <span class="text-[8px] font-bold leading-none">AED</span>
+                    <span class="text-lg font-black leading-none">5</span>
+                </div>
             </div>
         </div>
-        <button class="bg-white text-green-800 px-6 py-2 rounded-lg font-black uppercase text-[10px] mt-4 md:mt-0 shadow-md hover:bg-yellow-400 transition-colors">Play Now</button>
-    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="bg-[#412991] rounded-xl p-6 text-white flex flex-col justify-between min-h-[150px] shadow-md border-b-4 border-black/20">
-            <div>
-                <p class="text-[9px] font-bold opacity-60 uppercase tracking-widest mb-1">Instant Win</p>
-                <h3 class="text-lg font-black uppercase italic leading-tight uppercase">Draw Every <br><span class="text-yellow-400 text-xl tracking-tighter">1 Minute</span></h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <div class="relative overflow-hidden bg-[#532fb3] rounded-2xl p-8 text-white flex flex-col items-center justify-between shadow-md border-b-4 border-black/10 min-h-[180px]">
+                <div class="text-center">
+                    <h3 class="text-xl font-black uppercase italic mb-4 tracking-tighter text-white">Draw Every <span class="text-yellow-400">1 Minute</span></h3>
+                    <div class="flex gap-2 justify-center items-center" id="instant-timer">
+                        <div class="bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-2xl font-mono minutes">00</div>
+                        <span class="text-2xl font-bold">:</span>
+                        <div class="bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-2xl font-mono seconds">00</div>
+                    </div>
+                </div>
+                <button class="mt-6 bg-white/10 border border-white/30 px-12 py-2 rounded-full font-black uppercase text-[10px] hover:bg-white hover:text-purple-900 transition-all">
+                    Play
+                </button>
             </div>
-            <div class="flex justify-between items-center mt-4 pt-4 border-t border-white/10">
-                <span class="text-lg font-mono font-bold tracking-tighter">00:45</span>
-                <button class="bg-white/10 hover:bg-white/20 px-5 py-2 rounded-lg font-black text-[9px] uppercase transition">Play Now</button>
-            </div>
-        </div>
 
-        <div class="bg-[#eeb31a] rounded-xl p-6 text-black flex flex-col justify-between min-h-[150px] shadow-md border-b-4 border-black/20">
-            <div>
-                <p class="text-[9px] font-bold opacity-40 uppercase tracking-widest mb-1">Mega Prize</p>
-                <h3 class="text-lg font-black uppercase italic leading-tight uppercase">Win Up To <br><span class="text-orange-800 text-xl tracking-tighter">AED 25,000</span></h3>
+            <div class="relative overflow-hidden bg-[#e0a515] rounded-2xl p-8 text-white flex flex-col items-center justify-between shadow-md border-b-4 border-black/10 min-h-[180px]">
+                <div class="text-center">
+                    <div class="flex items-center justify-center gap-2 mb-2">
+                        <span class="text-lg font-black italic">PICK</span>
+                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-yellow-600 font-black text-sm">4</div>
+                    </div>
+                    <h3 class="text-xl font-black uppercase italic mb-3">Win Up To <span class="text-red-700">AED 25,000</span></h3>
+                    <div class="flex gap-1 text-black justify-center" id="pick4-timer">
+                        <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold hours">00</div>
+                        <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold minutes">00</div>
+                        <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold seconds">00</div>
+                    </div>
+                </div>
+                <button class="mt-6 bg-white/20 border border-white/40 px-12 py-2 rounded-full font-black uppercase text-[10px] hover:bg-white hover:text-yellow-700 transition-all">
+                    Play
+                </button>
             </div>
-            <div class="flex justify-between items-center mt-4 pt-4 border-t border-black/5">
-                <span class="text-lg font-mono font-bold tracking-tighter main-timer-el">00:00:00</span>
-                <button class="bg-black/10 hover:bg-black/20 px-5 py-2 rounded-lg font-black text-[9px] uppercase transition">Play Now</button>
-            </div>
+
         </div>
     </div>
 </section>
+
 
 <!-- -----------------------------SCRATCH CARDS------------------------ -->
 
@@ -253,7 +320,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
             
             <div class="md:col-span-1">
-                <img src="https://theuaelottery.ae/assets/images/logo-white.svg" class="h-12 mb-6 mx-auto md:mx-0 brightness-110">
+                <!-- <img src="https://theuaelottery.ae/assets/images/logo-white.svg" class="h-12 mb-6 mx-auto md:mx-0 brightness-110"> -->
                 <p class="text-sm leading-relaxed mb-6 opacity-60">
                     Experience the thrill of the most trusted lottery in the UAE. Dream big, win bigger with secure and fair play.
                 </p>

@@ -1,14 +1,5 @@
 // --- Carousel Control ---
-// let currentSlide = 0;
-// const track = document.getElementById('carouselTrack');
-// const slides = document.querySelectorAll('.carousel-slide');
 
-// function moveCarousel() {
-//     if(!track) return;
-//     currentSlide = (currentSlide + 1) % slides.length;
-//     track.style.transform = `translateX(-${currentSlide * 100}%)`;
-// }
-// setInterval(moveCarousel, 3000); // Change slide every 3 seconds
 
 let currentSlide = 0;
 const track = document.getElementById('carouselTrack');
@@ -164,3 +155,90 @@ setInterval(() => {
 }, 1000);
 
 window.onload = initSlots;
+
+//- Lotto timer login //
+
+function startLottoTimers() {
+    function updateTimers() {
+        const now = new Date();
+
+        // --- 1. INSTANT DRAW TIMER (Purple Card: 1 Minute Loop) ---
+        const instantTimer = document.getElementById('instant-timer');
+        if (instantTimer) {
+            const secLeft = 59 - now.getSeconds();
+            // Minute box hamesha 00 rahega ya tu total seconds bhi dikha sakta hai
+            instantTimer.querySelector('.minutes').innerText = "00";
+            instantTimer.querySelector('.seconds').innerText = secLeft < 10 ? "0" + secLeft : secLeft;
+        }
+
+        // --- 2. DAILY DRAW TIMER (Pick 3 & Pick 4) ---
+        // Maan lo draw roz raat 12 baje hota hai
+        const nextDraw = new Date();
+        nextDraw.setHours(24, 0, 0, 0); 
+
+        const diff = nextDraw - now;
+
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / (1000 * 60)) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+
+        const timeStr = {
+            h: h < 10 ? "0" + h : h,
+            m: m < 10 ? "0" + m : m,
+            s: s < 10 ? "0" + s : s
+        };
+
+        // Update Pick 3
+        const p3 = document.getElementById('pick3-timer');
+        if (p3) {
+            p3.querySelector('.hours').innerText = timeStr.h;
+            p3.querySelector('.minutes').innerText = timeStr.m;
+            p3.querySelector('.seconds').innerText = timeStr.s;
+        }
+
+        // Update Pick 4
+        const p4 = document.getElementById('pick4-timer');
+        if (p4) {
+            p4.querySelector('.hours').innerText = timeStr.h;
+            p4.querySelector('.minutes').innerText = timeStr.m;
+            p4.querySelector('.seconds').innerText = timeStr.s;
+        }
+    }
+
+    // Har second update karo
+    setInterval(updateTimers, 1000);
+    // Pehli baar turant chalao taaki 00 na dikhe
+    updateTimers();
+}
+
+// Window load hone par start karein
+document.addEventListener('DOMContentLoaded', startLottoTimers);
+
+
+// Jackpot logic //
+
+
+
+    function renderTicketNumbers() {
+        const daysGrid = document.getElementById('ticket-days-grid');
+        const monthsGrid = document.getElementById('ticket-months-grid');
+
+        // Generate 1-31
+        for (let i = 1; i <= 31; i++) {
+            const num = i < 10 ? '0' + i : i;
+            daysGrid.innerHTML += `
+                <div class="w-8 h-8 rounded-full border border-gray-200 bg-white flex items-center justify-center text-[10px] font-bold text-gray-400 cursor-pointer hover:border-yellow-500 hover:text-yellow-600 transition-all">
+                    ${num}
+                </div>`;
+        }
+
+        // Generate 1-12
+        for (let i = 1; i <= 12; i++) {
+            const num = i < 10 ? '0' + i : i;
+            monthsGrid.innerHTML += `
+                <div class="w-8 h-8 rounded-full border border-gray-200 bg-white flex items-center justify-center text-[10px] font-bold text-gray-400 cursor-pointer hover:border-yellow-500 hover:text-yellow-600 transition-all">
+                    ${num}
+                </div>`;
+        }
+    }
+    renderTicketNumbers();
