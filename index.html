@@ -156,78 +156,71 @@
     <!-- ------------------------------JACkPOT ------------------------ -->
 
 
-    <section class="w-full px-4 md:px-8 my-10 font-sans">
-        <div
-            class="bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row">
+    <section class="w-full px-4 md:px-8 my-6 font-sans">
+    <div class="max-w-7xl mx-auto bg-white rounded-[1.5rem] shadow-xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row h-auto lg:h-[450px]">
 
-            <div
-                class="w-full lg:w-[45%] p-8 md:p-12 flex flex-col items-center text-center justify-between border-b lg:border-b-0 lg:border-r border-gray-100">
-                <div class="w-full">
-                    <div class="flex justify-between items-start mb-10">
-                        <!-- <img src="https://theuaelottery.ae/assets/images/luckyday-logo.svg" class="w-20"> -->
-                        <div class="text-right">
-                            <p class="text-[10px] font-bold text-gray-400 uppercase">Draw Date: Saturday 22:00</p>
-                            <p class="text-sm font-black text-gray-800" id="jackpot-main-timer">01 D : 03 H : 11 M : 25
-                                S</p>
-                        </div>
+        <div class="w-full lg:w-[70%] p-6 md:p-8 flex flex-col justify-between bg-gradient-to-br from-white to-gray-50 border-b lg:border-b-0 lg:border-r border-gray-100">
+            
+            <div class="flex justify-between items-center w-full">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center shadow-sm">
+                        <i class="fa fa-ticket-alt text-white text-xs"></i>
                     </div>
-
-                    <h2 class="text-2xl font-black uppercase tracking-tighter text-gray-900 mb-2">Jackpot</h2>
-                    <div class="text-4xl md:text-6xl font-black text-gray-900 tracking-tighter mb-6">
-                        AED <span class="text-[#e11d48]">30,000,000</span>
-                    </div>
-
-                    <div class="bg-[#fffbeb] border border-[#fef3c7] rounded-full py-2 px-6 inline-block mb-4">
-                        <p class="text-[#b45309] font-bold text-sm uppercase italic">Guaranteed Lucky Chance Draw</p>
-                    </div>
-                    <p class="text-xl font-black text-[#b45309]">AED 100,000 * 3 Winners</p>
+                    <span class="text-xs font-black uppercase tracking-widest text-slate-800">Lucky Day</span>
                 </div>
-
-                <div class="w-full mt-10">
-                    <p class="text-[10px] text-gray-400 font-bold mb-4 italic">1 Entry for AED 50</p>
-                    <button
-                        class="w-full bg-[#fbc02d] hover:bg-[#f9a825] py-4 rounded-full font-black text-xl uppercase italic shadow-lg transition-transform active:scale-95">
-                        Play
-                    </button>
+                <div class="text-right">
+                    <p class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">Next Draw: Saturday</p>
+                    <p class="text-xs font-black text-gray-700" id="jackpot-main-timer">01D : 03H : 11M</p>
                 </div>
             </div>
 
-            <div class="w-full lg:w-[55%] bg-[#fafafa] p-8 md:p-10">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-lg font-black text-gray-800">Buy A Ticket Quickly</h3>
-                    <div class="flex gap-2">
-                        <button class="p-2 text-gray-400 hover:text-red-500"><i class="fa fa-trash-alt"></i></button>
-                        <button
-                            class="border border-gray-200 bg-white px-4 py-1.5 rounded-full text-[11px] font-black uppercase italic flex items-center gap-2 hover:bg-gray-50">
-                            <i class="fa fa-magic text-yellow-500"></i> Easy Pick
-                        </button>
+            <div class="text-center lg:text-left py-4">
+                <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-gray-400 mb-1">Grand Jackpot</h2>
+                <div class="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter mb-4">
+                    AED <span class="text-[#e11d48]">30,000,000</span>
+                </div>
+                
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="bg-amber-50 border border-amber-200 rounded-full py-1 px-4">
+                        <p class="text-[#b45309] font-bold text-[10px] uppercase italic">Guaranteed Draw</p>
                     </div>
+                    <p class="text-sm font-bold text-slate-600">AED 100,000 × 3 Winners</p>
                 </div>
+            </div>
 
-                <p class="text-[10px] font-bold text-gray-400 uppercase mb-3">Days <span
-                        class="text-[9px] font-normal lowercase ml-2 italic text-gray-300">Pick 6 numbers</span></p>
-                <div class="grid grid-cols-8 sm:grid-cols-10 gap-2 mb-8" id="ticket-days-grid">
-                </div>
-
-                <p class="text-[10px] font-bold text-gray-400 uppercase mb-3">Months <span
-                        class="text-[9px] font-normal lowercase ml-2 italic text-gray-300">Pick 1 number</span></p>
-                <div class="grid grid-cols-8 sm:grid-cols-10 gap-2 mb-8" id="ticket-months-grid">
-                </div>
-
-                <div class="flex flex-col sm:flex-row gap-4 items-center justify-between border-t border-gray-200 pt-6">
-                    <div class="flex items-center bg-white border border-gray-200 rounded-full px-4 py-1 gap-6">
-                        <button class="text-gray-300 text-xl font-bold hover:text-gray-600">-</button>
-                        <span class="font-black text-lg">1</span>
-                        <button class="text-gray-300 text-xl font-bold hover:text-gray-600">+</button>
-                    </div>
-                    <button
-                        class="w-full sm:w-auto bg-[#fbc02d] px-12 py-3 rounded-full font-black text-sm uppercase shadow-md hover:bg-[#f9a825]">
-                        Quick Buy
-                    </button>
-                </div>
+            <div class="flex items-center justify-between border-t border-gray-100 pt-6">
+                <p class="text-[10px] text-gray-400 font-bold italic uppercase tracking-widest">Entry: AED 50</p>
+                <button class="bg-[#fbc02d] hover:bg-black hover:text-white px-10 py-3 rounded-xl font-black text-sm uppercase italic shadow-md transition-all active:scale-95">
+                    Play Now
+                </button>
             </div>
         </div>
-    </section>
+
+        <div class="w-full lg:w-[30%] bg-[#fafafa] p-5 flex flex-col justify-between">
+            <div>
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Pick 6 + 1</h3>
+                    <button class="border border-gray-200 bg-white px-3 py-1 rounded-lg text-[9px] font-bold uppercase flex items-center gap-1 hover:bg-gray-50 transition-all">
+                        <i class="fa fa-magic text-yellow-500 text-[8px]"></i> Easy Pick
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <div id="ticket-days-grid" class="grid grid-cols-7 gap-1.5">
+                        </div>
+                    <div id="ticket-months-grid" class="grid grid-cols-7 gap-1.5">
+                        </div>
+                </div>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <button class="w-full bg-slate-900 text-white py-3 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] shadow-lg hover:shadow-green-500/20 transition-all">
+                    Quick Buy
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
 
 
     <!-- ------------------------------DAILY LOTTO ------------------------ -->
