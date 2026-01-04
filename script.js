@@ -60,25 +60,60 @@ container.addEventListener('mouseleave', () => {
     
 
 // --- Sidebar Control ---
-const burger = document.getElementById('hamburger');
-const sidebar = document.getElementById('mobile-sidebar');
-const closeBtn = document.getElementById('close-menu');
-const overlay = document.getElementById('mobile-overlay');
+// const burger = document.getElementById('hamburger');
+// const sidebar = document.getElementById('mobile-sidebar');
+// const closeBtn = document.getElementById('close-menu');
+// const overlay = document.getElementById('mobile-overlay');
 
-if(burger) {
-    burger.onclick = () => {
-        sidebar.classList.add('sidebar-open');
-        overlay.style.display = 'block';
+// if(burger) {
+//     burger.onclick = () => {
+//         sidebar.classList.add('sidebar-open');
+//         overlay.style.display = 'block';
+//     }
+// }
+
+// const closeSidebar = () => {
+//     sidebar.classList.remove('sidebar-open');
+//     overlay.style.display = 'none';
+// }
+
+// if(closeBtn) closeBtn.onclick = closeSidebar;
+// if(overlay) overlay.onclick = closeSidebar;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.getElementById('hamburger');
+    const sidebar = document.getElementById('mobile-sidebar');
+    const closeBtn = document.getElementById('close-menu');
+    const overlay = document.getElementById('mobile-overlay');
+
+    if(burger) {
+        burger.onclick = () => {
+            sidebar.classList.add('sidebar-open');
+            overlay.style.display = 'block';
+        }
     }
-}
 
-const closeSidebar = () => {
-    sidebar.classList.remove('sidebar-open');
-    overlay.style.display = 'none';
-}
+    const closeSidebar = (e) => {
+        if(e) e.stopPropagation();
+        sidebar.classList.remove('sidebar-open');
+        overlay.style.display = 'none';
+    }
 
-if(closeBtn) closeBtn.onclick = closeSidebar;
-if(overlay) overlay.onclick = closeSidebar;
+    if(closeBtn) closeBtn.onclick = closeSidebar;
+    if(overlay) overlay.onclick = closeSidebar;
+});
+
+// Modal Logic
+window.openResultsModal = function() {
+    const modal = document.getElementById('results-modal');
+    if(modal) modal.style.display = 'flex';
+};
+
+window.closeResultsModal = function() {
+    const modal = document.getElementById('results-modal');
+    if(modal) modal.style.display = 'none';
+};
+
 
 // --- Jackpot Grid Generation ---
 const jackGrid = document.getElementById('jackpot-grid');
