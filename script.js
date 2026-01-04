@@ -91,30 +91,36 @@ if(jackGrid) {
 
 // --- Scratch Cards Generation (16 Cards) ---
 
+// --- Scratch Cards Generation (16 Cards) ---
 const scratchGrid = document.getElementById('scratch-grid');
 
+// Maine extensions yahan set kar di hain (5, 6, 8, 12, 13, 16 ko .png kiya hai)
 const cardData = [
-    {name:'Cash Splash', price:50, win:'1,000,000', color:'bg-[#1b8c38]', img:'1550565118-3d143c00368d'},
-    {name:'House of Gold', price:20, win:'300,000', color:'bg-[#c41e3a]', img:'1610375461246-83df859d849d'},
-    {name:'Jungle Jewels', price:10, win:'100,000', color:'bg-[#0b4d2a]', img:'1502082553245-f0bc7a671450'},
-    {name:'Wicket Win', price:5, win:'50,000', color:'bg-[#2b4c91]', img:'1531415074968-036ba1b575da'},
-    {name:'Mega Million', price:100, win:'5,000,000', color:'bg-[#4c1a59]', img:'1518458028434-541f068ff9b9'},
-    {name:'Diamond 777', price:30, win:'750,000', color:'bg-[#0e7490]', img:'1563013544-824ae1b704d3'},
-    {name:'Lucky Red', price:20, win:'250,000', color:'bg-[#9f1239]', img:'1614028674026-a65e31bfd27c'},
-    {name:'Silver Box', price:15, win:'150,000', color:'bg-[#475569]', img:'1579621970563-ebec7560ff3e'},
-    {name:'Royal Flush', price:50, win:'1,200,000', color:'bg-[#312e81]', img:'1526304640581-d334cdbbf45e'},
-    {name:'Neon Win', price:25, win:'200,000', color:'bg-[#be185d]', img:'1605792657660-596af9039e23'},
-    {name:'Game On', price:40, win:'800,000', color:'bg-[#c2410c]', img:'1553481187-be93c21490a9'},
-    {name:'Pixel Cash', price:10, win:'100,000', color:'bg-[#0e7490]', img:'1511512578047-dfb367046420'},
-    {name:'Vortex', price:50, win:'1,500,000', color:'bg-[#4c1d95]', img:'1618005182384-a83a8bd57fbe'},
-    {name:'Office Win', price:20, win:'300,000', color:'bg-[#065f46]', img:'1454165833767-027ffea9e778'},
-    {name:'Gold Rush', price:100, win:'10,000,000', color:'bg-[#b45309]', img:'1460925895917-afdab827c52f'},
-    {name:'Pocket Money', price:5, win:'25,000', color:'bg-[#0d9488]', img:'1590283603385-17ffb3a7f29f'}
+    {name:'Cash Splash', price:50, win:'1,000,000', color:'bg-[#1b8c38]', ext:'jpg'},
+    {name:'House of Gold', price:20, win:'300,000', color:'bg-[#c41e3a]', ext:'jpg'},
+    {name:'Jungle Jewels', price:10, win:'100,000', color:'bg-[#0b4d2a]', ext:'jpg'},
+    {name:'Wicket Win', price:5, win:'50,000', color:'bg-[#2b4c91]', ext:'jpg'},
+    {name:'Mega Million', price:100, win:'5,000,000', color:'bg-[#4c1a59]', ext:'png'}, // Card 5
+    {name:'Diamond 777', price:30, win:'750,000', color:'bg-[#0e7490]', ext:'png'},    // Card 6
+    {name:'Lucky Red', price:20, win:'250,000', color:'bg-[#9f1239]', ext:'jpg'},
+    {name:'Silver Box', price:15, win:'150,000', color:'bg-[#475569]', ext:'png'},    // Card 8
+    {name:'Royal Flush', price:50, win:'1,200,000', color:'bg-[#312e81]', ext:'jpg'},
+    {name:'Neon Win', price:25, win:'200,000', color:'bg-[#be185d]', ext:'jpg'},
+    {name:'Game On', price:40, win:'800,000', color:'bg-[#c2410c]', ext:'jpg'},
+    {name:'Pixel Cash', price:10, win:'100,000', color:'bg-[#0e7490]', ext:'png'},    // Card 12
+    {name:'Vortex', price:50, win:'1,500,000', color:'bg-[#4c1d95]', ext:'png'},    // Card 13
+    {name:'Office Win', price:20, win:'300,000', color:'bg-[#065f46]', ext:'jpg'},
+    {name:'Gold Rush', price:100, win:'10,000,000', color:'bg-[#b45309]', ext:'jpg'},
+    {name:'Pocket Money', price:5, win:'25,000', color:'bg-[#0d9488]', ext:'png'}     // Card 16
 ];
 
 if(scratchGrid) {
     scratchGrid.innerHTML = '';
-    cardData.forEach(c => {
+    cardData.forEach((c, i) => {
+        const cardNumber = i + 1;
+        // Har card apni specific extension ke saath load hoga
+        const imgPath = `assets/images/card${cardNumber}.${c.ext}`;
+
         scratchGrid.innerHTML += `
             <div class="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer border border-slate-100">
                 
@@ -123,9 +129,11 @@ if(scratchGrid) {
                     <span class="text-sm font-black text-slate-900 leading-none">${c.price}</span>
                 </div>
 
-                <div class="relative h-48 sm:h-56 lg:h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-${c.img}?auto=format&fit=crop&q=80&w=400" 
+                <div class="relative h-48 sm:h-56 lg:h-48 overflow-hidden bg-gray-100">
+                    <img src="${imgPath}" 
+                         alt="${c.name}"
                          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                     
                     <div class="absolute bottom-3 left-0 right-0 px-4 text-center">
