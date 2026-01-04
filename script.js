@@ -1,25 +1,35 @@
 // --- Carousel Control ---
 
-
 let currentSlide = 0;
 const track = document.getElementById('carouselTrack');
-const slides = document.querySelectorAll('.carousel-slide');
 const dotsContainer = document.getElementById('carouselDots');
 
-// Create Dots
+// Important: Select slides inside the function or after DOM load
+const slides = document.querySelectorAll('.carousel-slide');
+
+// Create Dots dynamically based on number of slides
+dotsContainer.innerHTML = ''; // Clear existing dots if any
 slides.forEach((_, i) => {
     const dot = document.createElement('div');
-    dot.className = `dot ${i === 0 ? 'active' : ''}`;
+    // Dot styling (Make sure you have .dot and .active CSS)
+    dot.className = `w-3 h-3 rounded-full bg-white/30 cursor-pointer transition-all duration-300 ${i === 0 ? 'bg-green-500 w-8' : ''}`;
     dot.onclick = () => goToSlide(i);
     dotsContainer.appendChild(dot);
 });
 
-const dots = document.querySelectorAll('.dot');
+const dots = dotsContainer.children;
 
 function updateSlider() {
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentSlide);
+    // Update dots appearance
+    Array.from(dots).forEach((dot, i) => {
+        if (i === currentSlide) {
+            dot.classList.add('bg-green-500', 'w-8');
+            dot.classList.remove('bg-white/30');
+        } else {
+            dot.classList.remove('bg-green-500', 'w-8');
+            dot.classList.add('bg-white/30');
+        }
     });
 }
 
@@ -38,12 +48,16 @@ function goToSlide(index) {
     updateSlider();
 }
 
-// Auto Play every 5 seconds
-let autoPlay = setInterval(nextSlide, 4000);
+// Auto Play Logic
+let autoPlay = setInterval(nextSlide, 3000);
 
-// Pause on Hover
-document.querySelector('.carousel-container').addEventListener('mouseenter', () => clearInterval(autoPlay));
-document.querySelector('.carousel-container').addEventListener('mouseleave', () => autoPlay = setInterval(nextSlide, 5000));
+const container = document.querySelector('.carousel-container');
+container.addEventListener('mouseenter', () => clearInterval(autoPlay));
+container.addEventListener('mouseleave', () => {
+    clearInterval(autoPlay); // Clean old interval
+    autoPlay = setInterval(nextSlide, 3000);
+});
+    
 
 // --- Sidebar Control ---
 const burger = document.getElementById('hamburger');
