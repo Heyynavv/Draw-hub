@@ -187,3 +187,7 @@ body {
     padding-top: 80px; 
     padding-bottom: 80px; 
 }
+
+.sidebar-open {
+        transform: translateX(0) !important;
+}
