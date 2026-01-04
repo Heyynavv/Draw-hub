@@ -226,108 +226,82 @@
     <!-- ------------------------------DAILY LOTTO ------------------------ -->
 
     <section class="w-full px-4 md:px-8 my-10 font-sans">
+    <h2 class="text-xl font-black uppercase italic mb-6 tracking-tight text-gray-900 border-l-4 border-green-700 pl-3">
+        Daily Lotto
+    </h2>
 
-        <h2
-            class="text-xl font-black uppercase italic mb-6 tracking-tight text-gray-900 border-l-4 border-green-700 pl-3">
-            Daily Lotto
-        </h2>
-
-        <div class="flex flex-col gap-4">
-
-            <div
-                class="relative overflow-hidden bg-[#1fb141] rounded-2xl p-6 md:py-10 md:px-8 text-white flex flex-col md:flex-row justify-between items-center shadow-md">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
-
-                <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
-                    <div class="flex items-center gap-3">
-                        <span class="text-2xl font-black italic">PICK</span>
-                        <div class="w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-lg">
-                            <span class="text-green-600 text-xl font-black">3</span>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-black uppercase italic leading-none">
-                            Win Up To <span class="text-yellow-300">AED 2,500</span>
-                        </h3>
-                        <div class="flex items-center gap-2 mt-3">
-                            <span class="text-[10px] font-bold uppercase opacity-80">Daily Draw:</span>
-                            <div class="flex gap-1 text-black" id="pick3-timer">
-                                <div
-                                    class="bg-white px-2 py-1 rounded text-[12px] font-bold border-b-2 border-gray-200 hours">
-                                    00</div>
-                                <div
-                                    class="bg-white px-2 py-1 rounded text-[12px] font-bold border-b-2 border-gray-200 minutes">
-                                    00</div>
-                                <div
-                                    class="bg-white px-2 py-1 rounded text-[12px] font-bold border-b-2 border-gray-200 seconds">
-                                    00</div>
-                            </div>
-                        </div>
+    <div class="flex flex-col gap-4">
+        <div class="relative overflow-hidden rounded-2xl p-6 md:py-10 md:px-8 text-white flex flex-col md:flex-row justify-between items-center shadow-lg min-h-[180px] bg-gradient-to-br from-[#1fb141] to-[#147a2d]">
+            <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 30px 30px;"></div>
+            
+            <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl font-black italic drop-shadow-md">PICK</span>
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-xl">
+                        <span class="text-[#1fb141] text-2xl font-black">3</span>
                     </div>
                 </div>
-
-                <div class="relative z-10 flex items-center gap-6 mt-6 md:mt-0">
-                    <button
-                        class="bg-white text-green-700 px-12 py-3 rounded-full font-black uppercase text-[11px] shadow-xl hover:bg-yellow-400 transition-all active:scale-95">
-                        Play Now
-                    </button>
-                    <div
-                        class="w-12 h-12 bg-white/20 backdrop-blur-md border border-white/30 rounded-full flex flex-col items-center justify-center">
-                        <span class="text-[8px] font-bold leading-none">AED</span>
-                        <span class="text-lg font-black leading-none">5</span>
+                <div>
+                    <h3 class="text-2xl md:text-3xl font-black uppercase italic leading-none drop-shadow-lg">
+                        Win Up To <span class="text-yellow-300">AED 2,500</span>
+                    </h3>
+                    <div class="flex items-center gap-2 mt-3">
+                        <span class="text-[10px] font-bold uppercase opacity-80 bg-black/20 px-2 py-0.5 rounded">Daily Draw:</span>
+                        <div class="flex gap-1 text-black" id="pick3-timer">
+                            <div class="bg-white px-2 py-1 rounded text-[12px] font-bold hours">00</div>
+                            <div class="bg-white px-2 py-1 rounded text-[12px] font-bold minutes">00</div>
+                            <div class="bg-white px-2 py-1 rounded text-[12px] font-bold seconds">00</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                <div
-                    class="relative overflow-hidden bg-[#532fb3] rounded-2xl p-8 text-white flex flex-col items-center justify-between shadow-md border-b-4 border-black/10 min-h-[180px]">
-                    <div class="text-center">
-                        <h3 class="text-xl font-black uppercase italic mb-4 tracking-tighter text-white">Draw Every
-                            <span class="text-yellow-400">1 Minute</span></h3>
-                        <div class="flex gap-2 justify-center items-center" id="instant-timer">
-                            <div
-                                class="bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-2xl font-mono minutes">
-                                00</div>
-                            <span class="text-2xl font-bold">:</span>
-                            <div
-                                class="bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-2xl font-mono seconds">
-                                00</div>
-                        </div>
-                    </div>
-                    <button
-                        class="mt-6 bg-white/10 border border-white/30 px-12 py-2 rounded-full font-black uppercase text-[10px] hover:bg-white hover:text-purple-900 transition-all">
-                        Play
-                    </button>
+            <div class="relative z-10 flex items-center gap-6 mt-6 md:mt-0">
+                <button class="bg-white text-[#1fb141] px-12 py-3 rounded-full font-black uppercase text-[11px] shadow-xl hover:bg-black hover:text-white transition-all active:scale-95">
+                    Play Now
+                </button>
+                <div class="w-12 h-12 bg-white/20 backdrop-blur-md border border-white/30 rounded-full flex flex-col items-center justify-center">
+                    <span class="text-[8px] font-bold leading-none">AED</span>
+                    <span class="text-lg font-black leading-none">5</span>
                 </div>
-
-                <div
-                    class="relative overflow-hidden bg-[#e0a515] rounded-2xl p-8 text-white flex flex-col items-center justify-between shadow-md border-b-4 border-black/10 min-h-[180px]">
-                    <div class="text-center">
-                        <div class="flex items-center justify-center gap-2 mb-2">
-                            <span class="text-lg font-black italic">PICK</span>
-                            <div
-                                class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-yellow-600 font-black text-sm">
-                                4</div>
-                        </div>
-                        <h3 class="text-xl font-black uppercase italic mb-3">Win Up To <span class="text-red-700">AED
-                                25,000</span></h3>
-                        <div class="flex gap-1 text-black justify-center" id="pick4-timer">
-                            <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold hours">00</div>
-                            <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold minutes">00</div>
-                            <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold seconds">00</div>
-                        </div>
-                    </div>
-                    <button
-                        class="mt-6 bg-white/20 border border-white/40 px-12 py-2 rounded-full font-black uppercase text-[10px] hover:bg-white hover:text-yellow-700 transition-all">
-                        Play
-                    </button>
-                </div>
-
             </div>
         </div>
-    </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="relative overflow-hidden rounded-2xl p-8 text-white flex flex-col items-center justify-between shadow-md min-h-[200px] bg-gradient-to-tr from-[#532fb3] to-[#2e1a6b]">
+                <div class="absolute inset-0 opacity-10" style="background: repeating-linear-gradient(45deg, #fff, #fff 2px, transparent 2px, transparent 10px);"></div>
+                
+                <div class="relative z-10 text-center">
+                    <h3 class="text-xl font-black uppercase italic mb-4 tracking-tighter">Draw Every <span class="text-yellow-400">1 Minute</span></h3>
+                    <div class="flex gap-2 justify-center items-center" id="instant-timer">
+                        <div class="bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-2xl font-mono minutes">00</div>
+                        <span class="text-2xl font-bold">:</span>
+                        <div class="bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-2xl font-mono seconds">00</div>
+                    </div>
+                </div>
+                <button class="relative z-10 mt-6 bg-white/10 border border-white/30 px-12 py-2 rounded-full font-black uppercase text-[10px] hover:bg-white hover:text-[#532fb3] transition-all">Play</button>
+            </div>
+
+            <div class="relative overflow-hidden rounded-2xl p-8 text-white flex flex-col items-center justify-between shadow-md min-h-[200px] bg-gradient-to-tr from-[#e0a515] to-[#9a6e08]">
+                <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#fff 1.5px, transparent 1.5px); background-size: 15px 15px;"></div>
+
+                <div class="relative z-10 text-center">
+                    <div class="flex items-center justify-center gap-2 mb-2">
+                        <span class="text-lg font-black italic">PICK</span>
+                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#e0a515] font-black text-sm">4</div>
+                    </div>
+                    <h3 class="text-xl font-black uppercase italic mb-3">Win Up To <span class="text-red-700">AED 25,000</span></h3>
+                    <div class="flex gap-1 text-black justify-center" id="pick4-timer">
+                        <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold hours">00</div>
+                        <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold minutes">00</div>
+                        <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold seconds">00</div>
+                    </div>
+                </div>
+                <button class="relative z-10 mt-6 bg-white/20 border border-white/40 px-12 py-2 rounded-full font-black uppercase text-[10px] hover:bg-white hover:text-[#e0a515] transition-all">Play</button>
+            </div>
+        </div>
+    </div>
+</section>
 
 
     <!-- -----------------------------SCRATCH CARDS------------------------ -->

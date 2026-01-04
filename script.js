@@ -203,57 +203,49 @@ window.onload = initSlots;
 //- Lotto timer login //
 
 function startLottoTimers() {
-    function updateTimers() {
+    // 1 Minute Instant Timer
+    setInterval(() => {
         const now = new Date();
-
-        // --- 1. INSTANT DRAW TIMER (Purple Card: 1 Minute Loop) ---
-        const instantTimer = document.getElementById('instant-timer');
-        if (instantTimer) {
-            const secLeft = 59 - now.getSeconds();
-            // Minute box hamesha 00 rahega ya tu total seconds bhi dikha sakta hai
-            instantTimer.querySelector('.minutes').innerText = "00";
-            instantTimer.querySelector('.seconds').innerText = secLeft < 10 ? "0" + secLeft : secLeft;
+        const seconds = 59 - now.getSeconds();
+        const displaySec = seconds < 10 ? '0' + seconds : seconds;
+        
+        const instTimer = document.getElementById('instant-timer');
+        if(instTimer) {
+            instTimer.querySelector('.minutes').innerText = '00';
+            instTimer.querySelector('.seconds').innerText = displaySec;
         }
+    }, 1000);
 
-        // --- 2. DAILY DRAW TIMER (Pick 3 & Pick 4) ---
-        // Maan lo draw roz raat 12 baje hota hai
-        const nextDraw = new Date();
-        nextDraw.setHours(24, 0, 0, 0); 
+    // Countdown function for Pick 3 and Pick 4
+    function updateCountdown(id, targetHour) {
+        const timerContainer = document.getElementById(id);
+        if (!timerContainer) return;
 
-        const diff = nextDraw - now;
+        const now = new Date();
+        let target = new Date();
+        target.setHours(targetHour, 0, 0, 0);
 
-        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const m = Math.floor((diff / (1000 * 60)) % 60);
-        const s = Math.floor((diff / 1000) % 60);
+        if (now > target) target.setDate(target.getDate() + 1);
 
-        const timeStr = {
-            h: h < 10 ? "0" + h : h,
-            m: m < 10 ? "0" + m : m,
-            s: s < 10 ? "0" + s : s
-        };
+        const diff = target - now;
+        const h = Math.floor(diff / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-        // Update Pick 3
-        const p3 = document.getElementById('pick3-timer');
-        if (p3) {
-            p3.querySelector('.hours').innerText = timeStr.h;
-            p3.querySelector('.minutes').innerText = timeStr.m;
-            p3.querySelector('.seconds').innerText = timeStr.s;
-        }
-
-        // Update Pick 4
-        const p4 = document.getElementById('pick4-timer');
-        if (p4) {
-            p4.querySelector('.hours').innerText = timeStr.h;
-            p4.querySelector('.minutes').innerText = timeStr.m;
-            p4.querySelector('.seconds').innerText = timeStr.s;
-        }
+        timerContainer.querySelector('.hours').innerText = h < 10 ? '0' + h : h;
+        timerContainer.querySelector('.minutes').innerText = m < 10 ? '0' + m : m;
+        timerContainer.querySelector('.seconds').innerText = s < 10 ? '0' + s : s;
     }
 
-    // Har second update karo
-    setInterval(updateTimers, 1000);
-    // Pehli baar turant chalao taaki 00 na dikhe
-    updateTimers();
+    setInterval(() => {
+        updateCountdown('pick3-timer', 22); // Target 10 PM
+        updateCountdown('pick4-timer', 20); // Target 8 PM
+    }, 1000);
 }
+
+startLottoTimers();
+
+
 
 // Window load hone par start karein
 document.addEventListener('DOMContentLoaded', startLottoTimers);
