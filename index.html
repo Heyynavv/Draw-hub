@@ -391,9 +391,25 @@
     <!-- ------------------------------MOVING - Ticker------------------------ -->
 
 
-    <div class="bg-gray-100 py-12 overflow-hidden border-y border-gray-200 mt-10">
-        <div class="ticker-wrap" id="ticker-wrap"></div>
-    </div>
+    <style>
+    @keyframes ticker-scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    .ticker-container {
+        display: flex;
+        width: max-content;
+        animation: ticker-scroll 40s linear infinite;
+    }
+    .ticker-container:hover { animation-play-state: paused; }
+</style>
+
+<div class="bg-[#f8f9fa] py-10 overflow-hidden border-y border-gray-100 mt-10 relative">
+    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/confetti.png');"></div>
+    
+    <div class="ticker-wrap relative z-10" id="ticker-wrap">
+        </div>
+</div>
 
 
 

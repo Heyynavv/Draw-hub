@@ -182,13 +182,68 @@ window.spinCasino = function() {
 }
 
 // --- Winner Ticker ---
-const ticker = document.getElementById('ticker-wrap');
-if(ticker) {
-    let tickerHTML = '';
-    for(let i=0; i<15; i++) {
-        tickerHTML += `<div class="ticker-item"><p class="text-[9px] font-black text-gray-400 uppercase">Winner Ref: ${Math.random().toString(36).substr(7).toUpperCase()}</p><p class="text-xl font-black text-green-700 italic">AED ${Math.floor(Math.random()*5000)}</p></div>`;
-    }
-    ticker.innerHTML = tickerHTML + tickerHTML;
+
+const tickerWrap = document.getElementById('ticker-wrap');
+
+if(tickerWrap) {
+    // Unique Names aur Data
+    const winnersData = [
+        {name: "Jehanze** S**", amount: "100,000", game: "Lucky Day", date: "03/01/2026", type: "lucky-chance"},
+        {name: "Murad A**", amount: "1,000", game: "Lucky Day", date: "03/01/2026", type: "normal"},
+        {name: "Muhamme** B**", amount: "1,000", game: "Lucky Day", date: "03/01/2026", type: "normal"},
+        {name: "Imran s** I**", amount: "2,500", game: "Pick 3", date: "03/01/2026", type: "normal"},
+        {name: "Albin B** A**", amount: "1,000", game: "Lucky Day", date: "03/01/2026", type: "normal"},
+        {name: "Siva G**", amount: "1,000", game: "Scratch Cards", date: "03/01/2026", type: "normal"},
+        {name: "Rahul K**", amount: "5,000", game: "Pick 4", date: "04/01/2026", type: "normal"},
+        {name: "Ahmed M**", amount: "1,500", game: "Lucky Day", date: "04/01/2026", type: "normal"}
+    ];
+
+    let cardsHTML = '';
+    // Infinite scroll ke liye double kiya
+    const fullList = [...winnersData, ...winnersData];
+
+    fullList.forEach((w, index) => {
+        // Sirf pehle index wala card 'Lucky Chance' header ke saath aayega
+        if(w.type === "lucky-chance" && index === 0) {
+            cardsHTML += `
+                <div class="inline-block mx-4 min-w-[250px]">
+                    <div class="bg-white rounded-2xl shadow-[0_10px_25px_-5px_rgba(251,191,36,0.3)] border-2 border-amber-400 text-center relative overflow-hidden h-[190px]">
+                        <div class="bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500 py-2.5 mb-4 relative z-10 shadow-sm">
+                            <span class="text-white font-black uppercase italic text-xs tracking-widest">LUCKY CHANCE</span>
+                        </div>
+                        <p class="text-slate-800 font-black text-lg mt-1">${w.name}</p>
+                        <p class="text-3xl font-black text-orange-600 my-1 drop-shadow-sm">AED ${w.amount}</p>
+                        <div class="mt-2">
+                            <p class="text-[11px] font-extrabold text-slate-500 uppercase tracking-tight">${w.game}</p>
+                            <p class="text-[9px] text-slate-400 font-bold">${w.date}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            // High-Contrast Normal Winner Card
+            cardsHTML += `
+                <div class="inline-block mx-4 min-w-[220px]">
+                    <div class="bg-white rounded-2xl p-5 shadow-[0_8px_20px_-6px_rgba(0,0,0,0.15)] border border-gray-100 text-center relative h-[180px] flex flex-col justify-center transform hover:scale-105 transition-transform">
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2">
+                             <div class="bg-green-600 text-white text-[9px] font-black px-4 py-0.5 rounded-b-md uppercase shadow-sm">Winner</div>
+                        </div>
+                        <div class="mb-2">
+                             <img src="https://cdn-icons-png.flaticon.com/512/3112/3112946.png" class="w-7 h-7 mx-auto" alt="win icon">
+                        </div>
+                        <p class="text-slate-800 font-black text-base">${w.name}</p>
+                        <p class="text-2xl font-black text-[#1fb141] drop-shadow-sm">AED ${w.amount}</p>
+                        <div class="mt-3 border-t border-gray-100 pt-2">
+                            <p class="text-[10px] font-black text-slate-500 uppercase tracking-tighter">${w.game}</p>
+                            <p class="text-[9px] text-gray-400 font-bold">${w.date}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    });
+
+    tickerWrap.innerHTML = `<div class="ticker-container">${cardsHTML}</div>`;
 }
 
 // --- Timer Logic ---
