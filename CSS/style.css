@@ -3,7 +3,15 @@
 body { 
     font-family: 'Inter', sans-serif; 
     overflow-x: hidden; 
-    background-color: #f8f9fa; 
+    /* background-color: #f8f9fa;  */
+    /* background-color: #f8f9fa !important; Ye ekdum perfect soft white hai */
+
+}
+.bg-pale-white {
+    background-color: #f8f9fa !important; /* Ye ekdum perfect soft white hai */
+}
+.bg-warm-white {
+    background-color: #f4f4f2 !important;
 }
 
 .content-box { 
