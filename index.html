@@ -36,273 +36,334 @@
 
 
     <nav class="sticky top-0 w-full bg-white z-[1000] border-b border-gray-100 h-[60px] flex items-center shadow-sm">
-    <div class="w-full px-4 md:px-8 flex justify-between items-center h-full">
-        
-        <div class="flex items-center h-full">
-            <div class="flex items-center gap-2 cursor-pointer mr-10 group" onclick="window.location.href='index.html'">
-                <div class="w-8 h-8 bg-green-700 rounded-lg flex items-center justify-center font-black text-white text-xs italic">L</div>
-                <span class="text-base font-black italic uppercase tracking-tighter text-gray-900">UAE <span class="text-green-700">LOTTO</span></span>
-            </div>
+        <div class="w-full px-4 md:px-8 flex justify-between items-center h-full">
 
-            <div class="hidden md:flex items-center h-full gap-8 text-[11px] font-black text-gray-600 uppercase tracking-widest">
-                <a href="index.html" class="hover:text-green-700 transition-colors">Play</a>
-                
-                <div class="relative group h-full flex items-center cursor-pointer">
-                    <span class="hover:text-green-700 flex items-center gap-1 transition-colors">
-                        Results <i class="fa fa-chevron-down text-[8px] group-hover:rotate-180 transition-transform duration-300"></i>
+            <div class="flex items-center h-full">
+                <div class="flex items-center gap-2">
+                    <svg width="45" height="35" viewBox="0 0 60 45" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="h-9 w-auto">
+                        <rect x="28" y="2" width="2" height="40" fill="#1f2937" rx="1" />
+                        <path d="M22 6L14 10V34L22 38V6Z" stroke="#1f2937" stroke-width="1.5" stroke-linejoin="round" />
+                        <path d="M16 10L8 14V30L16 34V10Z" stroke="#1f2937" stroke-width="1" stroke-opacity="0.6"
+                            stroke-linejoin="round" />
+                        <path d="M36 6L44 10V34L36 38V6Z" stroke="#1f2937" stroke-width="1.5" stroke-linejoin="round" />
+                        <path d="M42 10L50 14V30L42 34V10Z" stroke="#1f2937" stroke-width="1" stroke-opacity="0.6"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <span class="text-base font-black italic uppercase tracking-tighter text-gray-900">
+                        UAE <span class="text-green-700">Lottery</span>
                     </span>
-                    <div class="absolute top-[60px] left-0 w-[400px] bg-white border border-gray-100 rounded-b-3xl shadow-2xl invisible group-hover:visible opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 z-[1100] p-5 grid grid-cols-2 gap-4">
-                        <div onclick="checkUserAccess('lucky')" class="p-4 border rounded-2xl hover:border-green-500 text-center transition-all cursor-pointer">
-                            <h4 class="text-xs font-black uppercase">Lucky Day</h4>
-                        </div>
-                        <div onclick="checkUserAccess('weekly')" class="p-4 border rounded-2xl hover:border-blue-500 text-center transition-all cursor-pointer">
-                            <h4 class="text-xs font-black uppercase">Weekly Lotto</h4>
+                </div>
+
+                <div
+                    class="hidden md:flex items-center h-full gap-8 text-[11px] font-black text-gray-600 uppercase tracking-widest mx-3">
+                    <a href="index.html" class="hover:text-green-700 transition-colors">Play</a>
+
+                    <div class="relative group h-full flex items-center cursor-pointer">
+                        <span class="hover:text-green-700 flex items-center gap-1 transition-colors">
+                            Results <i
+                                class="fa fa-chevron-down text-[8px] group-hover:rotate-180 transition-transform duration-300"></i>
+                        </span>
+                        <div
+                            class="absolute top-[60px] left-0 w-[400px] bg-white border border-gray-100 rounded-b-3xl shadow-2xl invisible group-hover:visible opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 z-[1100] p-5 grid grid-cols-2 gap-4">
+                            <div onclick="checkUserAccess('lucky')"
+                                class="p-4 border rounded-2xl hover:border-green-500 text-center transition-all cursor-pointer">
+                                <h4 class="text-xs font-black uppercase">Lucky Day</h4>
+                            </div>
+                            <div onclick="checkUserAccess('weekly')"
+                                class="p-4 border rounded-2xl hover:border-blue-500 text-center transition-all cursor-pointer">
+                                <h4 class="text-xs font-black uppercase">Weekly Lotto</h4>
+                            </div>
                         </div>
                     </div>
+                    <a href="#" class="hover:text-green-700 transition-colors">Promotions</a>
                 </div>
-                <a href="#" class="hover:text-green-700 transition-colors">Promotions</a>
-            </div>
-        </div>
-
-        <div class="flex items-center gap-4">
-            <div class="hidden md:flex items-center gap-6 mr-4">
-                <a href="login.html" class="text-[11px] font-black text-gray-500 hover:text-gray-900 uppercase">Login</a>
-                <a href="register.html" class="bg-green-700 text-white px-7 py-2 rounded-full font-black text-[11px] uppercase shadow-md hover:bg-green-800 transition-all">Register</a>
             </div>
 
-            <button onclick="openResultsModal()" class="md:hidden bg-green-700 text-white px-5 py-2 rounded-full font-black text-[10px] uppercase shadow-md active:scale-95">
-                Results
-            </button>
-            
-            <button id="hamburger" class="md:hidden text-gray-800 text-xl p-1">
-                <i class="fa fa-bars-staggered"></i>
-            </button>
-        </div>
-    </div>
-</nav>
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-6 mr-4">
+                    <a href="login.html"
+                        class="text-[11px] font-black text-gray-500 hover:text-gray-900 uppercase">Login</a>
+                    <a href="register.html"
+                        class="bg-green-700 text-white px-7 py-2 rounded-full font-black text-[11px] uppercase shadow-md hover:bg-green-800 transition-all">Register</a>
+                </div>
 
-<div id="mobile-sidebar" class="fixed top-0 right-0 w-[280px] h-full bg-white z-[2000] transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
-    <div class="p-6 flex justify-between items-center border-b border-gray-100">
-        <span class="font-black italic text-gray-900 uppercase">UAE <span class="text-green-700">LOTTO</span></span>
-        <button id="close-menu" class="text-gray-900 text-2xl p-2 relative z-[2001]">
-            <i class="fa fa-times"></i>
-        </button>
-    </div>
-    <div class="p-8 flex flex-col h-full">
-        <div class="space-y-8 flex-1 font-black uppercase text-sm tracking-widest text-gray-800">
-            <a href="index.html" class="block">Play</a>
-            <a href="#" class="block">Promotions</a>
-        </div>
-        <div class="space-y-3 mt-auto pb-10">
-            <a href="login.html" class="block w-full py-4 rounded-2xl bg-gray-50 text-center font-black uppercase text-[11px] text-gray-600 border border-gray-100">Login</a>
-            <a href="register.html" class="block w-full py-4 rounded-2xl bg-green-700 text-center font-black uppercase text-[11px] text-white shadow-lg">Register</a>
-        </div>
-    </div>
-</div>
+                <button onclick="openResultsModal()"
+                    class="md:hidden bg-green-700 text-white px-5 py-2 rounded-full font-black text-[10px] uppercase shadow-md active:scale-95">
+                    Results
+                </button>
 
-<div id="mobile-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[1500]" style="display:none;"></div>
-
-<div id="results-modal" class="fixed inset-0 z-[3000]" style="display:none; align-items:center; justify-content:center; padding:1rem;">
-    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" onclick="closeResultsModal()"></div>
-    <div class="relative bg-white w-full max-w-[320px] rounded-[2rem] overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300">
-        <div class="p-6 text-center border-b border-gray-50">
-            <h3 class="font-black uppercase text-sm tracking-widest">Select Results</h3>
+                <button id="hamburger" class="md:hidden text-gray-800 text-xl p-1">
+                    <i class="fa fa-bars-staggered"></i>
+                </button>
+            </div>
         </div>
-        <div class="p-5 space-y-3">
-            <button onclick="checkUserAccess('lucky')" class="w-full flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-transparent active:border-green-500 transition-all">
-                <div class="w-10 h-10 bg-green-100 text-green-700 rounded-lg flex items-center justify-center"><i class="fa fa-sun"></i></div>
-                <span class="font-black uppercase text-xs">Lucky Day</span>
-            </button>
-            <button onclick="checkUserAccess('weekly')" class="w-full flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-transparent active:border-blue-500 transition-all">
-                <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center"><i class="fa fa-calendar-alt"></i></div>
-                <span class="font-black uppercase text-xs">Weekly Lotto</span>
+    </nav>
+
+    <div id="mobile-sidebar"
+        class="fixed top-0 right-0 w-[280px] h-full bg-white z-[2000] transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
+        <div class="p-6 flex justify-between items-center border-b border-gray-100">
+            <span class="font-black italic text-gray-900 uppercase">UAE <span class="text-green-700">LOTTO</span></span>
+            <button id="close-menu" class="text-gray-900 text-2xl p-2 relative z-[2001]">
+                <i class="fa fa-times"></i>
             </button>
         </div>
-        <button onclick="closeResultsModal()" class="w-full py-4 text-[10px] font-black uppercase text-gray-400">Cancel</button>
+        <div class="p-8 flex flex-col h-full">
+            <div class="space-y-8 flex-1 font-black uppercase text-sm tracking-widest text-gray-800">
+                <a href="index.html" class="block">Play</a>
+                <a href="#" class="block">Promotions</a>
+            </div>
+            <div class="space-y-3 mt-auto pb-10">
+                <a href="login.html"
+                    class="block w-full py-4 rounded-2xl bg-gray-50 text-center font-black uppercase text-[11px] text-gray-600 border border-gray-100">Login</a>
+                <a href="register.html"
+                    class="block w-full py-4 rounded-2xl bg-green-700 text-center font-black uppercase text-[11px] text-white shadow-lg">Register</a>
+            </div>
+        </div>
     </div>
-</div>
+
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[1500]" style="display:none;"></div>
+
+    <div id="results-modal" class="fixed inset-0 z-[3000]"
+        style="display:none; align-items:center; justify-content:center; padding:1rem;">
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" onclick="closeResultsModal()"></div>
+        <div
+            class="relative bg-white w-full max-w-[320px] rounded-[2rem] overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300">
+            <div class="p-6 text-center border-b border-gray-50">
+                <h3 class="font-black uppercase text-sm tracking-widest">Select Results</h3>
+            </div>
+            <div class="p-5 space-y-3">
+                <button onclick="checkUserAccess('lucky')"
+                    class="w-full flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-transparent active:border-green-500 transition-all">
+                    <div class="w-10 h-10 bg-green-100 text-green-700 rounded-lg flex items-center justify-center"><i
+                            class="fa fa-sun"></i></div>
+                    <span class="font-black uppercase text-xs">Lucky Day</span>
+                </button>
+                <button onclick="checkUserAccess('weekly')"
+                    class="w-full flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-transparent active:border-blue-500 transition-all">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center"><i
+                            class="fa fa-calendar-alt"></i></div>
+                    <span class="font-black uppercase text-xs">Weekly Lotto</span>
+                </button>
+            </div>
+            <button onclick="closeResultsModal()"
+                class="w-full py-4 text-[10px] font-black uppercase text-gray-400">Cancel</button>
+        </div>
+    </div>
 
 
     <!-- ------------------------------HERO------------------------ -->
 
 
-   <section class="carousel-container relative w-full overflow-hidden group bg-black h-[250px] sm:h-[300px] md:h-[340px] lg:h-[380px]">
-    <div class="carousel-track flex h-full transition-transform duration-700 ease-in-out" id="carouselTrack">
-        <div class="carousel-slide min-w-full h-full">
-            <img src="assets/images/Banner1.jpg" class="w-full h-full object-cover object-center">
+    <section
+        class="carousel-container relative w-full overflow-hidden group bg-black h-[250px] sm:h-[300px] md:h-[340px] lg:h-[380px]">
+        <div class="carousel-track flex h-full transition-transform duration-700 ease-in-out" id="carouselTrack">
+            <div class="carousel-slide min-w-full h-full">
+                <img src="assets/images/Banner1.jpg" class="w-full h-full object-cover object-center">
+            </div>
+            <div class="carousel-slide min-w-full h-full">
+                <img src="assets/images/Banner2.jpg" class="w-full h-full object-cover object-center">
+            </div>
+            <div class="carousel-slide min-w-full h-full">
+                <img src="assets/images/Banner3.jpg" class="w-full h-full object-cover object-center">
+            </div>
+            <div class="carousel-slide min-w-full h-full">
+                <img src="assets/images/Banner4.jpg" class="w-full h-full object-cover object-center">
+            </div>
         </div>
-        <div class="carousel-slide min-w-full h-full">
-            <img src="assets/images/Banner2.jpg" class="w-full h-full object-cover object-center">
-        </div>
-        <div class="carousel-slide min-w-full h-full">
-            <img src="assets/images/Banner3.jpg" class="w-full h-full object-cover object-center">
-        </div>
-        <div class="carousel-slide min-w-full h-full">
-            <img src="assets/images/Banner4.jpg" class="w-full h-full object-cover object-center">
-        </div>
-    </div>
 
-    <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-green-500 text-white w-10 h-10 lg:w-12 lg:h-12 rounded-full z-20 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 shadow-xl">
-        <i class="fa fa-chevron-left"></i>
-    </button>
-    <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-green-500 text-white w-10 h-10 lg:w-12 lg:h-12 rounded-full z-20 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 shadow-xl">
-        <i class="fa fa-chevron-right"></i>
-    </button>
+        <button onclick="prevSlide()"
+            class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-green-500 text-white w-10 h-10 lg:w-12 lg:h-12 rounded-full z-20 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 shadow-xl">
+            <i class="fa fa-chevron-left"></i>
+        </button>
+        <button onclick="nextSlide()"
+            class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-green-500 text-white w-10 h-10 lg:w-12 lg:h-12 rounded-full z-20 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 shadow-xl">
+            <i class="fa fa-chevron-right"></i>
+        </button>
 
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20" id="carouselDots"></div>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20" id="carouselDots"></div>
 
-    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
-</section>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
+    </section>
 
     <!-- ------------------------------JACkPOT ------------------------ -->
 
 
     <section class="w-full px-4 md:px-8 my-6 font-sans">
-    <div class="max-w-7xl mx-auto bg-white rounded-[1.5rem] shadow-xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row h-auto lg:h-[450px]">
+        <div
+            class="max-w-7xl mx-auto bg-white rounded-[1.5rem] shadow-xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row h-auto lg:h-[450px]">
 
-        <div class="w-full lg:w-[70%] p-6 md:p-8 flex flex-col justify-between bg-gradient-to-br from-white to-gray-50 border-b lg:border-b-0 lg:border-r border-gray-100">
-            
-            <div class="flex justify-between items-center w-full">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center shadow-sm">
-                        <i class="fa fa-ticket-alt text-white text-xs"></i>
+            <div
+                class="w-full lg:w-[70%] p-6 md:p-8 flex flex-col justify-between bg-gradient-to-br from-white to-gray-50 border-b lg:border-b-0 lg:border-r border-gray-100">
+
+                <div class="flex justify-between items-center w-full">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center shadow-sm">
+                            <i class="fa fa-ticket-alt text-white text-xs"></i>
+                        </div>
+                        <span class="text-xs font-black uppercase tracking-widest text-slate-800">Lucky Day</span>
                     </div>
-                    <span class="text-xs font-black uppercase tracking-widest text-slate-800">Lucky Day</span>
-                </div>
-                <div class="text-right">
-                    <p class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">Next Draw: Saturday</p>
-                    <p class="text-xs font-black text-gray-700" id="jackpot-main-timer">01D : 03H : 11M</p>
-                </div>
-            </div>
-
-            <div class="text-center lg:text-left py-4">
-                <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-gray-400 mb-1">Grand Jackpot</h2>
-                <div class="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter mb-4">
-                    AED <span class="text-[#e11d48]">30,000,000</span>
-                </div>
-                
-                <div class="flex flex-wrap items-center gap-3">
-                    <div class="bg-amber-50 border border-amber-200 rounded-full py-1 px-4">
-                        <p class="text-[#b45309] font-bold text-[10px] uppercase italic">Guaranteed Draw</p>
+                    <div class="text-right">
+                        <p class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">Next Draw: Saturday</p>
+                        <p class="text-xs font-black text-gray-700" id="jackpot-main-timer">01D : 03H : 11M</p>
                     </div>
-                    <p class="text-sm font-bold text-slate-600">AED 100,000 × 3 Winners</p>
                 </div>
-            </div>
 
-            <div class="flex items-center justify-between border-t border-gray-100 pt-6">
-                <p class="text-[10px] text-gray-400 font-bold italic uppercase tracking-widest">Entry: AED 50</p>
-                <button class="bg-[#fbc02d] hover:bg-black hover:text-white px-10 py-3 rounded-xl font-black text-sm uppercase italic shadow-md transition-all active:scale-95">
-                    Play Now
-                </button>
-            </div>
-        </div>
+                <div class="text-center lg:text-left py-4">
+                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-gray-400 mb-1">Grand Jackpot</h2>
+                    <div class="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter mb-4">
+                        AED <span class="text-[#e11d48]">30,000,000</span>
+                    </div>
 
-        <div class="w-full lg:w-[30%] bg-[#fafafa] p-5 flex flex-col justify-between">
-            <div>
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Pick 6 + 1</h3>
-                    <button class="border border-gray-200 bg-white px-3 py-1 rounded-lg text-[9px] font-bold uppercase flex items-center gap-1 hover:bg-gray-50 transition-all">
-                        <i class="fa fa-magic text-yellow-500 text-[8px]"></i> Easy Pick
+                    <div class="flex flex-wrap items-center gap-3">
+                        <div class="bg-amber-50 border border-amber-200 rounded-full py-1 px-4">
+                            <p class="text-[#b45309] font-bold text-[10px] uppercase italic">Guaranteed Draw</p>
+                        </div>
+                        <p class="text-sm font-bold text-slate-600">AED 100,000 × 3 Winners</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between border-t border-gray-100 pt-6">
+                    <p class="text-[10px] text-gray-400 font-bold italic uppercase tracking-widest">Entry: AED 50</p>
+                    <button
+                        class="bg-[#fbc02d] hover:bg-black hover:text-white px-10 py-3 rounded-xl font-black text-sm uppercase italic shadow-md transition-all active:scale-95">
+                        Play Now
                     </button>
                 </div>
+            </div>
 
-                <div class="space-y-4">
-                    <div id="ticket-days-grid" class="grid grid-cols-7 gap-1.5">
+            <div class="w-full lg:w-[30%] bg-[#fafafa] p-5 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Pick 6 + 1</h3>
+                        <button
+                            class="border border-gray-200 bg-white px-3 py-1 rounded-lg text-[9px] font-bold uppercase flex items-center gap-1 hover:bg-gray-50 transition-all">
+                            <i class="fa fa-magic text-yellow-500 text-[8px]"></i> Easy Pick
+                        </button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div id="ticket-days-grid" class="grid grid-cols-7 gap-1.5">
                         </div>
-                    <div id="ticket-months-grid" class="grid grid-cols-7 gap-1.5">
+                        <div id="ticket-months-grid" class="grid grid-cols-7 gap-1.5">
                         </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                    <button
+                        class="w-full bg-slate-900 text-white py-3 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] shadow-lg hover:shadow-green-500/20 transition-all">
+                        Quick Buy
+                    </button>
                 </div>
             </div>
-
-            <div class="mt-4 pt-4 border-t border-gray-200">
-                <button class="w-full bg-slate-900 text-white py-3 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] shadow-lg hover:shadow-green-500/20 transition-all">
-                    Quick Buy
-                </button>
-            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
     <!-- ------------------------------DAILY LOTTO ------------------------ -->
 
     <section class="w-full px-4 md:px-8 my-10 font-sans">
-    <h2 class="text-xl font-black uppercase italic mb-6 tracking-tight text-gray-900 border-l-4 border-green-700 pl-3">
-        Daily Lotto
-    </h2>
+        <h2
+            class="text-xl font-black uppercase italic mb-6 tracking-tight text-gray-900 border-l-4 border-green-700 pl-3">
+            Daily Lotto
+        </h2>
 
-    <div class="flex flex-col gap-4">
-        <div class="relative overflow-hidden rounded-2xl p-6 md:py-10 md:px-8 text-white flex flex-col md:flex-row justify-between items-center shadow-lg min-h-[180px] bg-gradient-to-br from-[#1fb141] to-[#147a2d]">
-            <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 30px 30px;"></div>
-            
-            <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
-                <div class="flex items-center gap-3">
-                    <span class="text-2xl font-black italic drop-shadow-md">PICK</span>
-                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-xl">
-                        <span class="text-[#1fb141] text-2xl font-black">3</span>
-                    </div>
+        <div class="flex flex-col gap-4">
+            <div
+                class="relative overflow-hidden rounded-2xl p-6 md:py-10 md:px-8 text-white flex flex-col md:flex-row justify-between items-center shadow-lg min-h-[180px] bg-gradient-to-br from-[#1fb141] to-[#147a2d]">
+                <div class="absolute inset-0 opacity-20"
+                    style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 30px 30px;">
                 </div>
-                <div>
-                    <h3 class="text-2xl md:text-3xl font-black uppercase italic leading-none drop-shadow-lg">
-                        Win Up To <span class="text-yellow-300">AED 2,500</span>
-                    </h3>
-                    <div class="flex items-center gap-2 mt-3">
-                        <span class="text-[10px] font-bold uppercase opacity-80 bg-black/20 px-2 py-0.5 rounded">Daily Draw:</span>
-                        <div class="flex gap-1 text-black" id="pick3-timer">
-                            <div class="bg-white px-2 py-1 rounded text-[12px] font-bold hours">00</div>
-                            <div class="bg-white px-2 py-1 rounded text-[12px] font-bold minutes">00</div>
-                            <div class="bg-white px-2 py-1 rounded text-[12px] font-bold seconds">00</div>
+
+                <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl font-black italic drop-shadow-md">PICK</span>
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-xl">
+                            <span class="text-[#1fb141] text-2xl font-black">3</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl md:text-3xl font-black uppercase italic leading-none drop-shadow-lg">
+                            Win Up To <span class="text-yellow-300">AED 2,500</span>
+                        </h3>
+                        <div class="flex items-center gap-2 mt-3">
+                            <span
+                                class="text-[10px] font-bold uppercase opacity-80 bg-black/20 px-2 py-0.5 rounded">Daily
+                                Draw:</span>
+                            <div class="flex gap-1 text-black" id="pick3-timer">
+                                <div class="bg-white px-2 py-1 rounded text-[12px] font-bold hours">00</div>
+                                <div class="bg-white px-2 py-1 rounded text-[12px] font-bold minutes">00</div>
+                                <div class="bg-white px-2 py-1 rounded text-[12px] font-bold seconds">00</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="relative z-10 flex items-center gap-6 mt-6 md:mt-0">
+                    <button
+                        class="bg-white text-[#1fb141] px-12 py-3 rounded-full font-black uppercase text-[11px] shadow-xl hover:bg-black hover:text-white transition-all active:scale-95">
+                        Play Now
+                    </button>
+                    <div
+                        class="w-12 h-12 bg-white/20 backdrop-blur-md border border-white/30 rounded-full flex flex-col items-center justify-center">
+                        <span class="text-[8px] font-bold leading-none">AED</span>
+                        <span class="text-lg font-black leading-none">5</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="relative z-10 flex items-center gap-6 mt-6 md:mt-0">
-                <button class="bg-white text-[#1fb141] px-12 py-3 rounded-full font-black uppercase text-[11px] shadow-xl hover:bg-black hover:text-white transition-all active:scale-95">
-                    Play Now
-                </button>
-                <div class="w-12 h-12 bg-white/20 backdrop-blur-md border border-white/30 rounded-full flex flex-col items-center justify-center">
-                    <span class="text-[8px] font-bold leading-none">AED</span>
-                    <span class="text-lg font-black leading-none">5</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div
+                    class="relative overflow-hidden rounded-2xl p-8 text-white flex flex-col items-center justify-between shadow-md min-h-[200px] bg-gradient-to-tr from-[#532fb3] to-[#2e1a6b]">
+                    <div class="absolute inset-0 opacity-10"
+                        style="background: repeating-linear-gradient(45deg, #fff, #fff 2px, transparent 2px, transparent 10px);">
+                    </div>
+
+                    <div class="relative z-10 text-center">
+                        <h3 class="text-xl font-black uppercase italic mb-4 tracking-tighter">Draw Every <span
+                                class="text-yellow-400">1 Minute</span></h3>
+                        <div class="flex gap-2 justify-center items-center" id="instant-timer">
+                            <div
+                                class="bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-2xl font-mono minutes">
+                                00</div>
+                            <span class="text-2xl font-bold">:</span>
+                            <div
+                                class="bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-2xl font-mono seconds">
+                                00</div>
+                        </div>
+                    </div>
+                    <button
+                        class="relative z-10 mt-6 bg-white/10 border border-white/30 px-12 py-2 rounded-full font-black uppercase text-[10px] hover:bg-white hover:text-[#532fb3] transition-all">Play</button>
+                </div>
+
+                <div
+                    class="relative overflow-hidden rounded-2xl p-8 text-white flex flex-col items-center justify-between shadow-md min-h-[200px] bg-gradient-to-tr from-[#e0a515] to-[#9a6e08]">
+                    <div class="absolute inset-0 opacity-20"
+                        style="background-image: radial-gradient(#fff 1.5px, transparent 1.5px); background-size: 15px 15px;">
+                    </div>
+
+                    <div class="relative z-10 text-center">
+                        <div class="flex items-center justify-center gap-2 mb-2">
+                            <span class="text-lg font-black italic">PICK</span>
+                            <div
+                                class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#e0a515] font-black text-sm">
+                                4</div>
+                        </div>
+                        <h3 class="text-xl font-black uppercase italic mb-3">Win Up To <span class="text-red-700">AED
+                                25,000</span></h3>
+                        <div class="flex gap-1 text-black justify-center" id="pick4-timer">
+                            <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold hours">00</div>
+                            <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold minutes">00</div>
+                            <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold seconds">00</div>
+                        </div>
+                    </div>
+                    <button
+                        class="relative z-10 mt-6 bg-white/20 border border-white/40 px-12 py-2 rounded-full font-black uppercase text-[10px] hover:bg-white hover:text-[#e0a515] transition-all">Play</button>
                 </div>
             </div>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="relative overflow-hidden rounded-2xl p-8 text-white flex flex-col items-center justify-between shadow-md min-h-[200px] bg-gradient-to-tr from-[#532fb3] to-[#2e1a6b]">
-                <div class="absolute inset-0 opacity-10" style="background: repeating-linear-gradient(45deg, #fff, #fff 2px, transparent 2px, transparent 10px);"></div>
-                
-                <div class="relative z-10 text-center">
-                    <h3 class="text-xl font-black uppercase italic mb-4 tracking-tighter">Draw Every <span class="text-yellow-400">1 Minute</span></h3>
-                    <div class="flex gap-2 justify-center items-center" id="instant-timer">
-                        <div class="bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-2xl font-mono minutes">00</div>
-                        <span class="text-2xl font-bold">:</span>
-                        <div class="bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-2xl font-mono seconds">00</div>
-                    </div>
-                </div>
-                <button class="relative z-10 mt-6 bg-white/10 border border-white/30 px-12 py-2 rounded-full font-black uppercase text-[10px] hover:bg-white hover:text-[#532fb3] transition-all">Play</button>
-            </div>
-
-            <div class="relative overflow-hidden rounded-2xl p-8 text-white flex flex-col items-center justify-between shadow-md min-h-[200px] bg-gradient-to-tr from-[#e0a515] to-[#9a6e08]">
-                <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#fff 1.5px, transparent 1.5px); background-size: 15px 15px;"></div>
-
-                <div class="relative z-10 text-center">
-                    <div class="flex items-center justify-center gap-2 mb-2">
-                        <span class="text-lg font-black italic">PICK</span>
-                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#e0a515] font-black text-sm">4</div>
-                    </div>
-                    <h3 class="text-xl font-black uppercase italic mb-3">Win Up To <span class="text-red-700">AED 25,000</span></h3>
-                    <div class="flex gap-1 text-black justify-center" id="pick4-timer">
-                        <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold hours">00</div>
-                        <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold minutes">00</div>
-                        <div class="bg-white/90 px-2.5 py-1 rounded text-[11px] font-bold seconds">00</div>
-                    </div>
-                </div>
-                <button class="relative z-10 mt-6 bg-white/20 border border-white/40 px-12 py-2 rounded-full font-black uppercase text-[10px] hover:bg-white hover:text-[#e0a515] transition-all">Play</button>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
 
     <!-- -----------------------------SCRATCH CARDS------------------------ -->
@@ -317,100 +378,136 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" id="scratch-grid">
-            
+
         </div>
     </section>
 
-<!-- -----------------------------Lucky results------------------------ -->
+    <!-- -----------------------------Lucky results------------------------ -->
 
-<section class="w-full px-4 md:px-12 py-12 bg-[#fffcf7]">
-    <div class="max-w-7xl mx-auto bg-white rounded-[2rem] shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-orange-50/50 p-6 md:p-12">
-        
-        <div class="mb-8">
-            <p class="text-gray-400 text-sm font-bold italic">Saturday 22:00, 03/01/2026</p>
-        </div>
+    <section class="w-full px-4 md:px-12 py-12 bg-[#fffcf7]">
+        <div
+            class="max-w-7xl mx-auto bg-white rounded-[2rem] shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-orange-50/50 p-6 md:p-12">
 
-        <div class="flex flex-col lg:flex-row justify-between gap-12">
-            
-            <div class="flex-1">
-                <div class="flex flex-wrap gap-3 mb-10">
-                    <div class="w-12 h-12 md:w-14 md:h-14 bg-[#d4a373] text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl shadow-md border-b-4 border-black/10">2</div>
-                    <div class="w-12 h-12 md:w-14 md:h-14 bg-[#d4a373] text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl shadow-md border-b-4 border-black/10">7</div>
-                    <div class="w-12 h-12 md:w-14 md:h-14 bg-[#d4a373] text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl shadow-md border-b-4 border-black/10">15</div>
-                    <div class="w-12 h-12 md:w-14 md:h-14 bg-[#d4a373] text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl shadow-md border-b-4 border-black/10">27</div>
-                    <div class="w-12 h-12 md:w-14 md:h-14 bg-[#d4a373] text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl shadow-md border-b-4 border-black/10">30</div>
-                    <div class="w-12 h-12 md:w-14 md:h-14 bg-[#d4a373] text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl shadow-md border-b-4 border-black/10">31</div>
-                    <div class="w-12 h-12 md:w-14 md:h-14 bg-[#be123c] text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl shadow-md border-b-4 border-black/10">11</div>
+            <div class="mb-8">
+                <p class="text-gray-400 text-sm font-bold italic">Saturday 22:00, 03/01/2026</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row justify-between gap-12">
+
+                <div class="flex-1">
+                    <div class="flex flex-wrap gap-3 mb-10">
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 bg-[#d4a373] text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl shadow-md border-b-4 border-black/10">
+                            2</div>
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 bg-[#d4a373] text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl shadow-md border-b-4 border-black/10">
+                            7</div>
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 bg-[#d4a373] text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl shadow-md border-b-4 border-black/10">
+                            15</div>
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 bg-[#d4a373] text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl shadow-md border-b-4 border-black/10">
+                            27</div>
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 bg-[#d4a373] text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl shadow-md border-b-4 border-black/10">
+                            30</div>
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 bg-[#d4a373] text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl shadow-md border-b-4 border-black/10">
+                            31</div>
+                        <div
+                            class="w-12 h-12 md:w-14 md:h-14 bg-[#be123c] text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl shadow-md border-b-4 border-black/10">
+                            11</div>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-y-3 max-w-lg">
+                        <div class="flex justify-between items-center py-1">
+                            <span class="text-gray-600 font-bold text-sm">Match <span
+                                    class="text-black">6+1</span></span>
+                            <span class="text-gray-400 font-bold text-sm">Winners <span
+                                    class="text-black ml-4">0</span></span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span class="text-gray-600 font-bold text-sm">Match <span
+                                    class="text-black">6+0</span></span>
+                            <span class="text-gray-400 font-bold text-sm">Winners <span
+                                    class="text-black ml-4">0</span></span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span class="text-gray-600 font-bold text-sm">Match <span
+                                    class="text-black">5+1</span></span>
+                            <span class="text-gray-400 font-bold text-sm">Winners <span
+                                    class="text-black ml-4">4</span></span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span class="text-gray-600 font-bold text-sm">Match <span class="text-black">5+0,
+                                    4+1</span></span>
+                            <span class="text-gray-400 font-bold text-sm">Winners <span
+                                    class="text-black ml-4">58</span></span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span class="text-gray-600 font-bold text-sm">Match <span class="text-black">3+1, 2+1, 1+1,
+                                    0+1</span></span>
+                            <span class="text-gray-400 font-bold text-sm">Winners <span
+                                    class="text-black ml-4">7,855</span></span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-1 gap-y-3 max-w-lg">
-                    <div class="flex justify-between items-center py-1">
-                        <span class="text-gray-600 font-bold text-sm">Match <span class="text-black">6+1</span></span>
-                        <span class="text-gray-400 font-bold text-sm">Winners <span class="text-black ml-4">0</span></span>
-                    </div>
-                    <div class="flex justify-between items-center py-1">
-                        <span class="text-gray-600 font-bold text-sm">Match <span class="text-black">6+0</span></span>
-                        <span class="text-gray-400 font-bold text-sm">Winners <span class="text-black ml-4">0</span></span>
-                    </div>
-                    <div class="flex justify-between items-center py-1">
-                        <span class="text-gray-600 font-bold text-sm">Match <span class="text-black">5+1</span></span>
-                        <span class="text-gray-400 font-bold text-sm">Winners <span class="text-black ml-4">4</span></span>
-                    </div>
-                    <div class="flex justify-between items-center py-1">
-                        <span class="text-gray-600 font-bold text-sm">Match <span class="text-black">5+0, 4+1</span></span>
-                        <span class="text-gray-400 font-bold text-sm">Winners <span class="text-black ml-4">58</span></span>
-                    </div>
-                    <div class="flex justify-between items-center py-1">
-                        <span class="text-gray-600 font-bold text-sm">Match <span class="text-black">3+1, 2+1, 1+1, 0+1</span></span>
-                        <span class="text-gray-400 font-bold text-sm">Winners <span class="text-black ml-4">7,855</span></span>
+                <div class="w-full lg:w-[400px]">
+                    <h3 class="text-[#b48648] font-black uppercase tracking-tight text-lg mb-8 italic">Lucky Chance
+                        Results</h3>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center border-b border-gray-50 pb-4">
+                            <span class="font-bold text-gray-800 tracking-wider">AU1943179</span>
+                            <span class="font-bold text-gray-500 text-sm italic">AED 100,000</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-50 pb-4">
+                            <span class="font-bold text-gray-800 tracking-wider">AI0733977</span>
+                            <span class="font-bold text-gray-500 text-sm italic">AED 100,000</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-50 pb-4">
+                            <span class="font-bold text-gray-800 tracking-wider">CP6642835</span>
+                            <span class="font-bold text-gray-500 text-sm italic">AED 100,000</span>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="w-full lg:w-[400px]">
-                <h3 class="text-[#b48648] font-black uppercase tracking-tight text-lg mb-8 italic">Lucky Chance Results</h3>
-                <div class="space-y-6">
-                    <div class="flex justify-between items-center border-b border-gray-50 pb-4">
-                        <span class="font-bold text-gray-800 tracking-wider">AU1943179</span>
-                        <span class="font-bold text-gray-500 text-sm italic">AED 100,000</span>
-                    </div>
-                    <div class="flex justify-between items-center border-b border-gray-50 pb-4">
-                        <span class="font-bold text-gray-800 tracking-wider">AI0733977</span>
-                        <span class="font-bold text-gray-500 text-sm italic">AED 100,000</span>
-                    </div>
-                    <div class="flex justify-between items-center border-b border-gray-50 pb-4">
-                        <span class="font-bold text-gray-800 tracking-wider">CP6642835</span>
-                        <span class="font-bold text-gray-500 text-sm italic">AED 100,000</span>
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
     <!-- ------------------------------MOVING - Ticker------------------------ -->
 
 
     <style>
-    @keyframes ticker-scroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
-    .ticker-container {
-        display: flex;
-        width: max-content;
-        animation: ticker-scroll 40s linear infinite;
-    }
-    .ticker-container:hover { animation-play-state: paused; }
-</style>
+        @keyframes ticker-scroll {
+            0% {
+                transform: translateX(0);
+            }
 
-<div class="bg-[#f8f9fa] py-10 overflow-hidden border-y border-gray-100 mt-10 relative">
-    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/confetti.png');"></div>
-    
-    <div class="ticker-wrap relative z-10" id="ticker-wrap">
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .ticker-container {
+            display: flex;
+            width: max-content;
+            animation: ticker-scroll 40s linear infinite;
+        }
+
+        .ticker-container:hover {
+            animation-play-state: paused;
+        }
+    </style>
+
+    <div class="bg-[#f8f9fa] py-10 overflow-hidden border-y border-gray-100 mt-10 relative">
+        <div class="absolute inset-0 opacity-10 pointer-events-none"
+            style="background-image: url('https://www.transparenttextures.com/patterns/confetti.png');"></div>
+
+        <div class="ticker-wrap relative z-10" id="ticker-wrap">
         </div>
-</div>
+    </div>
 
 
 
