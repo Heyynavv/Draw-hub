@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@900&display=swap');
+
+html, body { 
+    height: 100%; 
+    margin: 0; 
+    overflow: hidden; 
+    background: #05160b; 
+    color: white; 
+    font-family: 'Inter', sans-serif; 
+}
+
+.main-wrapper { 
+    max-width: 500px; 
+    margin: 0 auto; 
+    height: 100%; 
+    background: #041209; 
+    display: flex; 
+    flex-direction: column; 
+    position: relative; 
+}
+
+.digital { font-family: 'Orbitron', sans-serif; }
+
+.prize-strip {
+    background: linear-gradient(90deg, #ffd700, #b8860b);
+    color: #000; font-weight: 900; padding: 2px 15px; font-size: 9px;
+    text-transform: uppercase; width: 100%; display: block;
+    border-radius: 2px;
+}
+
+/* Circle Digit Styling */
+.digit {
+    width: 34px; height: 34px;
+    background: radial-gradient(circle, #222 0%, #000 100%);
+    border: 2px solid #ffd700;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 900; color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+    overflow: hidden;
+}
+
+.rolling { animation: circle-spin 0.15s infinite linear; }
+@keyframes circle-spin { 
+    0% { transform: scale(1.1); filter: blur(2px); } 
+    100% { transform: scale(1); filter: blur(0px); } 
+}
+
+/* Winner Pop-Out Styling */
+.winner-pop { transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.is-winner {
+    transform: scale(1.06); 
+    background: rgba(34, 197, 94, 0.1) !important;
+    border: 1px solid #22c55e !important; 
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.4); 
+    z-index: 50;
+}
+.is-winner .digit { border-color: #22c55e !important; color: #fff !important; box-shadow: 0 0 15px #22c55e; }
+
+.winner-text { opacity: 0; font-size: 9px; font-weight: 900; transition: 0.5s; }
+.is-winner .winner-text { opacity: 1; animation: bounce 1s infinite; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+
+.block-prize { background: #fff; color: #000; font-size: 10px; font-weight: 800; padding: 2px; border-radius: 4px; text-align: center; }

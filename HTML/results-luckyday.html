@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UAE LOTTERY | Lucky Day Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/results-luckday.css">
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="p-3 flex justify-between items-center border-b border-white/5">
+            <h1 class="text-[10px] font-black italic tracking-tighter uppercase">UAE <span class="text-green-500">Lottery</span></h1>
+            <p id="date" class="text-[9px] font-black digital text-green-500">05/01/2026</p>
+        </div>
+
+        <div class="bg-red-950/20 py-1 text-center border-b border-red-500/10">
+            <p class="text-[8px] font-black text-red-500 uppercase tracking-widest">
+                Draw Countdown: <span id="timer" class="digital text-white ml-1">23:35:05</span>
+            </p>
+        </div>
+
+        <div class="flex-1 px-4 py-1 flex flex-col justify-evenly">
+            
+            <div class="prize-group">
+                <span class="prize-strip">1st Prize Result</span>
+                <div class="flex justify-center gap-2 mt-2" id="group-0">
+                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
+                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
+                </div>
+            </div>
+
+            <div class="prize-group">
+                <span class="prize-strip">2nd Prize Result</span>
+                <div class="flex justify-center gap-2 mt-2" id="group-1">
+                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
+                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
+                </div>
+            </div>
+
+            <div id="winner_section" class="winner-pop p-2 rounded-2xl">
+                <span class="prize-strip !bg-green-600 !text-white">3rd Prize - YOUR NUMBER</span>
+                <div class="flex justify-center gap-2 mt-2" id="group-2">
+                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
+                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
+                </div>
+                <div class="winner-text text-center mt-2 uppercase text-green-400 tracking-widest">
+                    ★ CONGRATULATIONS WINNER ★
+                </div>
+            </div>
+
+            <div class="prize-group">
+                <span class="prize-strip">4th Prize Result</span>
+                <div class="flex justify-center gap-2 mt-2" id="group-3">
+                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
+                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3 bg-black/40 border-t border-white/5 space-y-3">
+            <div>
+                <span class="prize-strip !bg-yellow-600 !text-white !py-0.5 !text-[8px]">Starter Prize</span>
+                <div class="grid grid-cols-5 gap-1.5 mt-1.5">
+                    <div class="block-prize">9671</div><div class="block-prize">4609</div><div class="block-prize">1282</div><div class="block-prize">1839</div><div class="block-prize">5063</div>
+                </div>
+            </div>
+            <div>
+                <span class="prize-strip !bg-yellow-700 !text-white !py-0.5 !text-[8px]">Consolation Prize</span>
+                <div class="grid grid-cols-5 gap-1.5 mt-1.5">
+                    <div class="block-prize">6881</div><div class="block-prize">1075</div><div class="block-prize">5763</div><div class="block-prize">4278</div><div class="block-prize">4515</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/results-luckyday.js"></script>
+</body>
+</html>
