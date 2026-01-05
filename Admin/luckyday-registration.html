@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UAE Admin | Lucky Day Entry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@800&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { background: #020a06; font-family: 'Plus Jakarta Sans', sans-serif; color: #fff; height: 100vh; overflow: hidden; }
+        .luxury-bg { position: fixed; inset: 0; background: radial-gradient(circle at 10% 10%, #062214 0%, #020a06 100%); z-index: -1; }
+        .elite-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 2.2rem; }
+        .input-box { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; transition: 0.3s; }
+        .input-box:focus { border-color: #22c55e; background: rgba(34, 197, 94, 0.05); outline: none; }
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .btn-glow { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3); }
+        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1) brightness(0.6); }
+    </style>
+</head>
+<body class="flex items-center justify-center p-6">
+
+    <div class="luxury-bg"></div>
+
+    <div class="elite-card w-full max-w-[360px] p-6">
+        <div class="flex justify-between items-center mb-6">
+            <a href="../index.html" class="text-[9px] text-gray-500 hover:text-green-500 tracking-widest uppercase font-black transition-all">
+                <i class="fa fa-arrow-left mr-1"></i> Dashboard
+            </a>
+            <span class="bg-green-500/10 text-green-500 text-[8px] px-2 py-1 rounded-full font-black animate-pulse uppercase tracking-tighter">Admin Live</span>
+        </div>
+
+        <div class="text-center mb-6">
+            <h1 class="text-xl font-black orbitron italic text-white">LUCKY<span class="text-green-500">DAY</span></h1>
+            <p class="text-[8px] text-gray-500 font-bold uppercase tracking-[0.3em] mt-1">Manual Client Entry</p>
+        </div>
+
+        <form id="adminForm" class="space-y-4">
+            <div>
+                <label class="text-[8px] font-black uppercase text-green-500/70 tracking-widest ml-1">Client Full Name</label>
+                <input type="text" id="clientName" placeholder="Type name here..." required class="input-box w-full px-4 py-3.5 rounded-xl mt-1 text-xs font-semibold">
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="text-[8px] font-black uppercase text-green-500/70 tracking-widest ml-1">Mobile No.</label>
+                    <input type="tel" id="mobile" maxlength="10" placeholder="10 Digits" required class="input-box w-full px-4 py-3.5 rounded-xl mt-1 text-xs font-semibold">
+                </div>
+                <div>
+                    <label class="text-[8px] font-black uppercase text-green-500/70 tracking-widest ml-1">Draw Date</label>
+                    <input type="date" id="drawDate" required class="input-box w-full px-3 py-3.5 rounded-xl mt-1 text-[10px] font-semibold">
+                </div>
+            </div>
+
+            <div>
+                <label class="text-[8px] font-black uppercase text-green-500/70 tracking-widest block text-center">Assign Lottery Number</label>
+                <input type="text" id="lotteryNum" placeholder="0000000" maxlength="7" required
+                    class="input-box w-full px-4 py-4 rounded-xl mt-1 text-center orbitron text-lg tracking-[8px] border-green-500/30 font-black">
+            </div>
+
+            <button type="submit" class="btn-glow w-full text-white py-4 rounded-xl font-black uppercase text-[10px] tracking-[0.2em] mt-2 flex items-center justify-center gap-2">
+                REGISTER CLIENT <i class="fa fa-plus-circle"></i>
+            </button>
+        </form>
+
+        <p class="text-[7px] text-center text-gray-600 font-bold uppercase tracking-[0.3em] mt-8">Logged in as: Administrator</p>
+    </div>
+
+    <div id="successPopup" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden items-center justify-center p-6 z-50">
+        <div class="bg-white rounded-[2rem] p-8 w-full max-w-[320px] text-center">
+            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                <i class="fa fa-check-circle"></i>
+            </div>
+            <h2 class="text-black font-black uppercase text-lg tracking-tighter">Registered!</h2>
+            <p class="text-gray-500 text-[10px] mt-2 uppercase font-bold tracking-widest leading-relaxed">Client has been added to the system successfully.</p>
+            <button onclick="location.reload()" class="mt-6 w-full py-4 bg-black text-white rounded-xl font-black uppercase text-[10px] tracking-widest">Add Another</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('adminForm').onsubmit = (e) => {
+            e.preventDefault();
+            document.getElementById('successPopup').style.display = 'flex';
+        };
+    </script>
+</body>
+</html>
