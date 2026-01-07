@@ -80,3 +80,13 @@
 
 
 
+Obfuscator installation command - npm install -g javascript-obfuscator
+javascript-obfuscator --version
+
+
+before obfuscator
+<script src="JS/script.js"></script>
+
+After obfuscator { command - javascript-obfuscator ./JS/script.js --output ./JS/hidden.js}
+<script src="JS/hideen.js"></script>
+
