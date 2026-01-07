@@ -20,12 +20,20 @@
 
     <div id="mobile-sidebar" class="p-6">
         <div class="flex justify-between items-center mb-10">
-            <img src="https://theuaelottery.ae/assets/images/logo.svg" class="h-8">
-            <button id="close-menu" class="text-2xl"><i class="fa fa-times"></i></button>
+            <svg width="45" height="35" viewBox="0 0 60 45" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="h-9 w-auto">
+                <rect x="28" y="2" width="2" height="40" fill="#1f2937" rx="1" />
+                <path d="M22 6L14 10V34L22 38V6Z" stroke="#1f2937" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M16 10L8 14V30L16 34V10Z" stroke="#1f2937" stroke-width="1" stroke-opacity="0.6"
+                    stroke-linejoin="round" />
+                <path d="M36 6L44 10V34L36 38V6Z" stroke="#1f2937" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M42 10L50 14V30L42 34V10Z" stroke="#1f2937" stroke-width="1" stroke-opacity="0.6"
+                    stroke-linejoin="round" />
+            </svg>
         </div>
         <nav class="flex flex-col gap-6 font-bold uppercase text-gray-800">
             <a href="#" class="border-b pb-2">Play</a>
-            <a href="#" class="border-b pb-2">Results</a>
+            <a href="HTML/" class="border-b pb-2">Results</a>
             <a href="/HTML/login.html" class="border-b pb-2">Login</a>
             <a href="/HTML/register.html" class="border-b pb-2 text-green-700">Register</a>
         </nav>
@@ -68,14 +76,14 @@
                             class="absolute top-[60px] left-0 w-[400px] bg-white border border-gray-100 rounded-b-3xl shadow-2xl invisible group-hover:visible opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 z-[1100] p-5 grid grid-cols-2 gap-4">
                             <a href="./HTML/luckyday.html">
                                 <div onclick="checkUserAccess('lucky')"
-                                class="p-4 border rounded-2xl hover:border-green-500 text-center transition-all cursor-pointer">
-                                <h4 class="text-xs font-black uppercase">Lucky Day</h4>
-                            </div>
+                                    class="p-4 border rounded-2xl hover:border-green-500 text-center transition-all cursor-pointer">
+                                    <h4 class="text-xs font-black uppercase">Lucky Day</h4>
+                                </div>
                             </a>
                             <a href="./HTML/weekly.html">
                                 <div onclick="checkUserAccess('weekly')"
-                                class="p-4 border rounded-2xl hover:border-blue-500 text-center transition-all cursor-pointer">
-                                <h4 class="text-xs font-black uppercase">Weekly Lotto</h4>
+                                    class="p-4 border rounded-2xl hover:border-blue-500 text-center transition-all cursor-pointer">
+                                    <h4 class="text-xs font-black uppercase">Weekly Lotto</h4>
                                 </div>
                             </a>
                         </div>
