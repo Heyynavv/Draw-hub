@@ -80,28 +80,28 @@ container.addEventListener('mouseleave', () => {
 // if(closeBtn) closeBtn.onclick = closeSidebar;
 // if(overlay) overlay.onclick = closeSidebar;
 
-document.addEventListener('DOMContentLoaded', () => {
-    const burger = document.getElementById('hamburger');
-    const sidebar = document.getElementById('mobile-sidebar');
-    const closeBtn = document.getElementById('close-menu');
-    const overlay = document.getElementById('mobile-overlay');
+// document.addEventListener('DOMContentLoaded', () => {
+//     const burger = document.getElementById('hamburger');
+//     const sidebar = document.getElementById('mobile-sidebar');
+//     const closeBtn = document.getElementById('close-menu');
+//     const overlay = document.getElementById('mobile-overlay');
 
-    if(burger) {
-        burger.onclick = () => {
-            sidebar.classList.add('sidebar-open');
-            overlay.style.display = 'block';
-        }
-    }
+//     if(burger) {
+//         burger.onclick = () => {
+//             sidebar.classList.add('sidebar-open');
+//             overlay.style.display = 'block';
+//         }
+//     }
 
-    const closeSidebar = (e) => {
-        if(e) e.stopPropagation();
-        sidebar.classList.remove('sidebar-open');
-        overlay.style.display = 'none';
-    }
+//     const closeSidebar = (e) => {
+//         if(e) e.stopPropagation();
+//         sidebar.classList.remove('sidebar-open');
+//         overlay.style.display = 'none';
+//     }
 
-    if(closeBtn) closeBtn.onclick = closeSidebar;
-    if(overlay) overlay.onclick = closeSidebar;
-});
+//     if(closeBtn) closeBtn.onclick = closeSidebar;
+//     if(overlay) overlay.onclick = closeSidebar;
+// });
 
 // Modal Logic
 window.openResultsModal = function() {
@@ -368,3 +368,42 @@ document.addEventListener('DOMContentLoaded', startLottoTimers);
         }
     }
     renderTicketNumbers();
+
+/// Sidebar cross  functionality 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.getElementById('hamburger');
+    const sidebar = document.getElementById('mobile-sidebar');
+    const closeBtn = document.getElementById('close-menu');
+    const overlay = document.getElementById('mobile-overlay');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    const toggleMenu = (open) => {
+        if (open) {
+            sidebar.style.transform = 'translateX(0)';
+            overlay.classList.replace('opacity-0', 'opacity-100');
+            overlay.classList.replace('pointer-events-none', 'pointer-events-auto');
+            
+            navItems.forEach((item) => {
+                item.classList.remove('opacity-0', 'translate-y-4');
+                item.classList.add('opacity-100', 'translate-y-0');
+            });
+            document.body.style.overflow = 'hidden';
+        } else {
+            sidebar.style.transform = 'translateX(100%)';
+            overlay.classList.replace('opacity-100', 'opacity-0');
+            overlay.classList.replace('pointer-events-auto', 'pointer-events-none');
+            
+            navItems.forEach(item => {
+                item.classList.add('opacity-0', 'translate-y-4');
+                item.classList.remove('opacity-100', 'translate-y-0');
+            });
+            document.body.style.overflow = 'auto';
+        }
+    };
+
+    if(burger) burger.onclick = () => toggleMenu(true);
+    if(closeBtn) closeBtn.onclick = () => toggleMenu(false);
+    if(overlay) overlay.onclick = () => toggleMenu(false);
+});

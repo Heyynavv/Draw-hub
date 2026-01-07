@@ -15,30 +15,60 @@
 
     <!-- ------------------------------SIDEBAR------------------------ -->
 
+    <div id="mobile-overlay" class="fixed inset-0 bg-white/10 backdrop-blur-2xl z-40 opacity-0 pointer-events-none transition-all duration-700"></div>
 
-    <div id="mobile-overlay"></div>
-
-    <div id="mobile-sidebar" class="p-6">
-        <div class="flex justify-between items-center mb-10">
+<div id="mobile-sidebar" class="fixed top-0 right-0 h-full w-[260px] bg-white/95 z-50 translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col shadow-[-10px_0_40px_rgba(0,0,0,0.03)] border-l border-gray-100">
+    
+    <div class="p-8 flex justify-between items-center">
+        <div class="flex flex-col">
             <svg width="45" height="35" viewBox="0 0 60 45" fill="none" xmlns="http://www.w3.org/2000/svg"
-                class="h-9 w-auto">
-                <rect x="28" y="2" width="2" height="40" fill="#1f2937" rx="1" />
-                <path d="M22 6L14 10V34L22 38V6Z" stroke="#1f2937" stroke-width="1.5" stroke-linejoin="round" />
-                <path d="M16 10L8 14V30L16 34V10Z" stroke="#1f2937" stroke-width="1" stroke-opacity="0.6"
-                    stroke-linejoin="round" />
-                <path d="M36 6L44 10V34L36 38V6Z" stroke="#1f2937" stroke-width="1.5" stroke-linejoin="round" />
-                <path d="M42 10L50 14V30L42 34V10Z" stroke="#1f2937" stroke-width="1" stroke-opacity="0.6"
-                    stroke-linejoin="round" />
-            </svg>
+                        class="h-9 w-auto">
+                        <rect x="28" y="2" width="2" height="40" fill="#1f2937" rx="1" />
+                        <path d="M22 6L14 10V34L22 38V6Z" stroke="#1f2937" stroke-width="1.5" stroke-linejoin="round" />
+                        <path d="M16 10L8 14V30L16 34V10Z" stroke="#1f2937" stroke-width="1" stroke-opacity="0.6"
+                            stroke-linejoin="round" />
+                        <path d="M36 6L44 10V34L36 38V6Z" stroke="#1f2937" stroke-width="1.5" stroke-linejoin="round" />
+                        <path d="M42 10L50 14V30L42 34V10Z" stroke="#1f2937" stroke-width="1" stroke-opacity="0.6"
+                            stroke-linejoin="round" />
+                    </svg>
+            <span class="text-[9px] font-black tracking-[0.5em] text-green-600 uppercase">Premium</span>
+            <h2 class="text-sm font-black tracking-widest text-gray-900 uppercase italic">UAE Lotto</h2>
         </div>
-        <nav class="flex flex-col gap-6 font-bold uppercase text-gray-800">
-            <a href="#" class="border-b pb-2">Play</a>
-            <a href="HTML/" class="border-b pb-2">Results</a>
-            <a href="HTML/login.html" class="border-b pb-2">Login</a>
-            <a href="HTML/register.html" class="border-b pb-2 text-green-700">Register</a>
-        </nav>
+        <button id="close-menu" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 active:scale-90 transition-all">
+            <i class="fa fa-times text-[10px] text-gray-400"></i>
+        </button>
     </div>
 
+    <nav class="flex-1 px-8 pt-12 space-y-10">
+        <a href="#" class="nav-item opacity-0 translate-y-4 block group transition-all duration-500">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-black tracking-[0.3em] text-gray-800 group-hover:text-green-600 transition-colors uppercase">Play Now</span>
+                <i class="fa fa-chevron-right text-[8px] text-gray-200 group-hover:text-green-600 transition-all"></i>
+            </div>
+            <div class="h-[1px] w-0 bg-green-600 group-hover:w-full transition-all duration-500 mt-2"></div>
+        </a>
+
+        <a href="HTML/login.html" class="nav-item opacity-0 translate-y-4 block group transition-all duration-500" style="transition-delay: 100ms;">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-black tracking-[0.3em] text-gray-800 group-hover:text-green-600 transition-colors uppercase">My Profile</span>
+                <i class="fa fa-chevron-right text-[8px] text-gray-200 group-hover:text-green-600 transition-all"></i>
+            </div>
+            <div class="h-[1px] w-0 bg-green-600 group-hover:w-full transition-all duration-500 mt-2"></div>
+        </a>
+
+        <a href="HTML/register.html" class="nav-item opacity-0 translate-y-4 block group transition-all duration-500" style="transition-delay: 200ms;">
+            <div class="flex items-center gap-2">
+                <span class="text-xs font-black tracking-[0.3em] text-green-600 uppercase border-b border-green-600/30 pb-1">Create Account</span>
+            </div>
+        </a>
+    </nav>
+
+    <div class="p-8 border-t border-gray-50 nav-item opacity-0 translate-y-4" style="transition-delay: 300ms;">
+        <p class="text-[8px] font-bold text-gray-300 uppercase tracking-[0.4em]">Est. 2026 • Official Emirates</p>
+    </div>
+</div>
+
+    
 
     <!-- -----------------------------NAV-BAR------------------------ -->
 
