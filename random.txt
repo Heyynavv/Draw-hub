@@ -1,0 +1,82 @@
+/* Hero Carousel */
+
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background: #fff; /* Gaps na dikhen isliye white background */
+}
+
+.carousel-track { 
+    display: flex; 
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
+    /* Height ko 100% se hata kar auto kar diya */
+    height: auto; 
+}
+
+.carousel-slide { 
+    min-width: 100%; 
+    display: flex; 
+    align-items: flex-start; /* Image ko top se align karega */
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto; /* Ye image ko shrink karega bina kaate */
+    display: block;
+    /* Isse image stretch nahi hogi */
+    aspect-ratio: attr(width) / attr(height); 
+}
+
+/* Mobile specific adjustment */
+@media (max-width: 768px) {
+    .carousel-container {
+        height: auto !important; /* Mobile pe container image ki height lega */
+    }
+}
+
+/* Dots ko thoda niche shift karna pad sakta hai agar image ke upar aa rahe hon */
+#carouselDots {
+    bottom: 10px;
+}
+
+
+
+
+<section class="carousel-container relative w-full overflow-hidden group bg-white">
+    
+    <div class="carousel-track flex transition-transform duration-700 ease-in-out h-auto" id="carouselTrack">
+        
+        <div class="carousel-slide min-w-full">
+            <img src="assets/images/Banner1.jpg" class="w-full h-auto">
+        </div>
+
+        <div class="carousel-slide min-w-full">
+            <img src="assets/images/Banner2.jpg" class="w-full h-auto">
+        </div>
+
+        <div class="carousel-slide min-w-full">
+            <img src="assets/images/Banner3.jpg" class="w-full h-auto ">
+        </div>
+
+        <div class="carousel-slide min-w-full">
+            <img src="assets/images/Banner4.jpg" class="w-full h-auto ">
+        </div>
+    </div>
+
+    <button onclick="prevSlide()"
+        class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-green-600 text-white w-9 h-9 md:w-12 md:h-12 rounded-full z-20 flex items-center justify-center transition-all shadow-lg border border-white/10">
+        <i class="fa fa-chevron-left text-xs md:text-base"></i>
+    </button>
+    <button onclick="nextSlide()"
+        class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-green-600 text-white w-9 h-9 md:w-12 md:h-12 rounded-full z-20 flex items-center justify-center transition-all shadow-lg border border-white/10">
+        <i class="fa fa-chevron-right text-xs md:text-base"></i>
+    </button>
+
+    <div class="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20" id="carouselDots"></div>
+
+</section>
+
+
+
+
