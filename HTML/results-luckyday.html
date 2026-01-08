@@ -8,82 +8,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/CSS/results-luckday.css">
 </head>
-<body class="bg-[#f4f7f5]">
+<body>
 
-    <div class="main-wrapper">
-        <a href="../index.html" class="absolute top-4 left-4 text-gray-400 hover:text-green-600 transition-all flex items-center gap-1 text-[9px] font-black uppercase tracking-widest z-50">
-            <i class="fa fa-chevron-left"></i> Back
-        </a>
-
-        <div class="p-3 pt-10 flex justify-between items-center border-b border-gray-100">
-            <h1 class="text-[11px] font-black italic tracking-tighter uppercase text-gray-800">UAE <span class="text-green-600">Lottery</span></h1>
+    <div class="main-wrapper shadow-2xl">
+        <div class="header-nav p-4 flex justify-between items-center bg-[#020d20]">
+            <a href="../index.html" class="text-gray-400 hover:text-white"><i class="fa fa-chevron-left"></i></a>
+            <h1 class="text-xs font-black italic uppercase tracking-tighter">UAE <span class="text-yellow-500">Lottery</span></h1>
             <div class="text-right">
-                <p class="text-[7px] text-gray-400 uppercase">Draw Date</p>
-                <p id="date" class="text-[10px] font-black digital text-green-600">05/01/2026</p>
+                <p class="text-[7px] text-gray-400 uppercase font-bold tracking-widest">Draw Date</p>
+                <p id="date" class="text-[10px] font-black text-yellow-500">Loading...</p>
             </div>
         </div>
 
-        <div class="bg-red-50 py-1.5 text-center border-b border-red-100">
-            <p class="text-[8px] font-black text-red-600 uppercase tracking-widest">
-                Draw Countdown: <span id="timer" class="digital text-gray-700 ml-1">23:35:05</span>
-            </p>
+        <div class="bg-[#4a0000] py-2 flex justify-center items-center gap-3 border-b border-red-900">
+            <span class="text-[9px] font-bold uppercase tracking-widest text-red-200">Next Draw Countdown:</span>
+            <span id="timer" class="text-xs timer-box">23:35:05</span>
         </div>
 
-        <div class="flex-1 px-4 py-2 flex flex-col justify-evenly">
-            
-            <div class="prize-group">
-                <span class="prize-strip">1st Prize Result</span>
-                <div class="flex justify-center gap-2 mt-2" id="group-0">
-                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
-                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
-                </div>
+        <div id="prize-container" class="flex-1 p-5 space-y-10">
             </div>
 
-            <div class="prize-group">
-                <span class="prize-strip">2nd Prize Result</span>
-                <div class="flex justify-center gap-2 mt-2" id="group-1">
-                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
-                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
-                </div>
-            </div>
-
-            <div id="winner_section" class="winner-pop p-2 rounded-2xl">
-                <span class="prize-strip !bg-green-600 !text-white">3rd Prize - YOUR NUMBER</span>
-                <div class="flex justify-center gap-2 mt-2" id="group-2">
-                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
-                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
-                </div>
-                <div class="winner-text text-center mt-2 uppercase text-green-600 tracking-widest font-black">
-                    ★ CONGRATULATIONS WINNER ★
-                </div>
-            </div>
-
-            <div class="prize-group">
-                <span class="prize-strip">4th Prize Result</span>
-                <div class="flex justify-center gap-2 mt-2" id="group-3">
-                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
-                    <div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div><div class="digit rolling">0</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="p-3 bg-gray-50 border-t border-gray-100 space-y-3">
+        <div class="bg-yellow-500 p-6 space-y-2 shadow-[0_-15px_30px_rgba(0,0,0,0.5)]">
             <div>
-                <span class="prize-strip !bg-amber-500 !text-white !py-0.5 !text-[8px]">Starter Prize</span>
-                <div class="grid grid-cols-5 gap-1.5 mt-1.5">
-                    <div class="block-prize">9671</div><div class="block-prize">4609</div><div class="block-prize">1282</div><div class="block-prize">1839</div><div class="block-prize">5063</div>
-                </div>
+                <p class="text-[11px] font-black text-black uppercase mb-3 tracking-tighter">Starter Prize</p>
+                <div id="starter-grid" class="grid grid-cols-5 gap-2"></div>
             </div>
+
+            <div class="dotted-line"></div>
+
             <div>
-                <span class="prize-strip !bg-amber-600 !text-white !py-0.5 !text-[8px]">Consolation Prize</span>
-                <div class="grid grid-cols-5 gap-1.5 mt-1.5">
-                    <div class="block-prize">6881</div><div class="block-prize">1075</div><div class="block-prize">5763</div><div class="block-prize">4278</div><div class="block-prize">4515</div>
-                </div>
+                <p class="text-[11px] font-black text-black uppercase mb-3 tracking-tighter">Consolation Prize</p>
+                <div id="consolation-grid" class="grid grid-cols-5 gap-2"></div>
             </div>
-            <p class="text-[7px] text-center text-gray-400 uppercase tracking-[0.3em] pb-1">UAE Official Lottery Portal</p>
+
+            <p class="text-center text-[8px] text-black/40 font-bold uppercase tracking-[0.3em] pt-8">UAE Official Lottery Portal</p>
         </div>
     </div>
 
-    <script src="../JS/luckyday-hidden.js"></script>
+    <script src="/JS/hidden-results-luckyday.js"></script>
+
 </body>
 </html>
