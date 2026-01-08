@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b3fd4ad4-bede-484b-aeac-d27c63e65580/deploy-status)](https://app.netlify.com/projects/uae-testing/deploys)
+
 # UAE LOTTERY - Premium Frontend Portal - Freelance - Project // - Inprogress ⏳
 
 UAE Lottery is a high-end, mobile-responsive web application designed for a luxury user experience. Featuring a "Casino Elite" aesthetic, the platform combines sophisticated Dark-Glass Morphism with modern performance to redefine the digital lottery experience.
