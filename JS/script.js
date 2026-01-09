@@ -59,61 +59,29 @@ container.addEventListener('mouseleave', () => {
 });
     
 
-// --- Sidebar Control ---
-// const burger = document.getElementById('hamburger');
-// const sidebar = document.getElementById('mobile-sidebar');
-// const closeBtn = document.getElementById('close-menu');
-// const overlay = document.getElementById('mobile-overlay');
-
-// if(burger) {
-//     burger.onclick = () => {
-//         sidebar.classList.add('sidebar-open');
-//         overlay.style.display = 'block';
-//     }
-// }
-
-// const closeSidebar = () => {
-//     sidebar.classList.remove('sidebar-open');
-//     overlay.style.display = 'none';
-// }
-
-// if(closeBtn) closeBtn.onclick = closeSidebar;
-// if(overlay) overlay.onclick = closeSidebar;
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const burger = document.getElementById('hamburger');
-//     const sidebar = document.getElementById('mobile-sidebar');
-//     const closeBtn = document.getElementById('close-menu');
-//     const overlay = document.getElementById('mobile-overlay');
-
-//     if(burger) {
-//         burger.onclick = () => {
-//             sidebar.classList.add('sidebar-open');
-//             overlay.style.display = 'block';
-//         }
-//     }
-
-//     const closeSidebar = (e) => {
-//         if(e) e.stopPropagation();
-//         sidebar.classList.remove('sidebar-open');
-//         overlay.style.display = 'none';
-//     }
-
-//     if(closeBtn) closeBtn.onclick = closeSidebar;
-//     if(overlay) overlay.onclick = closeSidebar;
-// });
-
 // Modal Logic
-window.openResultsModal = function() {
+// Premium Modal Logic
+const openResultsModal = () => {
     const modal = document.getElementById('results-modal');
-    if(modal) modal.style.display = 'flex';
+    if (modal) {
+        modal.style.display = 'flex';
+        // Add haptic feedback for mobile
+        if (navigator.vibrate) navigator.vibrate(15);
+    }
 };
 
-window.closeResultsModal = function() {
+const closeResultsModal = () => {
     const modal = document.getElementById('results-modal');
-    if(modal) modal.style.display = 'none';
+    if (modal) {
+        modal.style.display = 'none';
+    }
 };
 
+// Global click listener to close on backdrop
+window.addEventListener('click', (e) => {
+    const modal = document.getElementById('results-modal');
+    if (e.target === modal) closeResultsModal();
+});
 
 // --- Jackpot Grid Generation ---
 const jackGrid = document.getElementById('jackpot-grid');

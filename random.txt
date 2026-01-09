@@ -78,6 +78,124 @@
 </section>
 
 
+<style>
+    @keyframes pulse-glow {
+        0%, 100% { opacity: 0.6; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.1); }
+    }
+    .animate-pulse-glow { animation: pulse-glow 2s infinite ease-in-out; }
+    
+    #results-modal button:active { transform: scale(0.96); }
+    
+    /* Smooth Backdrop Blur */
+    .modal-backdrop {
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+</style>
+
+<div id="results-modal" class="fixed inset-0 z-[3000]" 
+     style="display:none; align-items:center; justify-content:center; padding:1.5rem;">
+    
+    <div class="fixed inset-0 modal-backdrop" onclick="closeResultsModal()"></div>
+    
+    <div class="relative w-full max-w-[350px] rounded-[2.5rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)]"
+         style="background: #0f0f0f; border: 1px solid rgba(255,255,255,0.08);">
+        
+        <div class="p-6 text-center" style="border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02);">
+            <div style="width: 40px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; margin: 0 auto 15px auto;"></div>
+            <h3 style="color: #888; font-weight: 900; text-transform: uppercase; font-size: 11px; letter-spacing: 0.4em;">Select Results</h3>
+        </div>
+
+        <div class="p-6" style="display: flex; flex-direction: column; gap: 16px;">
+            
+            <button onclick="handleRouting('lucky', '/HTML/luckyday.html')"
+                style="width: 100%; display: flex; align-items: center; gap: 18px; padding: 18px; background: #1a1a1a; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.3s;">
+                <div class="animate-pulse-glow" style="width: 52px; height: 52px; background: linear-gradient(135deg, #4ade80, #065f46); border-radius: 18px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(34,197,94,0.3);">
+                    <i class="fa fa-bolt" style="color: white; font-size: 24px;"></i>
+                </div>
+                <div style="text-align: left;">
+                    <div style="color: white; font-weight: 900; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Lucky Day</div>
+                    <div style="color: #22c55e; font-weight: 800; font-size: 9px; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px;">Instant Power Draw</div>
+                </div>
+                <i class="fa fa-chevron-right" style="margin-left: auto; color: #333; font-size: 12px;"></i>
+            </button>
+
+            <button onclick="handleRouting('weekly', '/HTML/weekly.html')"
+                style="width: 100%; display: flex; align-items: center; gap: 18px; padding: 18px; background: #1a1a1a; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.3s;">
+                <div style="width: 52px; height: 52px; background: linear-gradient(135deg, #3b82f6, #1e3a8a); border-radius: 18px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(59,130,246,0.3);">
+                    <i class="fa fa-crown" style="color: white; font-size: 22px;"></i>
+                </div>
+                <div style="text-align: left;">
+                    <div style="color: white; font-weight: 900; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Weekly Draw</div>
+                    <div style="color: #3b82f6; font-weight: 800; font-size: 9px; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px;">Mega Royal Rewards</div>
+                </div>
+                <i class="fa fa-chevron-right" style="margin-left: auto; color: #333; font-size: 12px;"></i>
+            </button>
+
+            <button onclick="handleRouting('monthly', '#')"
+                style="width: 100%; display: flex; align-items: center; gap: 18px; padding: 18px; background: #1a1a1a; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.3s;">
+                <div style="width: 52px; height: 52px; background: linear-gradient(135deg, #a855f7, #581c87); border-radius: 18px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(168,85,247,0.3);">
+                    <i class="fa fa-gem" style="color: white; font-size: 22px;"></i>
+                </div>
+                <div style="text-align: left;">
+                    <div style="color: white; font-weight: 900; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Monthly VIP</div>
+                    <div style="color: #a855f7; font-weight: 800; font-size: 9px; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px;">Elite Millionaire Club</div>
+                </div>
+                <i class="fa fa-chevron-right" style="margin-left: auto; color: #333; font-size: 12px;"></i>
+            </button>
+
+        </div>
+
+        <button onclick="closeResultsModal()"
+            style="width: 100%; padding: 25px; background: rgba(255,255,255,0.02); border: none; color: #555; font-weight: 900; text-transform: uppercase; letter-spacing: 0.4em; cursor: pointer; font-size: 10px; transition: 0.3s;">
+            Close Panel
+        </button>
+    </div>
+</div>
+
+<script>
+    // Open Modal
+    window.openResultsModal = function() {
+        const modal = document.getElementById('results-modal');
+        if (modal) {
+            modal.style.display = 'flex';
+            // Trigger animation
+            modal.style.opacity = '0';
+            setTimeout(() => { modal.style.transition = 'opacity 0.3s ease'; modal.style.opacity = '1'; }, 10);
+        }
+    };
+
+    // Close Modal
+    window.closeResultsModal = function() {
+        const modal = document.getElementById('results-modal');
+        if (modal) {
+            modal.style.opacity = '0';
+            setTimeout(() => { modal.style.display = 'none'; }, 300);
+        }
+    };
+
+    // Handle Routing with Folder Support
+    window.handleRouting = function(type, url) {
+        // Haptic Feedback (Vibration)
+        if (navigator.vibrate) navigator.vibrate(15);
+        
+        console.log("Navigating to " + type + " Path: " + url);
+
+        if (url !== '#') {
+            // Modal band karo aur redirect karo
+            closeResultsModal();
+            setTimeout(() => {
+                window.location.href = url;
+            }, 200);
+        } else {
+            alert(type.toUpperCase() + " coming soon!");
+        }
+    };
+</script>
+
+
 
 
 Obfuscator installation command - npm install -g javascript-obfuscator

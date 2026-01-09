@@ -253,5 +253,128 @@ body {
     color: #16a34a; /* LOTTO part green */
 }
 
+ /* Premium Glow Animation */
+   
+/* Premium VIP Modal CSS */
+.modal-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.backdrop-overlay {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.vip-card {
+    background: rgba(15, 15, 15, 0.98);
+    border-radius: 3.5rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+    animation: modalIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.modal-header {
+    padding: 2rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header-indicator {
+    width: 50px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin: 0 auto 1rem;
+}
+
+.header-title {
+    color: #fff;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.6em;
+    opacity: 0.5;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.premium-btn {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+
+.premium-btn:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.icon-box {
+    width: 55px;
+    height: 55px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+/* Gradients & Glows */
+.lucky-glow { background: linear-gradient(135deg, #00f2fe, #4facfe); box-shadow: 0 0 20px rgba(79, 172, 254, 0.4); }
+.weekly-glow { background: linear-gradient(135deg, #fccb90, #d57eeb); box-shadow: 0 0 20px rgba(213, 126, 235, 0.4); }
+.monthly-glow { background: linear-gradient(135deg, #667eea, #764ba2); box-shadow: 0 0 20px rgba(118, 75, 162, 0.4); }
+
+.btn-content { flex: 1; text-align: left; }
+.btn-title { display: block; color: #fff; font-weight: 900; font-size: 15px; text-transform: uppercase; }
+.btn-subtitle { display: block; color: rgba(255, 255, 255, 0.4); font-weight: 700; font-size: 9px; text-transform: uppercase; margin-top: 2px; }
+
+.arrow-icon { color: rgba(255, 255, 255, 0.1); font-size: 0.8rem; }
+
+.close-panel-btn {
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+    color: #444;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    cursor: pointer;
+    font-size: 10px;
+    transition: 0.3s;
+}
+
+.close-panel-btn:hover { color: #fff; }
+
+/* Animations */
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+.float-anim { animation: float 2s infinite ease-in-out; }
 
 

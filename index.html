@@ -239,34 +239,61 @@
         </div>
     </div> -->
 
-    <div id="mobile-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[1500]" style="display:none;"></div>
+    <!-- ----------------------------------------Results modla box ----------------  -->
 
-    <div id="results-modal" class="fixed inset-0 z-[3000]"
-        style="display:none; align-items:center; justify-content:center; padding:1rem;">
-        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" onclick="closeResultsModal()"></div>
-        <div
-            class="relative bg-white w-full max-w-[320px] rounded-[2rem] overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300">
-            <div class="p-6 text-center border-b border-gray-50">
-                <h3 class="font-black uppercase text-sm tracking-widest">Select Results</h3>
-            </div>
-            <div class="p-5 space-y-3">
-                <button onclick="checkUserAccess('lucky')"
-                    class="w-full flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-transparent active:border-green-500 transition-all">
-                    <div class="w-10 h-10 bg-green-100 text-green-700 rounded-lg flex items-center justify-center"><i
-                            class="fa fa-sun"></i></div>
-                    <span class="font-black uppercase text-xs"><a href="/HTML/luckyday.html">Lucky Day</a></span>
-                </button>
-                <button onclick="checkUserAccess('weekly')"
-                    class="w-full flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-transparent active:border-blue-500 transition-all">
-                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center"><i
-                            class="fa fa-calendar-alt"></i></div>
-                    <span class="font-black uppercase text-xs"><a href="/HTML/weekly.html">Weekly </a></span>
-                </button>
-            </div>
-            <button onclick="closeResultsModal()"
-                class="w-full py-4 text-[10px] font-black uppercase text-gray-400">Cancel</button>
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[1500]" style="display:none;"></div>
+<div id="results-modal" class="fixed inset-0 z-[3000] modal-wrapper" style="display:none;">
+    
+    <div class="fixed inset-0 backdrop-overlay" onclick="closeResultsModal()"></div>
+    
+    <div class="relative w-full max-w-[360px] vip-card">
+        
+        <div class="modal-header">
+            <div class="header-indicator"></div>
+            <h3 class="header-title">Select Domain</h3>
         </div>
+
+        <div class="modal-body">
+            <a href="/HTML/luckyday.html" class="premium-btn lucky">
+                <div class="icon-box lucky-glow">
+                    <i class="fa fa-bolt float-anim"></i>
+                </div>
+                <div class="btn-content">
+                    <span class="btn-title">Lucky Day</span>
+                    <span class="btn-subtitle">Instant Cyber Win</span>
+                </div>
+                <i class="fa fa-chevron-right arrow-icon"></i>
+            </a>
+
+            <a href="/HTML/weekly.html" class="premium-btn weekly">
+                <div class="icon-box weekly-glow">
+                    <i class="fa fa-crown"></i>
+                </div>
+                <div class="btn-content">
+                    <span class="btn-title">Weekly Draw</span>
+                    <span class="btn-subtitle">Royal Mega Pool</span>
+                </div>
+                <i class="fa fa-chevron-right arrow-icon"></i>
+            </a>
+
+            <a href="#" class="premium-btn monthly" onclick="alert('Coming Soon!')">
+                <div class="icon-box monthly-glow">
+                    <i class="fa fa-gem"></i>
+                </div>
+                <div class="btn-content">
+                    <span class="btn-title">Monthly VIP</span>
+                    <span class="btn-subtitle">Elite Millionaire</span>
+                </div>
+                <i class="fa fa-chevron-right arrow-icon"></i>
+            </a>
+        </div>
+
+        <button onclick="closeResultsModal()" class="close-panel-btn">
+            Close Interface
+        </button>
     </div>
+</div>
+    
 
 
     <!-- ------------------------------HERO------------------------ -->
@@ -633,27 +660,7 @@
     <!-- ------------------------------MOVING - Ticker------------------------ -->
 
 
-    <style>
-        @keyframes ticker-scroll {
-            0% {
-                transform: translateX(0);
-            }
 
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        .ticker-container {
-            display: flex;
-            width: max-content;
-            animation: ticker-scroll 40s linear infinite;
-        }
-
-        .ticker-container:hover {
-            animation-play-state: paused;
-        }
-    </style>
 
     <div class="bg-[#f8f9fa] py-10 overflow-hidden border-y border-gray-100 mt-10 relative">
         <div class="absolute inset-0 opacity-10 pointer-events-none"
