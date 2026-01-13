@@ -378,3 +378,25 @@ body {
 .float-anim { animation: float 2s infinite ease-in-out; }
 
 
+
+/* alerts styling  */
+/* Custom Popup Styling */
+.sexy-popup {
+    border-radius: 20px !important;
+    background: #1a1a1a !important; /* Dark theme */
+    color: #fff !important;
+    border: 1px solid #333;
+}
+
+.sexy-title {
+    color: #ff4444 !important; /* Red for Error */
+    font-weight: 800 !important;
+    text-transform: uppercase;
+}
+
+.sexy-confirm-btn {
+    background: linear-gradient(45deg, #ff4444, #cc0000) !important;
+    border-radius: 10px !important;
+    padding: 10px 30px !important;
+    font-weight: bold !important;
+}

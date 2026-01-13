@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>UAE LOTTERY | Check Prize</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { background-color: #062214; color: white; overflow-x: hidden; font-family: 'Inter', sans-serif; }
@@ -105,40 +106,63 @@
 
    <script>
     document.getElementById('verifyForm').onsubmit = function(e) {
-    e.preventDefault();
-    
-    const num = document.getElementById('mobileNumber').value;
-    
-    if(num.length === 10) {
-        let formData = new FormData();
-        formData.append('mobile', num);
+        e.preventDefault();
+        
+        const num = document.getElementById('mobileNumber').value;
+        
+        // 1. Basic validation
+        if(num.length === 10) {
+            let formData = new FormData();
+            formData.append('mobile', num);
 
-        // '../' ka matlab hai HTML folder se bahar nikal kar Admin folder mein jao
-        fetch('../Admin/check-lucky.php', { 
-            method: 'POST',
-            body: formData
-        })
-        .then(res => res.text())
-        .then(data => {
-            console.log("Response from Server:", data); // Debugging ke liye
-            const result = data.trim();
-            
-            if(result === "success") {
-                // Number mil gaya, ab result page par bhej do
-                window.location.href = 'results-luckyday.php'; 
-            } else {
-                // Agar data "not_found" ya kuch aur aaya
-                alert("Access Denied: Your number " + num + " is not registered for Lucky Day!");
-            }
-        })
-        .catch(err => {
-            console.error("Fetch Error:", err);
-            alert("Technical Error: File path correctly set nahi hai.");
-        });
-    } else {
-        alert("Please enter a valid 10-digit mobile number.");
-    }
-};
-   </script>
+            fetch('../Admin/check-lucky.php', { 
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.text())
+            .then(data => {
+                const result = data.trim();
+                
+                if(result === "success") {
+                    // Success Par Smooth Redirect
+                    window.location.href = 'results-luckyday.php'; 
+                } else {
+                    // 2. PREMIUM ERROR ALERT
+                    Swal.fire({
+                        title: '<span style="color: #ff4444; font-family: sans-serif;">ACCESS DENIED</span>',
+                        html: `<div style="color: #eee; font-size: 14px;">Oho! Your number <b>${num}</b> is not registered for Lucky Day!</div>`,
+                        icon: 'error',
+                        background: '#121212', // Dark background for premium look
+                        confirmButtonText: 'TRY AGAIN',
+                        confirmButtonColor: '#ff4444',
+                        backdrop: `rgba(0,0,0,0.8)`, // Background blur effect
+                        customClass: {
+                            popup: 'sexy-popup-border'
+                        }
+                    });
+                }
+            })
+            .catch(err => {
+                // 3. Technical Error Alert
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'System Error',
+                    text: 'Unable to connect to server. Check file paths.',
+                    background: '#121212',
+                    color: '#fff'
+                });
+            });
+        } else {
+            // 4. Invalid Input Alert
+            Swal.fire({
+                icon: 'info',
+                text: 'Please enter a valid 10-digit mobile number.',
+                background: '#121212',
+                color: '#fff',
+                confirmButtonColor: '#ffcc00'
+            });
+        }
+    };
+</script>
 </body>
 </html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UAE LOTTERY | Check Prize</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { background-color: #062214; color: white; overflow-x: hidden; font-family: 'Inter', sans-serif; }
@@ -134,40 +135,62 @@
 
     <script>
     document.getElementById('verifyForm').onsubmit = function(e) {
-    e.preventDefault();
-    
-    const num = document.getElementById('mobileNumber').value;
-    
-    if(num.length === 10) {
-        let formData = new FormData();
-        formData.append('mobile', num);
+        e.preventDefault();
+        
+        const num = document.getElementById('mobileNumber').value;
+        
+        // 1. Check if number is 10 digits
+        if(num.length === 10) {
+            let formData = new FormData();
+            formData.append('mobile', num);
 
-        // '../' ka matlab hai HTML folder se bahar nikal kar Admin folder mein jao
-        fetch('../Admin/check-weekly.php', { 
-            method: 'POST',
-            body: formData
-        })
-        .then(res => res.text())
-        .then(data => {
-            console.log("Response from Server:", data); // Debugging ke liye
-            const result = data.trim();
-            
-            if(result === "success") {
-                // Number mil gaya, ab result page par bhej do
-                window.location.href = 'results-weekly.php'; 
-            } else {
-                // Agar data "not_found" ya kuch aur aaya
-                alert("Access Denied: Your number " + num + " is not registered for Lucky Day!");
-            }
-        })
-        .catch(err => {
-            console.error("Fetch Error:", err);
-            alert("Technical Error: File path correctly set nahi hai.");
-        });
-    } else {
-        alert("Please enter a valid 10-digit mobile number.");
-    }
-};
-   </script>
+            // Fetching from Weekly Check Script
+            fetch('../Admin/check-weekly.php', { 
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.text())
+            .then(data => {
+                const result = data.trim();
+                
+                if(result === "success") {
+                    // Success: Redirect to Weekly Results
+                    window.location.href = 'results-weekly.php'; 
+                } else {
+                    // 2. PREMIUM WEEKLY ERROR ALERT
+                    Swal.fire({
+                        title: '<span style="color: #ffcc00; font-family: sans-serif;">ACCESS DENIED</span>',
+                        html: `<div style="color: #eee; font-size: 14px;">Oho! Your number <b>${num}</b> is not registered for <br><span style="color:#ffcc00; font-weight:bold;">WEEKLY DRAW!</span></div>`,
+                        icon: 'error',
+                        background: '#121212', 
+                        confirmButtonText: 'TRY AGAIN',
+                        confirmButtonColor: '#ffcc00', // Weekly ke liye Gold/Yellow button sexy lagega
+                        backdrop: `rgba(0,0,0,0.85)`,
+                        customClass: {
+                            popup: 'sexy-popup-border'
+                        }
+                    });
+                }
+            })
+            .catch(err => {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Path Error',
+                    text: 'Weekly check script not found!',
+                    background: '#121212',
+                    color: '#fff'
+                });
+            });
+        } else {
+            Swal.fire({
+                icon: 'info',
+                text: 'Please enter a valid 10-digit mobile number.',
+                background: '#121212',
+                color: '#fff',
+                confirmButtonColor: '#ffcc00'
+            });
+        }
+    };
+</script>
 </body>
 </html>
