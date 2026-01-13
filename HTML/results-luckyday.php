@@ -1,15 +1,20 @@
 <?php
 session_start();
 
-// Security: Agar user registered nahi hai ya direct link khola hai, toh wapas bhej do
+// 1. Security Check: Agar session variables nahi hain, toh wapas login page
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header("Location: check-lucky.php");
+    header("Location: luckyday.php");
     exit();
 }
 
-// Session se user ka data nikalna
+// 2. Data ko local variables mein store karlo taaki HTML mein use ho sake
 $userName = $_SESSION['user_name'];
 $userLottery = $_SESSION['user_lottery'];
+
+// 3. MAGIC LINE: Yahan session delete kar do
+// Isse page ek baar load toh ho jayega, par naye tab mein link kaam nahi karega
+session_unset();
+session_destroy();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,14 +61,14 @@ $userLottery = $_SESSION['user_lottery'];
             <span id="timer" class="text-xs timer-box font-mono">23:35:05</span>
         </div>
 
-        <div class="px-5 pt-6">
+        <!-- <div class="px-5 pt-6">
             <div class="my-ticket-badge rounded-2xl p-4 text-center shadow-lg">
                 <p class="text-[8px] font-black text-yellow-500/70 uppercase tracking-[0.3em] mb-2">Your Registered Ticket</p>
                 <h2 class="text-3xl font-black text-white tracking-[12px] italic underline decoration-yellow-500 decoration-4 underline-offset-8">
                     <?php echo htmlspecialchars($userLottery); ?>
                 </h2>
             </div>
-        </div>
+        </div> -->
 
         <div id="prize-container" class="flex-1 p-5 space-y-10">
             </div>
@@ -84,8 +89,10 @@ $userLottery = $_SESSION['user_lottery'];
             <p class="text-center text-[8px] text-black/40 font-bold uppercase tracking-[0.3em] pt-8">UAE Official Lottery Portal</p>
         </div>
     </div>
+    <script>
+    // PHP se number JS ko dena
+    const global_user_lottery = "<?php echo $userLottery; ?>"; 
+</script>
 
-    <script src="../JS/results-luckyday.js"></script>
-
-</body>
+<script src="../JS/results-luckyday.js?v=1.1"></script>
 </html>
