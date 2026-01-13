@@ -1,6 +1,35 @@
 <?php
-  echo "<h1>PHP is working!</h1>";
-  die(); 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
+
+// 1. Database Connection (Sahi path check kar lena)
+include 'includes/db.php'; 
+
+$login_error = "";
+
+// 2. Login Logic
+if (isset($_POST['login_btn'])) {
+    $phone = mysqli_real_escape_string($conn, $_POST['phone_number']);
+    
+    $query = "SELECT * FROM users WHERE phone = '$phone'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+        
+        // Session mein data store karna
+        $_SESSION['user_name'] = $user['name'];
+        $_SESSION['lottery_no'] = $user['lottery_number'];
+        $_SESSION['logged_in'] = true;
+
+        // Redirect to results page
+        header("Location: HTML/luckyday.php"); 
+        exit();
+    } else {
+        $login_error = "Number not registered!";
+    }
+}
 ?>
 
 
@@ -13,7 +42,7 @@
     <title>The UAE Lottery</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 
 <body class="bg-warm-white">
@@ -179,13 +208,13 @@
                         </span>
                         <div
                             class="absolute top-[60px] left-0 w-[400px] bg-white border border-gray-100 rounded-b-3xl shadow-2xl invisible group-hover:visible opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 z-[1100] p-5 grid grid-cols-2 gap-4">
-                            <a href="./HTML/luckyday.html">
+                            <a href="./HTML/luckyday.php">
                                 <div onclick="checkUserAccess('lucky')"
                                     class="p-4 border rounded-2xl hover:border-green-500 text-center transition-all cursor-pointer">
                                     <h4 class="text-xs font-black uppercase">Lucky Day</h4>
                                 </div>
                             </a>
-                            <a href="./HTML/weekly.html">
+                            <a href="./HTML/weekly.php">
                                 <div onclick="checkUserAccess('weekly')"
                                     class="p-4 border rounded-2xl hover:border-blue-500 text-center transition-all cursor-pointer">
                                     <h4 class="text-xs font-black uppercase">Weekly</h4>
@@ -260,7 +289,7 @@
         </div>
 
         <div class="modal-body">
-            <a href="/HTML/luckyday.html" class="premium-btn lucky">
+            <a href="/HTML/luckyday.php" class="premium-btn lucky">
                 <div class="icon-box lucky-glow">
                     <i class="fa fa-bolt float-anim"></i>
                 </div>
@@ -784,7 +813,7 @@
         </div>
     </footer>
 
-    <script src="js/hidden.js"></script>
+    <script src="JS/script.js"></script>
 </body>
 
 </html>

@@ -103,16 +103,42 @@
         </div>
     </div>
 
-    <script>
-        document.getElementById('verifyForm').onsubmit = (e) => {
-            e.preventDefault();
-            const num = document.getElementById('mobileNumber').value;
-            if(num.length === 10) {
-                window.location.href = 'results-luckyday.html';
+   <script>
+    document.getElementById('verifyForm').onsubmit = function(e) {
+    e.preventDefault();
+    
+    const num = document.getElementById('mobileNumber').value;
+    
+    if(num.length === 10) {
+        let formData = new FormData();
+        formData.append('mobile', num);
+
+        // '../' ka matlab hai HTML folder se bahar nikal kar Admin folder mein jao
+        fetch('../Admin/check-lucky.php', { 
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.text())
+        .then(data => {
+            console.log("Response from Server:", data); // Debugging ke liye
+            const result = data.trim();
+            
+            if(result === "success") {
+                // Number mil gaya, ab result page par bhej do
+                window.location.href = 'results-luckyday.php'; 
             } else {
-                alert("Please enter 10 digits");
+                // Agar data "not_found" ya kuch aur aaya
+                alert("Access Denied: Your number " + num + " is not registered for Lucky Day!");
             }
-        };
-    </script>
+        })
+        .catch(err => {
+            console.error("Fetch Error:", err);
+            alert("Technical Error: File path correctly set nahi hai.");
+        });
+    } else {
+        alert("Please enter a valid 10-digit mobile number.");
+    }
+};
+   </script>
 </body>
 </html>

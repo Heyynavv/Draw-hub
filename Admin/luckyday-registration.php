@@ -38,23 +38,23 @@
         <form id="adminForm" class="space-y-4" action="save-user.php" method="POST">
             <div>
                 <label class="text-[8px] font-black uppercase text-green-500/70 tracking-widest ml-1">Client Full Name</label>
-                <input type="text" id="clientName" placeholder="Type name here..." required class="input-box w-full px-4 py-3.5 rounded-xl mt-1 text-xs font-semibold">
+                <input type="text" id="clientName"name = "client_name" placeholder="Type name here..." required class="input-box w-full px-4 py-3.5 rounded-xl mt-1 text-xs font-semibold">
             </div>
 
             <div class="grid grid-cols-2 gap-3">
                 <div>
                     <label class="text-[8px] font-black uppercase text-green-500/70 tracking-widest ml-1">Mobile No.</label>
-                    <input type="tel" id="mobile" maxlength="10" placeholder="10 Digits" required class="input-box w-full px-4 py-3.5 rounded-xl mt-1 text-xs font-semibold">
+                    <input type="tel" id="mobile"name="mobile" maxlength="10" placeholder="10 Digits" required class="input-box w-full px-4 py-3.5 rounded-xl mt-1 text-xs font-semibold">
                 </div>
                 <div>
                     <label class="text-[8px] font-black uppercase text-green-500/70 tracking-widest ml-1">Draw Date</label>
-                    <input type="date" id="drawDate" required class="input-box w-full px-3 py-3.5 rounded-xl mt-1 text-[10px] font-semibold">
+                    <input type="date" id="drawDate" name="draw_date" required class="input-box w-full px-3 py-3.5 rounded-xl mt-1 text-[10px] font-semibold">
                 </div>
             </div>
 
             <div>
                 <label class="text-[8px] font-black uppercase text-green-500/70 tracking-widest block text-center">Assign Lottery Number</label>
-                <input type="text" id="lotteryNum" placeholder="000000" maxlength="6" required
+                <input type="text" id="lotteryNum" name="lottery_num" placeholder="000000" maxlength="6" required
                     class="input-box w-full px-4 py-4 rounded-xl mt-1 text-center orbitron text-lg tracking-[8px] border-green-500/30 font-black">
             </div>
 
@@ -78,10 +78,32 @@
     </div>
 
     <script>
-        document.getElementById('adminForm').onsubmit = (e) => {
-            e.preventDefault();
-            document.getElementById('successPopup').style.display = 'flex';
-        };
-    </script>
+    document.getElementById('adminForm').onsubmit = function(e) {
+        e.preventDefault();
+        
+        let formData = new FormData(this);
+
+        // Pointing to the Lucky Day backend file
+        fetch('save-lucky.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            const result = data.trim();
+            if(result === "success") {
+                document.getElementById('successPopup').style.display = 'flex';
+            } else if(result === "exists") {
+                alert("Error: This mobile number is already registered for the Lucky Day Draw.");
+            } else {
+                alert("System Error: " + data);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Network Error: Connection failed.");
+        });
+    };
+</script>
 </body>
 </html>

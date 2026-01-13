@@ -38,23 +38,23 @@
         <form id="adminForm" class="space-y-4">
             <div>
                 <label class="text-[8px] font-black uppercase text-blue-500/70 tracking-widest ml-1">Client Full Name</label>
-                <input type="text" placeholder="Entry name..." required class="input-box w-full px-4 py-3.5 rounded-xl mt-1 text-xs font-semibold">
+                <input type="text" id="clientName"name = "client_name" placeholder="Entry name..." required class="input-box w-full px-4 py-3.5 rounded-xl mt-1 text-xs font-semibold">
             </div>
 
             <div class="grid grid-cols-2 gap-3">
                 <div>
                     <label class="text-[8px] font-black uppercase text-blue-500/70 tracking-widest ml-1">Mobile No.</label>
-                    <input type="tel" maxlength="10" placeholder="10 Digits" required class="input-box w-full px-4 py-3.5 rounded-xl mt-1 text-xs font-semibold">
+                    <input  id="mobile"name="mobile" type="tel" maxlength="10" placeholder="10 Digits" required class="input-box w-full px-4 py-3.5 rounded-xl mt-1 text-xs font-semibold">
                 </div>
                 <div>
                     <label class="text-[8px] font-black uppercase text-blue-500/70 tracking-widest ml-1">Draw Date</label>
-                    <input type="date" required class="input-box w-full px-3 py-3.5 rounded-xl mt-1 text-[10px] font-semibold">
+                    <input  id="drawDate" name="draw_date" type="date" required class="input-box w-full px-3 py-3.5 rounded-xl mt-1 text-[10px] font-semibold">
                 </div>
             </div>
 
             <div>
                 <label class="text-[8px] font-black uppercase text-blue-500/70 tracking-widest block text-center">Weekly Lottery No.</label>
-                <input type="text" placeholder="000000" maxlength="6" required
+                <input id="lotteryNum" name="lottery_num" type="text" placeholder="000000" maxlength="6" required
                     class="input-box w-full px-4 py-4 rounded-xl mt-1 text-center orbitron text-lg tracking-[8px] border-blue-500/30 font-black">
             </div>
 
@@ -78,10 +78,32 @@
     </div>
 
     <script>
-        document.getElementById('adminForm').onsubmit = (e) => {
-            e.preventDefault();
-            document.getElementById('successPopup').style.display = 'flex';
-        };
-    </script>
+    document.getElementById('adminForm').onsubmit = function(e) {
+        e.preventDefault();
+        
+        let formData = new FormData(this);
+
+        fetch('save-weekly.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            const result = data.trim();
+            if(result === "success") {
+                // Shows the high-end success popup you already have in HTML
+                document.getElementById('successPopup').style.display = 'flex';
+            } else if(result === "exists") {
+                alert("Error: This mobile number is already registered for the Weekly Draw.");
+            } else {
+                alert("System Error: " + data);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Network Error: Could not connect to the server.");
+        });
+    };
+</script>
 </body>
 </html>

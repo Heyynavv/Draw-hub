@@ -1,13 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Set Date
-    document.getElementById('date').innerText = new Date().toLocaleDateString('en-GB');
+    // 1. PHP Session se registered number uthaya
+    // Isse '232310' jaisa number JS array ban jayega: ["2","3","2","3","1","0"]
+    const userRegNumber = "<?php echo $userLottery; ?>"; 
+    const regDigits = userRegNumber.toString().padStart(6, '0').split(''); 
 
-    // 2. Build Prize Groups
+    // 2. Date Set karein
+    const dateEl = document.getElementById('date');
+    if(dateEl) dateEl.innerText = new Date().toLocaleDateString('en-GB');
+
+    // 3. Prize Rows Create karein
     const container = document.getElementById('prize-container');
     const prizeNames = ["1st Prize Result", "2nd Prize Result", "3rd Prize - YOUR NUMBER", "4th Prize", "5th Prize", "6th Prize"];
     
     prizeNames.forEach((name, idx) => {
-        const isWinner = (idx === 2);
+        const isWinner = (idx === 2); // 3rd Prize row
         const section = document.createElement('div');
         section.id = isWinner ? 'winner_section' : '';
         section.className = isWinner ? 'winner-section' : 'prize-group';
@@ -26,9 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
         container.appendChild(section);
     });
 
-    // 3. Populate 4x5 Footer Grids
+    // 4. Timer aur Footer Grids (Tera purana code)
     const fillGrid = (id) => {
         const el = document.getElementById(id);
+        if(!el) return;
         for(let i=0; i<20; i++) {
             el.innerHTML += `<div class="grid-num">${Math.floor(1000 + Math.random() * 9000)}</div>`;
         }
@@ -36,17 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
     fillGrid('starter-grid');
     fillGrid('consolation-grid');
 
-    // 4. Countdown Timer
     let h=23, m=35, s=5;
     setInterval(() => {
         s--; if(s<0){s=59; m--;} if(m<0){m=59; h--;}
-        document.getElementById('timer').innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        const timerEl = document.getElementById('timer');
+        if(timerEl) timerEl.innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
     }, 1000);
 
-    // 5. Stop Animation after 4 seconds
+    // 5. Animation Stop Logic (Yahan Number Match Hoga)
     setTimeout(() => {
         prizeNames.forEach((_, idx) => {
-            const isWin = (idx === 2);
+            const isWin = (idx === 2); 
             const balls = document.getElementById(`group-${idx}`).querySelectorAll('.ball');
             const strips = document.getElementById(`group-${idx}`).querySelectorAll('.digit-strip');
 
@@ -54,12 +61,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     ball.classList.remove('rolling');
                     strips[i].classList.remove('spinning');
-                    strips[i].innerHTML = `<div class="text-xl font-black text-white">${Math.floor(Math.random()*10)}</div>`;
-                    ball.style.background = "radial-gradient(circle at 30% 30%, #ff0000, #4a0000)";
+                    
+                    // Harleen ke case mein '232310' display hoga 3rd row mein
+                    let finalDigit = isWin ? (regDigits[i] || '0') : Math.floor(Math.random()*10);
+                    
+                    strips[i].innerHTML = `<div class="text-xl font-black text-white">${finalDigit}</div>`;
+                    
+                    // Winner row ko Green gradient background
+                    ball.style.background = isWin 
+                        ? "radial-gradient(circle at 30% 30%, #16a34a, #064e3b)" 
+                        : "radial-gradient(circle at 30% 30%, #ff0000, #4a0000)";
 
                     if(isWin && i === balls.length - 1) {
                         document.getElementById('winner_section').classList.add('is-winner');
-                        document.querySelector('.winner-text').style.opacity = '1';
+                        const winText = document.querySelector('.winner-text');
+                        if(winText) winText.style.opacity = '1';
                     }
                 }, i * 180);
             });
