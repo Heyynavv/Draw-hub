@@ -234,9 +234,9 @@ if (isset($_POST['login_btn'])) {
 
             <div class="flex items-center gap-4">
                 <div class="hidden md:flex items-center gap-6 mr-4">
-                    <a href="./HTML/login.html"
+                    <a href="./HTML/login.php"
                         class="text-[11px] font-black text-gray-500 hover:text-gray-900 uppercase">Login</a>
-                    <a href="./HTML/register.html"
+                    <a href="./HTML/register.php"
                         class="bg-green-700 text-white px-7 py-2 rounded-full font-black text-[11px] uppercase shadow-md hover:bg-green-800 transition-all">Register</a>
                 </div>
 
@@ -300,7 +300,7 @@ if (isset($_POST['login_btn'])) {
                 <i class="fa fa-chevron-right arrow-icon"></i>
             </a>
 
-            <a href="/HTML/weekly.html" class="premium-btn weekly">
+            <a href="/HTML/weekly.php" class="premium-btn weekly">
                 <div class="icon-box weekly-glow">
                     <i class="fa fa-crown"></i>
                 </div>
@@ -311,7 +311,7 @@ if (isset($_POST['login_btn'])) {
                 <i class="fa fa-chevron-right arrow-icon"></i>
             </a>
 
-            <a href="/HTML/monthly.html" class="premium-btn monthly">
+            <a href="/HTML/monthly.php" class="premium-btn monthly">
                 <div class="icon-box monthly-glow">
                     <i class="fa fa-gem"></i>
                 </div>
