@@ -289,7 +289,7 @@ if (isset($_POST['login_btn'])) {
         </div>
 
         <div class="modal-body">
-            <a href="/HTML/luckyday.php" class="premium-btn lucky">
+            <a href="HTML/luckyday.php" class="premium-btn lucky">
                 <div class="icon-box lucky-glow">
                     <i class="fa fa-bolt float-anim"></i>
                 </div>
@@ -300,7 +300,7 @@ if (isset($_POST['login_btn'])) {
                 <i class="fa fa-chevron-right arrow-icon"></i>
             </a>
 
-            <a href="/HTML/weekly.php" class="premium-btn weekly">
+            <a href="HTML/weekly.php" class="premium-btn weekly">
                 <div class="icon-box weekly-glow">
                     <i class="fa fa-crown"></i>
                 </div>
@@ -311,7 +311,7 @@ if (isset($_POST['login_btn'])) {
                 <i class="fa fa-chevron-right arrow-icon"></i>
             </a>
 
-            <a href="/HTML/monthly.php" class="premium-btn monthly">
+            <a href="HTML/monthly.php" class="premium-btn monthly">
                 <div class="icon-box monthly-glow">
                     <i class="fa fa-gem"></i>
                 </div>

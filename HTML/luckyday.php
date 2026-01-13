@@ -75,7 +75,7 @@
         </h1>
         
         <p class="text-gray-300 text-xs md:text-base font-semibold mb-8 leading-snug">
-            Enter Your Mobile Number to <br> Check Your Prize
+            Enter Your Mobile Number to <br> Check Your Lucky Day Prize
         </p>
 
         <form id="verifyForm" class="space-y-6 text-left">
