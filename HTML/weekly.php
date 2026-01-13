@@ -72,7 +72,7 @@
 </head>
 <body class="premium-bg min-h-screen flex items-center justify-center p-4">
 
-    <a href="../index.html" class="absolute top-6 left-6 text-gray-500 hover:text-green-500 transition-all flex items-center gap-2 text-[10px] font-black uppercase tracking-widest">
+    <a href="../index.php" class="absolute top-6 left-6 text-gray-500 hover:text-green-500 transition-all flex items-center gap-2 text-[10px] font-black uppercase tracking-widest">
         <i class="fa fa-chevron-left"></i> BACK
     </a>
 
@@ -91,7 +91,7 @@
         </h1>
         
         <p class="text-gray-300 text-sm md:text-base font-semibold mb-10 leading-snug">
-            Enter Your Mobile Number to <br class="md:hidden"> Check Your Prize
+            Enter Your Mobile Number to <br class="md:hidden"> Check Your Weekly Prize
         </p>
 
         <form id="verifyForm" class="space-y-6 text-left">
@@ -133,23 +133,41 @@
     </div>
 
     <script>
-        const form = document.getElementById('verifyForm');
-        const input = document.getElementById('mobileNumber');
-        const popup = document.getElementById('errorPopup');
+    document.getElementById('verifyForm').onsubmit = function(e) {
+    e.preventDefault();
+    
+    const num = document.getElementById('mobileNumber').value;
+    
+    if(num.length === 10) {
+        let formData = new FormData();
+        formData.append('mobile', num);
 
-        form.onsubmit = (e) => {
-            e.preventDefault();
-            if(input.value.length === 10) {
-                // Success Simulation (e.g. 9876543210)
-                if(input.value === '9876543210') {
-                    window.location.href = 'results-lucky.html';
-                } else {
-                    popup.style.display = 'flex';
-                }
+        // '../' ka matlab hai HTML folder se bahar nikal kar Admin folder mein jao
+        fetch('../Admin/check-weekly.php', { 
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.text())
+        .then(data => {
+            console.log("Response from Server:", data); // Debugging ke liye
+            const result = data.trim();
+            
+            if(result === "success") {
+                // Number mil gaya, ab result page par bhej do
+                window.location.href = 'results-weekly.php'; 
+            } else {
+                // Agar data "not_found" ya kuch aur aaya
+                alert("Access Denied: Your number " + num + " is not registered for Lucky Day!");
             }
-        };
-
-        function closeError() { popup.style.display = 'none'; }
-    </script>
+        })
+        .catch(err => {
+            console.error("Fetch Error:", err);
+            alert("Technical Error: File path correctly set nahi hai.");
+        });
+    } else {
+        alert("Please enter a valid 10-digit mobile number.");
+    }
+};
+   </script>
 </body>
 </html>

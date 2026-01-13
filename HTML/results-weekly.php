@@ -1,18 +1,16 @@
 <?php
 session_start();
 
-// 1. Security Check: Agar session variables nahi hain, toh wapas login page
-if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header("Location: luckyday.php");
+// Weekly security check
+if (!isset($_SESSION['weekly_logged_in']) || $_SESSION['weekly_logged_in'] !== true) {
+    header("Location: weekly.php");
     exit();
 }
 
-// 2. Data ko local variables mein store karlo taaki HTML mein use ho sake
 $userName = $_SESSION['user_name'];
-$userLottery = $_SESSION['user_lottery'];
+$userLottery = $_SESSION['weekly_lottery'];
 
-// 3. MAGIC LINE: Yahan session delete kar do
-// Isse page ek baar load toh ho jayega, par naye tab mein link kaam nahi karega
+// One-time view logic (Refresh par expire ho jaye)
 session_unset();
 session_destroy();
 ?>
@@ -37,7 +35,7 @@ session_destroy();
     <div class="main-wrapper shadow-2xl">
         <div class="header-nav p-4 flex justify-between items-center bg-[#020d20]">
             <div class="flex items-center gap-3">
-                <a href="luckyday.php" class="text-gray-400 hover:text-white transition-colors">
+                <a href="weekly.php" class="text-gray-400 hover:text-white transition-colors">
                     <i class="fa fa-chevron-left"></i>
                 </a>
                 <div class="border-l border-white/10 pl-3">
@@ -94,5 +92,5 @@ session_destroy();
     const global_user_lottery = "<?php echo $userLottery; ?>"; 
 </script>
 
-<script src="../JS/results-luckyday.js?v=1.1"></script>
+<script src="../JS/results-weekly.js?v=1.1"></script>
 </html>
