@@ -56,7 +56,7 @@
 </head>
 <body class="premium-bg min-h-screen flex items-center justify-center p-4">
 
-    <a href="../index.html" class="absolute top-6 left-6 text-gray-500 hover:text-green-500 transition-all flex items-center gap-2 text-[10px] font-black uppercase tracking-widest">
+    <a href="../index.php" class="absolute top-6 left-6 text-gray-500 hover:text-green-500 transition-all flex items-center gap-2 text-[10px] font-black uppercase tracking-widest">
         <i class="fa fa-chevron-left"></i> BACK
     </a>
 
