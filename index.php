@@ -116,7 +116,7 @@ if (isset($_POST['login_btn'])) {
                 <div class="h-[1px] w-0 bg-green-600 group-hover:w-full transition-all duration-500 mt-2"></div>
             </a>
 
-            <a href="HTML/login.html" class="nav-item opacity-0 translate-y-4 block group transition-all duration-500"
+            <a href="HTML/login.php" class="nav-item opacity-0 translate-y-4 block group transition-all duration-500"
                 style="transition-delay: 100ms;">
                 <div class="flex items-center justify-between">
                     <span
@@ -128,7 +128,7 @@ if (isset($_POST['login_btn'])) {
                 <div class="h-[1px] w-0 bg-green-600 group-hover:w-full transition-all duration-500 mt-2"></div>
             </a>
 
-            <a href="HTML/register.html"
+            <a href="HTML/register.php"
                 class="nav-item opacity-0 translate-y-4 block group transition-all duration-500"
                 style="transition-delay: 200ms;">
                 <div class="flex items-center gap-2">
