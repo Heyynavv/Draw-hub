@@ -1,57 +1,38 @@
 <?php
-// Database connection include
 include '../includes/db.php'; 
-
-// Category check (luckyday ya weekly)
 $category = isset($_GET['category']) ? $_GET['category'] : 'luckyday';
+$table = ($category == 'luckyday') ? 'luckyday_users' : 'weekly_users';
 
-// Screenshots ke hisaab se sahi table choose karna
-if($category == 'luckyday') {
-    $table = 'luckyday_users';
-} else {
-    $table = 'weekly_users';
-}
-
-// Data fetch query
 $result = mysqli_query($conn, "SELECT * FROM $table ORDER BY id DESC");
+$total_rows = mysqli_num_rows($result);
 
-if(mysqli_num_rows($result) > 0) {
+echo "<input type='hidden' id='current-count-hidden' value='$total_rows'>";
+
+if($total_rows > 0) {
+    $sno = 1;
     while($row = mysqli_fetch_assoc($result)) {
-        // Screenshots ke exact columns use kar rahe hain
         echo "
-        <tr class='hover:bg-white/5 border-b border-white/5 transition-all group'>
-            <td class='p-6'>
-                <div class='flex items-center space-x-3'>
-                    <div class='w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-bold text-blue-500 uppercase'>
-                        ".substr($row['name'], 0, 1)."
-                    </div>
-                    <div>
-                        <p class='text-white font-bold'>".$row['name']."</p>
-                        <p class='text-xs text-slate-500'>".$row['phone']."</p>
-                    </div>
-                </div>
+        <tr class='border-b border-slate-100 hover:bg-slate-50 transition-colors'>
+            <td class='p-5 text-slate-400 font-bold'>#$sno</td>
+            <td class='p-5'>
+                <div class='font-extrabold text-slate-900 text-sm capitalize'>".$row['name']."</div>
+                <div class='text-[11px] text-slate-400 font-bold'>".$row['phone']."</div>
             </td>
-            <td class='p-6'>
-                <span class='font-mono text-blue-400 bg-blue-400/10 px-3 py-1.5 rounded-lg border border-blue-400/20'>
+            <td class='p-5'>
+                <span class='bg-blue-50 text-blue-600 px-3 py-1 rounded-lg font-mono font-black text-xs border border-blue-100'>
                     ".$row['lottery_number']."
                 </span>
             </td>
-            <td class='p-6 text-[10px] font-black uppercase tracking-widest'>
-                <span class='px-3 py-1 rounded-full ".($category == 'luckyday' ? 'bg-yellow-500/10 text-yellow-500' : 'bg-purple-500/10 text-purple-500')."'>
-                    $category
-                </span>
-            </td>
-            <td class='p-6 text-slate-500 text-xs'>
-                ".$row['draw_date']."
-            </td>
-            <td class='p-6 text-center'>
-                <button onclick='deleteUser(".$row['id'].", \"$category\")' class='w-10 h-10 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-all shadow-lg shadow-red-500/10'>
-                    <i class='fas fa-trash'></i>
+            <td class='p-5 text-slate-500 text-xs font-bold'>".$row['draw_date']."</td>
+            <td class='p-5 text-center'>
+                <button onclick='deleteUser(".$row['id'].", \"$category\")' class='w-10 h-10 inline-flex items-center justify-center rounded-xl bg-red-50 text-red-500 hover:bg-red-600 hover:text-white transition-all'>
+                    <i class='fas fa-trash-alt text-xs'></i>
                 </button>
             </td>
         </tr>";
+        $sno++;
     }
 } else {
-    echo "<tr><td colspan='5' class='p-20 text-center text-slate-500 italic'>No records found in $table table.</td></tr>";
+    echo "<tr><td colspan='5' class='p-20 text-center text-slate-400 italic font-bold'>Database is Empty</td></tr>";
 }
 ?>
