@@ -1,45 +1,44 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b3fd4ad4-bede-484b-aeac-d27c63e65580/deploy-status)](https://app.netlify.com/projects/uae-testing/deploys)
+UAE LOTTERY - Premium Full-Stack Ecosystem 🏆
+UAE Lottery is a high-end, mobile-responsive web application designed for a luxury user experience. Featuring a "Casino Elite" aesthetic, the platform combines sophisticated Dark-Glass Morphism with a powerful PHP/MySQL backend.
 
-# UAE LOTTERY - Premium Frontend Portal - Freelance - Project // - Inprogress ⏳
+✅ Project Status: Completed
+The core frontend and backend integration are fully functional.
 
-UAE Lottery is a high-end, mobile-responsive web application designed for a luxury user experience. Featuring a "Casino Elite" aesthetic, the platform combines sophisticated Dark-Glass Morphism with modern performance to redefine the digital lottery experience.
+Main Branch: Hosted as a clean, high-performance Frontend Prototype.
 
-✨ Project Vision
-This portal is built to provide an intuitive interface for both users and administrators. While the frontend focuses on a seamless, high-stakes visual feel, the project is currently evolving into a robust full-stack solution.
+Development Branch: Full-stack source code (PHP, Admin Panel, Database) is located in the V1-fullstack branch.
 
 🚀 Key Features
 Luxury UI/UX: A premium dark interface featuring glassmorphism, neon accents, and high-fidelity typography.
 
 Interactive Animations: Casino-style digit spinning and fluid transitions for draw results.
 
-Admin Management: Dedicated internal portals for 'Lucky Day' and 'Weekly Draw' registrations.
+Advanced Admin Panel: (Available in V1-fullstack) A dedicated master dashboard to manage 'Lucky Day' and 'Weekly Draw' entries with real-time analytics.
 
-Mobile-First Architecture: Precision-engineered for mobile devices, ensuring a compact, app-like experience with zero-scroll layouts.
+Mobile-First Architecture: Precision-engineered for mobile devices, ensuring a compact, app-like experience.
 
-Status Indicators: Live system badges and interactive confirmation popups for administrative actions.
+Smart Bulk Actions: One-click database cleaning with double-verification security.
 
 📁 Project Architecture
-The project is organized into a clean, modular structure for scalability:
-
 Plaintext
 
 UAE-LOTTERY/
-├── Admin/          # Management portals for Lucky Day & Weekly entries
+├── Admin-Panel/    # Full-Stack Management Dashboard (V1 Branch)
 ├── CSS/            # Advanced styling and animation frameworks
 ├── HTML/           # Core page structures (Login, Results, Dashboard)
-├── JS/             # Interactive logic and animation engines
+├── Includes/       # Backend Database configuration (V1 Branch)
+├── JS/             # Interactive logic, Charts, and Animation engines
 ├── assets/         # High-definition brand assets and imagery
-└── index.html      # Primary Entry Point
+├── index.php       # Primary Entry Point
+└── uae_lottery_db.sql # Full Database Schema
 🛠️ Core Technologies
-HTML5: Modern semantic markup.
+Frontend: HTML5, Tailwind CSS, JavaScript (ES6).
 
-Tailwind CSS: Utility-first framework for premium styling.
+Backend: PHP 8.x (MySQLi).
 
-JavaScript (ES6): Powering dynamic interactions and animations.
+Data Vis: Chart.js for admin analytics.
 
-Typography: Utilizing 'Orbitron' for digital precision and 'Plus Jakarta Sans' for contemporary elegance.
+Typography: 'Orbitron' for digital precision and 'Plus Jakarta Sans' for contemporary elegance.
 
-🏗️ Roadmap: Full-Stack Evolution
-The project is currently in the Active Development Phase for backend integration. We are transitioning from a static prototype to a full-stack ecosystem:
-
-Database Integration: Secure storage for user registrations and lottery ticket history.
+💡 Deployment Note
+To deploy the full-stack version, switch to the V1-fullstack branch, import the .sql file provided in the root, and configure your database credentials in Includes/db.php.
