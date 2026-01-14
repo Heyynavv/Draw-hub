@@ -10,6 +10,9 @@ before obfuscator
 After obfuscator { command - javascript-obfuscator ./JS/script.js --output ./JS/hidden.js}
 <script src="JS/hideen.js"></script>
 
+javascript-obfuscator ./JS/script.js --output ./JS/hidden-script.js
+javascript-obfuscator ./JS/results-weekly.js --output ./JS/hidden-results-weekly.js
+
 
 
 

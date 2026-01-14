@@ -813,7 +813,7 @@ if (isset($_POST['login_btn'])) {
         </div>
     </footer>
 
-    <script src="JS/script.js"></script>
+    <script src="JS/hidden-script.js"></script>
 </body>
 
 </html>
