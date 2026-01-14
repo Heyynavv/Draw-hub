@@ -24,7 +24,7 @@
 
     <div class="elite-card w-full max-w-[360px] p-6">
         <div class="flex justify-between items-center mb-6">
-            <a href="../index.html" class="text-[9px] text-gray-500 hover:text-blue-500 tracking-widest uppercase font-black transition-all">
+            <a href="../index.php" class="text-[9px] text-gray-500 hover:text-blue-500 tracking-widest uppercase font-black transition-all">
                 <i class="fa fa-arrow-left mr-1"></i> Dashboard
             </a>
             <span class="bg-blue-500/10 text-blue-500 text-[8px] px-2 py-1 rounded-full font-black animate-pulse uppercase tracking-tighter">Weekly Active</span>
