@@ -7,13 +7,13 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 -- 1. Database Creation
-CREATE DATABASE IF NOT EXISTS `uae_lottery` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `uae_lottery_db`;
+CREATE DATABASE IF NOT EXISTS `cloned_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `cloned_db`;
 
 -- --------------------------------------------------------
 
 -- 2. Table structure for table `admin`
-CREATE TABLE `admin` (
+CREATE TABLE `admins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
