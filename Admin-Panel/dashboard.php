@@ -102,14 +102,21 @@ include '../includes/db.php';
 
     <main class="flex-1 flex flex-col overflow-hidden">
         <header class="h-20 lg:h-24 flex items-center justify-between px-6 lg:px-12 bg-white/50 backdrop-blur-md border-b border-slate-200">
-            <div class="flex items-center">
-                <button onclick="toggleSidebar()" class="lg:hidden mr-4 text-slate-600 text-xl p-2 bg-white rounded-xl shadow-sm border"><i class="fas fa-bars"></i></button>
-                <h2 id="headerTitle" class="text-xl lg:text-2xl font-black text-slate-800 tracking-tight uppercase italic">Live Console</h2>
-            </div>
-            <div class="bg-blue-600 px-6 py-2 rounded-full shadow-lg shadow-blue-200 text-white font-black flex items-center">
-                <span id="header-count" class="mr-2 text-lg">0</span> <span class="text-[10px] uppercase opacity-80 tracking-widest">Entries</span>
-            </div>
-        </header>
+    <div class="flex items-center">
+        <button onclick="toggleSidebar()" class="lg:hidden mr-4 text-slate-600 text-xl p-2 bg-white rounded-xl shadow-sm border"><i class="fas fa-bars"></i></button>
+        <h2 id="headerTitle" class="text-xl lg:text-2xl font-black text-slate-800 tracking-tight uppercase italic">Live Console</h2>
+    </div>
+    
+    <div class="flex items-center space-x-3 lg:space-x-6">
+        <button id="clearAllBtn" onclick="clearAllEntries()" class="hidden bg-red-50 text-red-600 px-4 py-2 rounded-xl border border-red-100 font-bold text-xs hover:bg-red-600 hover:text-white transition-all flex items-center">
+            <i class="fas fa-broom mr-2"></i> <span class="hidden md:inline">Clear All</span>
+        </button>
+
+        <div class="bg-blue-600 px-6 py-2 rounded-full shadow-lg shadow-blue-200 text-white font-black flex items-center">
+            <span id="header-count" class="mr-2 text-lg">0</span> <span class="text-[10px] uppercase opacity-80 tracking-widest">Entries</span>
+        </div>
+    </div>
+</header>
 
         <div class="flex-1 overflow-y-auto p-6 lg:p-12">
             
@@ -237,6 +244,79 @@ include '../includes/db.php';
                 }
             });
         }
+        let currentCategory = 'stats';
+
+function switchTab(type, btn) {
+    currentCategory = type; // Current category track rakho
+    if(window.innerWidth < 1024) toggleSidebar();
+    
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    btn.classList.add('active');
+
+    const clearBtn = document.getElementById('clearAllBtn');
+
+    if(type === 'stats') {
+        document.getElementById('statsSection').classList.remove('hidden');
+        document.getElementById('tableSection').classList.add('hidden');
+        document.getElementById('headerTitle').innerText = "Live Console";
+        clearBtn.classList.add('hidden'); // Stats par clear button hide
+        refreshStats();
+    } else {
+        document.getElementById('statsSection').classList.add('hidden');
+        document.getElementById('tableSection').classList.remove('hidden');
+        document.getElementById('headerTitle').innerText = type.toUpperCase() + " REGISTRY";
+        clearBtn.classList.remove('hidden'); // Entries par clear button show
+        fetchUsers(type);
+    }
+}
+
+function clearAllEntries() {
+    Swal.fire({
+        title: 'Danger Zone!',
+        text: `Are you sure you want to delete ALL entries from ${currentCategory}? This cannot be undone!`,
+        icon: 'error',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#64748b',
+        confirmButtonText: 'YES, DELETE EVERYTHING',
+        background: '#fff',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Second Verification for safety
+            Swal.fire({
+                title: 'Final Confirmation',
+                text: "Type 'DELETE' to confirm",
+                input: 'text',
+                inputAttributes: { autocapitalize: 'off' },
+                showCancelButton: true,
+                confirmButtonText: 'Confirm',
+                showLoaderOnConfirm: true,
+                preConfirm: (login) => {
+                    if(login !== 'DELETE') {
+                        Swal.showValidationMessage('Please type DELETE correctly');
+                    }
+                }
+            }).then((finalResult) => {
+                if (finalResult.isConfirmed) {
+                    let fd = new FormData();
+                    fd.append('category', currentCategory);
+                    
+                    fetch('clear_all.php', { method: 'POST', body: fd })
+                    .then(res => res.text())
+                    .then(data => {
+                        if(data === 'success') {
+                            Swal.fire('Cleaned!', 'All entries have been purged.', 'success');
+                            fetchUsers(currentCategory);
+                            refreshStats();
+                        } else {
+                            Swal.fire('Error', 'Something went wrong.', 'error');
+                        }
+                    });
+                }
+            });
+        }
+    });
+}
 
         window.onload = () => { refreshStats(); fetchUsers('luckyday'); updateTime(); };
     </script>
