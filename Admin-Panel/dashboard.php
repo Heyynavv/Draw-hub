@@ -41,13 +41,13 @@ include '../includes/db.php';
         
         <nav class="flex-1 px-6 space-y-2 overflow-y-auto">
             <p class="text-[10px] font-black text-slate-400 uppercase tracking-[2px] ml-4 mb-2">Main Menu</p>
-            <button onclick="switchTab('stats', this)" class="nav-link active w-full flex items-center p-4 rounded-2xl">
+            <button onclick="switchTab('stats', this)" class="nav-link active w-full flex items-center p-4 rounded-2xl text-left">
                 <i class="fas fa-chart-line mr-3 w-5"></i><span>Overview</span>
             </button>
-            <button onclick="switchTab('luckyday', this)" class="nav-link w-full flex items-center p-4 rounded-2xl">
+            <button onclick="switchTab('luckyday', this)" class="nav-link w-full flex items-center p-4 rounded-2xl text-left">
                 <i class="fas fa-bolt mr-3 w-5"></i><span>Lucky Day</span>
             </button>
-            <button onclick="switchTab('weekly', this)" class="nav-link w-full flex items-center p-4 rounded-2xl">
+            <button onclick="switchTab('weekly', this)" class="nav-link w-full flex items-center p-4 rounded-2xl text-left">
                 <i class="fas fa-calendar-week mr-3 w-5"></i><span>Weekly</span>
             </button>
         </nav>
@@ -110,7 +110,7 @@ include '../includes/db.php';
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-lg"><canvas id="userChart" height="180"></canvas></div>
-                    <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-lg flex flex-col items-center">
+                    <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-lg flex flex-col items-center justify-center">
                         <div class="w-full max-w-[250px]"><canvas id="donutChart"></canvas></div>
                     </div>
                 </div>
@@ -125,8 +125,13 @@ include '../includes/db.php';
                     <div class="overflow-x-auto">
                         <table class="w-full text-left">
                             <thead class="bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-widest border-b border-slate-100">
-                                <tr><th class="p-8">UID</th><th class="p-8">Participant Info</th><th class="p-8">Lottery ID</th><th class="p-8">Timestamp</th><th class="p-8 text-center">Action</th></tr>
-                            </thead>
+    <tr>
+        <th class="p-8">UID</th>
+        <th class="p-8">Participant Info</th>
+        <th class="p-8">Lottery ID</th>
+        <th class="p-8">Reg. Time</th> <th class="p-8">Draw Date</th> <th class="p-8 text-center">Action</th>
+    </tr>
+</thead>
                             <tbody id="userTableBody" class="font-bold text-slate-700"></tbody>
                         </table>
                     </div>
@@ -141,17 +146,32 @@ include '../includes/db.php';
         let currentPage = 1;
         let searchQuery = "";
 
-        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); document.getElementById('overlay').classList.toggle('hidden'); }
+        function toggleSidebar() { 
+            document.getElementById('sidebar').classList.toggle('open'); 
+            document.getElementById('overlay').classList.toggle('hidden'); 
+        }
         
         const userChart = new Chart(document.getElementById('userChart').getContext('2d'), {
             type: 'line',
-            data: { labels: ['M','T','W','T','F','S','S'], datasets: [{ data: [30,45,35,60,50,85,95], borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.1)', fill: true, tension: 0.4 }] },
+            data: { 
+                labels: ['M','T','W','T','F','S','S'], 
+                datasets: [{ 
+                    data: [30,45,35,60,50,85,95], 
+                    borderColor: '#2563eb', 
+                    backgroundColor: 'rgba(37, 99, 235, 0.1)', 
+                    fill: true, 
+                    tension: 0.4 
+                }] 
+            },
             options: { plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { grid: { display: false } } } }
         });
 
         const donutChart = new Chart(document.getElementById('donutChart').getContext('2d'), {
             type: 'doughnut',
-            data: { labels: ['Lucky Day','Weekly'], datasets: [{ data: [1,1], backgroundColor: ['#06b6d4', '#6366f1'], borderWidth: 0 }] },
+            data: { 
+                labels: ['Lucky Day','Weekly'], 
+                datasets: [{ data: [1,1], backgroundColor: ['#06b6d4', '#6366f1'], borderWidth: 0 }] 
+            },
             options: { cutout: '80%', plugins: { legend: { position: 'bottom' } } }
         });
 
@@ -165,16 +185,20 @@ include '../includes/db.php';
             });
         }
 
+        // MAIN UPDATE: Cache busting added with Date.now()
         function fetchUsers(type, page = 1) {
             currentCategory = type;
             currentPage = page;
             const tbody = document.getElementById('userTableBody');
             tbody.innerHTML = "<tr><td colspan='5' class='p-20 text-center animate-pulse text-slate-300 font-black italic uppercase'>Searching...</td></tr>";
-            fetch(`fetch_users.php?category=${type}&page=${page}&search=${searchQuery}`)
+            
+            // fetch_users.php call with version control to prevent cache
+            fetch(`fetch_users.php?category=${type}&page=${page}&search=${searchQuery}&v=${Date.now()}`)
             .then(res => res.text()).then(data => {
                 tbody.innerHTML = data;
                 renderPagination();
-                document.getElementById('header-count').innerText = document.getElementById('currentCountHidden')?.value || 0;
+                const currentCount = document.getElementById('currentCountHidden')?.value || 0;
+                document.getElementById('header-count').innerText = currentCount;
             });
         }
 
@@ -189,13 +213,17 @@ include '../includes/db.php';
             }
         }
 
-        function searchData() { searchQuery = document.getElementById('searchInput').value; fetchUsers(currentCategory, 1); }
+        function searchData() { 
+            searchQuery = document.getElementById('searchInput').value; 
+            fetchUsers(currentCategory, 1); 
+        }
 
         function switchTab(type, btn) {
             currentCategory = type;
             if(window.innerWidth < 1024) toggleSidebar();
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             btn.classList.add('active');
+            
             const clearBtn = document.getElementById('clearAllBtn');
             if(type === 'stats') {
                 document.getElementById('statsSection').classList.remove('hidden');
@@ -225,7 +253,11 @@ include '../includes/db.php';
                 if (result.isConfirmed) {
                     let fd = new FormData();
                     fd.append('id', id); fd.append('category', type);
-                    fetch('delete_user.php', { method: 'POST', body: fd }).then(() => { fetchUsers(type, currentPage); refreshStats(); });
+                    fetch('delete_user.php', { method: 'POST', body: fd })
+                    .then(() => { 
+                        fetchUsers(type, currentPage); 
+                        refreshStats(); 
+                    });
                 }
             });
         }
@@ -245,12 +277,18 @@ include '../includes/db.php';
                         text: "Type 'DELETE' to confirm",
                         input: 'text',
                         showCancelButton: true,
-                        preConfirm: (val) => { if(val !== 'DELETE') Swal.showValidationMessage('Type DELETE correctly'); }
+                        preConfirm: (val) => { 
+                            if(val !== 'DELETE') Swal.showValidationMessage('Type DELETE correctly'); 
+                        }
                     }).then((res) => {
                         if(res.isConfirmed) {
                             let fd = new FormData();
                             fd.append('category', currentCategory);
-                            fetch('clear_all.php', { method: 'POST', body: fd }).then(() => { fetchUsers(currentCategory, 1); refreshStats(); });
+                            fetch('clear_all.php', { method: 'POST', body: fd })
+                            .then(() => { 
+                                fetchUsers(currentCategory, 1); 
+                                refreshStats(); 
+                            });
                         }
                     });
                 }
