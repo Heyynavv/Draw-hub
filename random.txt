@@ -1,4 +1,4 @@
-
+../JS/hidden-results-weekly.js?v=1.1"
 
 Obfuscator installation command - npm install -g javascript-obfuscator
 javascript-obfuscator --version

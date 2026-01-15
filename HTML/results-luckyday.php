@@ -94,5 +94,5 @@ session_destroy();
     const global_user_lottery = "<?php echo $userLottery; ?>"; 
 </script>
 
-<script src="../JS/results-luckyday.js?v=1.1"></script>
+<script src="../JS/results-luckyday.js"></script>
 </html>
