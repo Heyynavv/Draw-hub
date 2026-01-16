@@ -1,0 +1,43 @@
+<?php
+// Database connection include
+include __DIR__ . '/../Includes/db.php';
+
+// Check agar data AJAX/POST ke zariye aaya hai
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['category']) && isset($_POST['number'])) {
+    
+    // Data ko clean karein
+    $category = mysqli_real_escape_string($conn, $_POST['category']);
+    $number = mysqli_real_escape_string($conn, $_POST['number']);
+
+    // Pehle check karein ki ye category exist karti hai ya nahi
+    $check = mysqli_query($conn, "SELECT * FROM winner_settings WHERE category = '$category'");
+    
+    if (mysqli_num_rows($check) > 0) {
+        // Agar category hai toh UPDATE karein
+        $query = "UPDATE winner_settings SET winner_number = '$number' WHERE category = '$category'";
+    } else {
+        // Agar category nahi hai toh INSERT karein (Pehli baar ke liye)
+        $query = "INSERT INTO winner_settings (category, winner_number) VALUES ('$category', '$number')";
+    }
+
+    if (mysqli_query($conn, $query)) {
+        // Success response
+        echo json_encode([
+            'success' => true, 
+            'message' => 'Winner number updated to ' . $number
+        ]);
+    } else {
+        // Error response
+        echo json_encode([
+            'success' => false, 
+            'message' => 'Database Error: ' . mysqli_error($conn)
+        ]);
+    }
+} else {
+    // Invalid Access
+    echo json_encode([
+        'success' => false, 
+        'message' => 'Invalid Request Method'
+    ]);
+}
+?>
