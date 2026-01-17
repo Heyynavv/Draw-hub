@@ -567,7 +567,7 @@ if (isset($_POST['login_btn'])) {
 
     <!-- -----------------------------Lucky results------------------------ -->
 
-    <section class="w-full px-4 md:px-12 py-16 bg-[#fffcf7] relative overflow-hidden">
+    <!-- <section class="w-full px-4 md:px-12 py-16 bg-[#fffcf7] relative overflow-hidden">
 
         <div class="max-w-7xl mx-auto relative">
             <div
@@ -689,7 +689,98 @@ if (isset($_POST['login_btn'])) {
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+
+    <section class="w-full px-4 md:px-12 py-16 bg-[#fffcf7] relative overflow-hidden">
+    <?php 
+        date_default_timezone_set("Asia/Kolkata");
+        $current_day = date("l"); // 
+        $current_date = date("d/m/Y"); 
+    ?>
+
+    <div class="max-w-7xl mx-auto relative">
+        <div class="bg-white rounded-[2.5rem] shadow-[0_20px_60px_rgba(180,134,72,0.08)] border border-orange-100/50 p-6 md:p-12">
+
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-12 border-b border-orange-50 pb-8">
+                <div>
+                    <span class="bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-lg">Official Result</span>
+                    <p class="text-gray-400 text-xs font-bold italic mt-3 tracking-wide">
+                        <?php echo $current_day; ?> <?php echo $current_date; ?>
+                    </p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></div>
+                    <span class="text-gray-800 font-black orbitron text-sm italic">Verified Draw</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row justify-between gap-12">
+
+                <div class="flex-1">
+                    <h2 class="text-gray-900 font-black uppercase tracking-tighter text-2xl mb-8 italic">
+                        Draw <span class="text-[#b48648]">Winner Numbers</span>
+                    </h2>
+
+                    <div class="flex flex-wrap gap-3 md:gap-4 mb-12">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#e9c46a] via-[#d4a373] to-[#b48648] text-white rounded-full flex items-center justify-center font-black text-lg md:text-2xl shadow-lg border-b-4 border-black/10 transition-transform hover:-translate-y-1">2</div>
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#e9c46a] via-[#d4a373] to-[#b48648] text-white rounded-full flex items-center justify-center font-black text-lg md:text-2xl shadow-lg border-b-4 border-black/10 transition-transform hover:-translate-y-1">7</div>
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#e9c46a] via-[#d4a373] to-[#b48648] text-white rounded-full flex items-center justify-center font-black text-lg md:text-2xl shadow-lg border-b-4 border-black/10 transition-transform hover:-translate-y-1">15</div>
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#e9c46a] via-[#d4a373] to-[#b48648] text-white rounded-full flex items-center justify-center font-black text-lg md:text-2xl shadow-lg border-b-4 border-black/10 transition-transform hover:-translate-y-1">27</div>
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#e9c46a] via-[#d4a373] to-[#b48648] text-white rounded-full flex items-center justify-center font-black text-lg md:text-2xl shadow-lg border-b-4 border-black/10 transition-transform hover:-translate-y-1">30</div>
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#e9c46a] via-[#d4a373] to-[#b48648] text-white rounded-full flex items-center justify-center font-black text-lg md:text-2xl shadow-lg border-b-4 border-black/10 transition-transform hover:-translate-y-1">31</div>
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#f43f5e] to-[#be123c] text-white rounded-full flex items-center justify-center font-black text-lg md:text-2xl shadow-[0_10px_20px_rgba(190,18,60,0.2)] border-b-4 border-black/10 transition-transform hover:-translate-y-1">11</div>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-3 max-w-lg">
+                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-2xl border border-gray-100">
+                            <span class="text-gray-500 font-bold text-[10px] uppercase tracking-widest">Match <span class="text-black">6 + 1</span></span>
+                            <span class="text-gray-400 font-black text-xs italic">0 Winners</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-2xl border border-gray-100">
+                            <span class="text-gray-500 font-bold text-[10px] uppercase tracking-widest">Match <span class="text-black">5 + 1</span></span>
+                            <span class="text-[#b48648] font-black text-xs">4 Winners</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 bg-[#062214] rounded-2xl shadow-xl shadow-emerald-900/10">
+                            <span class="text-gray-300 font-bold text-[10px] uppercase tracking-widest">Total <span class="text-white">Participants</span></span>
+                            <span class="text-emerald-400 font-black text-xs">7,855 Wins</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-[400px]">
+                    <div class="bg-[#fff9f0] border border-orange-100 rounded-[2rem] p-8 relative overflow-hidden">
+                        <div class="absolute -top-4 -right-4 text-orange-200 opacity-50 transform rotate-12">
+                            <i class="fa fa-crown text-8xl"></i>
+                        </div>
+
+                        <h3 class="text-[#b48648] font-black uppercase tracking-widest text-sm mb-8 flex items-center gap-3 relative z-10">
+                            <span class="w-8 h-[2px] bg-[#b48648]"></span> Raffle Results
+                        </h3>
+
+                        <div class="space-y-4 relative z-10">
+                            <div class="flex justify-between items-center p-4 bg-white/80 rounded-xl border border-orange-50 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                                <span class="font-black text-gray-800 tracking-[2px] text-xs">AU1943179</span>
+                                <span class="font-black text-[#b48648] text-xs tracking-tight italic">AED 100K</span>
+                            </div>
+                            <div class="flex justify-between items-center p-4 bg-white/80 rounded-xl border border-orange-50 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                                <span class="font-black text-gray-800 tracking-[2px] text-xs">AI0733977</span>
+                                <span class="font-black text-[#b48648] text-xs tracking-tight italic">AED 100K</span>
+                            </div>
+                            <div class="flex justify-between items-center p-4 bg-white/80 rounded-xl border border-orange-50 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                                <span class="font-black text-gray-800 tracking-[2px] text-xs">CP6642835</span>
+                                <span class="font-black text-[#b48648] text-xs tracking-tight italic">AED 100K</span>
+                            </div>
+                        </div>
+
+                        <button class="w-full mt-8 py-4 bg-white border-2 border-[#b48648] text-[#b48648] rounded-xl font-black text-[10px] uppercase tracking-[0.3em] hover:bg-[#b48648] hover:text-white transition-all">
+                            View All Winners
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
     <!-- ------------------------------MOVING - Ticker------------------------ -->
