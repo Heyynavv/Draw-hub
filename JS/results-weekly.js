@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Prize Container Setup with Amounts
     const container = document.getElementById('prize-container');
     const prizes = [
-        { name: "1st Prize Result", amount: "AED 1200000" },
-        { name: "2nd Prize Result", amount: "AED 500000" },
-        { name: "3rd Prize - YOUR NUMBER", amount: "AED 150000" },
+        { name: "1st Prize ", amount: "AED 1200000" },
+        { name: "2nd Prize ", amount: "AED 500000" },
+        { name: "3rd Prize ", amount: "AED 150000" },
         { name: "4th Prize", amount: "AED 80000" },
         { name: "5th Prize", amount: "AED 60000" },
         { name: "6th Prize", amount: "AED 30000" }
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             section.innerHTML = `
                 <div class="prize-banner flex justify-between items-center px-4 ${isWinner ? '!bg-green-600 !text-black' : ''}">
                     <span>${prize.name}</span>
-                    <span class="font-black italic">${prize.amount}</span>
+                    <span class="font-black">${prize.amount}</span>
                 </div>
                 <div class="flex justify-center gap-2" id="group-${idx}">
                     ${Array(6).fill(0).map(() => `

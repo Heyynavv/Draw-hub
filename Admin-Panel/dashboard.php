@@ -80,7 +80,7 @@ include '../includes/db.php';
             
             <div id="statsSection" class="space-y-8">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div onclick="switchTab('luckyday', document.querySelectorAll('.nav-link')[1])" class="float-card cursor-pointer bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 hover:border-blue-500 transition-all">
+                    <div onclick="switchTab('luckyday', null)" class="float-card cursor-pointer bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 hover:border-blue-500 transition-all">
                         <div class="flex justify-between items-start mb-4">
                             <span class="p-3 bg-cyan-50 text-cyan-600 rounded-2xl"><i class="fas fa-bolt text-xl"></i></span>
                             <span class="text-[10px] font-black text-cyan-600 bg-cyan-50 px-3 py-1 rounded-full uppercase">Lucky Day</span>
@@ -89,7 +89,7 @@ include '../includes/db.php';
                         <h3 id="stat-lucky" class="text-5xl font-black text-slate-900 mt-2 tracking-tighter">0</h3>
                     </div>
 
-                    <div onclick="switchTab('weekly', document.querySelectorAll('.nav-link')[2])" class="float-card cursor-pointer bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 hover:border-indigo-500 transition-all" style="animation-delay: 0.2s">
+                    <div onclick="switchTab('weekly', null)" class="float-card cursor-pointer bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 hover:border-indigo-500 transition-all" style="animation-delay: 0.2s">
                         <div class="flex justify-between items-start mb-4">
                             <span class="p-3 bg-indigo-50 text-indigo-600 rounded-2xl"><i class="fas fa-calendar-week text-xl"></i></span>
                             <span class="text-[10px] font-black text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full uppercase">Weekly</span>
@@ -125,13 +125,15 @@ include '../includes/db.php';
                     <div class="overflow-x-auto">
                         <table class="w-full text-left">
                             <thead class="bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-widest border-b border-slate-100">
-    <tr>
-        <th class="p-8">UID</th>
-        <th class="p-8">Participant Info</th>
-        <th class="p-8">Lottery ID</th>
-        <th class="p-8">Reg. Time</th> <th class="p-8">Draw Date</th> <th class="p-8 text-center">Action</th>
-    </tr>
-</thead>
+                                <tr>
+                                    <th class="p-8">UID</th>
+                                    <th class="p-8">Participant Info</th>
+                                    <th class="p-8">Lottery ID</th>
+                                    <th class="p-8">Reg. Time</th> 
+                                    <th class="p-8">Draw Date</th> 
+                                    <th class="p-8 text-center">Action</th>
+                                </tr>
+                            </thead>
                             <tbody id="userTableBody" class="font-bold text-slate-700"></tbody>
                         </table>
                     </div>
@@ -151,6 +153,7 @@ include '../includes/db.php';
             document.getElementById('overlay').classList.toggle('hidden'); 
         }
         
+        // Charts Initializations
         const userChart = new Chart(document.getElementById('userChart').getContext('2d'), {
             type: 'line',
             data: { 
@@ -185,14 +188,12 @@ include '../includes/db.php';
             });
         }
 
-        // MAIN UPDATE: Cache busting added with Date.now()
         function fetchUsers(type, page = 1) {
             currentCategory = type;
             currentPage = page;
             const tbody = document.getElementById('userTableBody');
-            tbody.innerHTML = "<tr><td colspan='5' class='p-20 text-center animate-pulse text-slate-300 font-black italic uppercase'>Searching...</td></tr>";
+            tbody.innerHTML = "<tr><td colspan='6' class='p-20 text-center animate-pulse text-slate-300 font-black italic uppercase'>Searching...</td></tr>";
             
-            // fetch_users.php call with version control to prevent cache
             fetch(`fetch_users.php?category=${type}&page=${page}&search=${searchQuery}&v=${Date.now()}`)
             .then(res => res.text()).then(data => {
                 tbody.innerHTML = data;
@@ -218,11 +219,23 @@ include '../includes/db.php';
             fetchUsers(currentCategory, 1); 
         }
 
+        // Sidebar Fix: logic updated
         function switchTab(type, btn) {
             currentCategory = type;
-            if(window.innerWidth < 1024) toggleSidebar();
+            
+            // Sabhi nav-links se active class hatao
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            btn.classList.add('active');
+            
+            if(btn) {
+                // Sidebar se click hua hai
+                btn.classList.add('active');
+                if(window.innerWidth < 1024) toggleSidebar(); // Mobile par band hoga
+            } else {
+                // Dashboard Card se click hua hai -> Sidebar link highlight karo par open mat karo
+                const links = document.querySelectorAll('.nav-link');
+                if(type === 'luckyday') links[1].classList.add('active');
+                if(type === 'weekly') links[2].classList.add('active');
+            }
             
             const clearBtn = document.getElementById('clearAllBtn');
             if(type === 'stats') {
@@ -294,6 +307,7 @@ include '../includes/db.php';
                 }
             });
         }
+
         window.onload = () => { refreshStats(); };
     </script>
 </body>

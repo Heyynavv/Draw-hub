@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Prize Names aur unke corresponding Amounts ki list
     const prizes = [
-        { name: "1ST PRIZE RESULT", amount: "AED 400000" },
-        { name: "2ND PRIZE RESULT", amount: "AED 200000" },
-        { name: "3RD PRIZE - YOUR NUMBER", amount: "AED 50000" },
+        { name: "1ST PRIZE ", amount: "AED 400000" },
+        { name: "2ND PRIZE ", amount: "AED 200000" },
+        { name: "3RD PRIZE ", amount: "AED 50000" },
         { name: "4TH PRIZE", amount: "AED 40000" },
         { name: "5TH PRIZE", amount: "AED 20000" },
         { name: "6TH PRIZE", amount: "AED 5000" }
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             section.innerHTML = `
                 <div class="prize-banner flex justify-between items-center px-4 ${isWinner ? '!bg-green-600 !text-black' : ''}">
                     <span>${prize.name}</span>
-                    <span class="font-black italic">${prize.amount}</span>
+                    <span class="font-black ">${prize.amount}</span>
                 </div>
                 <div class="flex justify-center gap-2" id="group-${idx}">
                     ${Array(6).fill(0).map(() => `

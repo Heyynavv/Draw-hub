@@ -22,17 +22,14 @@ $countQuery = mysqli_query($conn, "SELECT COUNT(*) as total FROM $table $searchQ
 $totalRows = mysqli_fetch_assoc($countQuery)['total'];
 $totalPages = ceil($totalRows / $limit);
 
-// ORDER BY created_at DESC (Latest Entry Top Par)
-$query = "SELECT * FROM $table $searchQuery ORDER BY created_at DESC LIMIT $limit OFFSET $offset";
+// ORDER BY id DESC - Latest Entry Top Par (FIXED)
+$query = "SELECT * FROM $table $searchQuery ORDER BY id DESC LIMIT $limit OFFSET $offset";
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
         
-        // 1. Registration Time (Timestamp)
         $reg_time = date("d M, h:i A", strtotime($row['created_at']));
-        
-        // 2. Draw Date (Lottery Date)
         $draw_date = date("d M Y", strtotime($row['draw_date']));
 
         echo "
