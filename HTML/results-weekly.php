@@ -7,15 +7,24 @@ if (!isset($_SESSION['weekly_logged_in']) || $_SESSION['weekly_logged_in'] !== t
     exit();
 }
 
+// 2. India Timezone & Session Data
+date_default_timezone_set("Asia/Kolkata"); 
+
 $userName = $_SESSION['user_name'];
 $userLottery = $_SESSION['weekly_lottery'];
 
-// 2. Live Date Logic (UAE Time)
-date_default_timezone_set("Asia/Dubai"); 
-$liveDay = date("l");
-$liveDate = date("d/m/Y");
+// --- DRAW DATE LOGIC: Registration wali date nikalna ---
+if (isset($_SESSION['weekly_draw_date']) && !empty($_SESSION['weekly_draw_date'])) {
+    $dbDate = $_SESSION['weekly_draw_date'];
+    $liveDay = date("l", strtotime($dbDate)); 
+    $liveDate = date("d/m/Y", strtotime($dbDate)); 
+} else {
+    // Fallback logic
+    $liveDay = date("l");
+    $liveDate = date("d/m/Y");
+}
 
-// 3. One-time view logic (Isse reload par user login page par chala jayega)
+// 3. One-time view logic
 session_unset();
 session_destroy();
 ?>
