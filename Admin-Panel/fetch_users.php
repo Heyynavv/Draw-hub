@@ -1,5 +1,9 @@
 <?php
-include '../includes/db.php';
+// Path Fix using __DIR__
+include __DIR__ . '/../includes/db.php'; 
+
+// PHP Level par India Timezone set karein
+date_default_timezone_set('Asia/Kolkata');
 
 // Cache control
 header("Cache-Control: no-cache, must-revalidate");
@@ -17,24 +21,32 @@ if(!empty($search)){
     $searchQuery = " WHERE name LIKE '%$search%' OR phone LIKE '%$search%' OR lottery_number LIKE '%$search%' ";
 }
 
-// Total Count
+// 1. Total Count
 $countQuery = mysqli_query($conn, "SELECT COUNT(*) as total FROM $table $searchQuery");
 $totalRows = mysqli_fetch_assoc($countQuery)['total'];
 $totalPages = ceil($totalRows / $limit);
+$display_id = $totalRows - $offset;
 
-// ORDER BY id DESC - Latest Entry Top Par (FIXED)
+/**
+ * CLEAN QUERY:
+ * Humne db.php mein SET time_zone = '+05:30' pehle hi kar diya hai,
+ * isliye yahan ab extra DATE_ADD ki zaroorat nahi hai.
+ */
 $query = "SELECT * FROM $table $searchQuery ORDER BY id DESC LIMIT $limit OFFSET $offset";
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
         
+        $current_display_uid = $display_id--; 
+        
+        // India Time formatted display
         $reg_time = date("d M, h:i A", strtotime($row['created_at']));
         $draw_date = date("d M Y", strtotime($row['draw_date']));
 
         echo "
         <tr class='border-b border-slate-50 hover:bg-slate-50/50 transition-all'>
-            <td class='p-8 font-mono text-xs text-blue-500 font-bold'>#{$row['id']}</td>
+            <td class='p-8 font-mono text-xs text-blue-500 font-bold'>#{$current_display_uid}</td>
             <td class='p-8'>
                 <div class='flex flex-col'>
                     <span class='text-slate-900 font-extrabold uppercase tracking-tight'>{$row['name']}</span>
@@ -49,7 +61,7 @@ if(mysqli_num_rows($result) > 0) {
             <td class='p-8'>
                 <div class='flex flex-col'>
                     <span class='text-slate-700 font-bold text-xs'>$reg_time</span>
-                    <span class='text-[9px] text-emerald-500 uppercase font-black'>Registered At</span>
+                    <span class='text-[9px] text-emerald-500 uppercase font-black'>Registered At (IST)</span>
                 </div>
             </td>
             <td class='p-8'>

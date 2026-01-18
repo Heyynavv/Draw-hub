@@ -147,6 +147,7 @@ include '../includes/db.php';
         let currentCategory = 'stats';
         let currentPage = 1;
         let searchQuery = "";
+        let autoRefreshInterval; // For live polling
 
         function toggleSidebar() { 
             document.getElementById('sidebar').classList.toggle('open'); 
@@ -188,11 +189,29 @@ include '../includes/db.php';
             });
         }
 
-        function fetchUsers(type, page = 1) {
+        // Live Auto-Refresh Logic
+        function startAutoRefresh() {
+            if(autoRefreshInterval) clearInterval(autoRefreshInterval);
+            autoRefreshInterval = setInterval(() => {
+                // Sirf tabhi refresh ho jab user search na kar raha ho (prevent flickering)
+                if(document.getElementById('searchInput').value === "") {
+                    refreshStats();
+                    if(currentCategory !== 'stats') {
+                        fetchUsers(currentCategory, currentPage, true); // true means silent refresh
+                    }
+                }
+            }, 5000); // 5 Seconds
+        }
+
+        function fetchUsers(type, page = 1, silent = false) {
             currentCategory = type;
             currentPage = page;
             const tbody = document.getElementById('userTableBody');
-            tbody.innerHTML = "<tr><td colspan='6' class='p-20 text-center animate-pulse text-slate-300 font-black italic uppercase'>Searching...</td></tr>";
+            
+            // "Silent" refresh mein searching msg nahi dikhayenge
+            if(!silent) {
+                tbody.innerHTML = "<tr><td colspan='6' class='p-20 text-center animate-pulse text-slate-300 font-black italic uppercase'>Searching...</td></tr>";
+            }
             
             fetch(`fetch_users.php?category=${type}&page=${page}&search=${searchQuery}&v=${Date.now()}`)
             .then(res => res.text()).then(data => {
@@ -219,19 +238,14 @@ include '../includes/db.php';
             fetchUsers(currentCategory, 1); 
         }
 
-        // Sidebar Fix: logic updated
         function switchTab(type, btn) {
             currentCategory = type;
-            
-            // Sabhi nav-links se active class hatao
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             
             if(btn) {
-                // Sidebar se click hua hai
                 btn.classList.add('active');
-                if(window.innerWidth < 1024) toggleSidebar(); // Mobile par band hoga
+                if(window.innerWidth < 1024) toggleSidebar();
             } else {
-                // Dashboard Card se click hua hai -> Sidebar link highlight karo par open mat karo
                 const links = document.querySelectorAll('.nav-link');
                 if(type === 'luckyday') links[1].classList.add('active');
                 if(type === 'weekly') links[2].classList.add('active');
@@ -308,7 +322,10 @@ include '../includes/db.php';
             });
         }
 
-        window.onload = () => { refreshStats(); };
+        window.onload = () => { 
+            refreshStats(); 
+            startAutoRefresh(); // Start live polling
+        };
     </script>
 </body>
 </html>
