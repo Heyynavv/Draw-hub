@@ -7,16 +7,24 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit();
 }
 
-// 2. Data save karo taaki session delete hone ke baad bhi display ho sake
+// 2. India Timezone
+date_default_timezone_set("Asia/Kolkata"); 
+
 $userName = $_SESSION['user_name'];
 $userLottery = $_SESSION['user_lottery'];
 
-// 3. Date & Day Logic (Raat ke 12 baje auto-change hoga)
-date_default_timezone_set("Asia/Dubai"); 
-$liveDay = date("l");
-$liveDate = date("d/m/Y");
+// 3. DRAW DATE LOGIC: Registration wali date display karna
+if (isset($_SESSION['draw_date']) && !empty($_SESSION['draw_date'])) {
+    $db_date = $_SESSION['draw_date'];
+    $liveDay = date("l", strtotime($db_date)); // e.g. Sunday
+    $liveDate = date("d/m/Y", strtotime($db_date)); // e.g. 18/01/2026
+} else {
+    // Fallback agar date na mile
+    $liveDay = date("l");
+    $liveDate = date("d/m/Y");
+}
 
-// 4. SESSION DESTROY: Isse reload karne par link expire ho jayega
+// 4. SESSION DESTROY: Variables mein data lene ke baad session clean karein
 session_unset();
 session_destroy();
 ?>
@@ -65,26 +73,25 @@ session_destroy();
 
         <div class="bg-yellow-500 p-6 space-y-2 mt-auto">
             <div>
-    <p class="text-[11px] font-black text-black uppercase mb-3 flex justify-between items-center">
-        <span>Starter Prize</span>
-        <span class="text-black">AED 1000</span>
-    </p>
-    <div id="starter-grid" class="grid grid-cols-5 gap-2"></div>
-</div>
+                <p class="text-[11px] font-black text-black uppercase mb-3 flex justify-between items-center">
+                    <span>Starter Prize</span>
+                    <span class="text-black">AED 1000</span>
+                </p>
+                <div id="starter-grid" class="grid grid-cols-5 gap-2"></div>
+            </div>
             <div class="dotted-line my-4 opacity-20 border-t border-black border-dashed"></div>
             <div>
-    <p class="text-[11px] font-black text-black uppercase mb-3 flex justify-between items-center">
-        <span>Consolation Prize</span>
-        <span class="text-black">AED 500</span>
-    </p>
-    <div id="consolation-grid" class="grid grid-cols-5 gap-2"></div>
-</div>
+                <p class="text-[11px] font-black text-black uppercase mb-3 flex justify-between items-center">
+                    <span>Consolation Prize</span>
+                    <span class="text-black">AED 500</span>
+                </p>
+                <div id="consolation-grid" class="grid grid-cols-5 gap-2"></div>
+            </div>
             <p class="text-center text-[8px] text-black/40 font-bold uppercase pt-8">UAE Official Lottery Portal</p>
         </div>
     </div>
 
     <script>
-        // User ka number JS ko pass kiya
         const global_user_lottery = "<?php echo $userLottery; ?>"; 
     </script>
     <script src="../JS/results-luckyday.js?v=<?php echo time(); ?>"></script>
